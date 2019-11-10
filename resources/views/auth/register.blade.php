@@ -141,17 +141,12 @@
                                     <ul class="nav nav-pills">
                                         <li class="nav-item">
                                             <a class="nav-link active" href="#about" data-toggle="tab" role="tab">
-                                                About
+                                                Datos basicos
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#account" data-toggle="tab" role="tab">
-                                                Account
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#address" data-toggle="tab" role="tab">
-                                                Address
+                                                Datos de la empresa
                                             </a>
                                         </li>
                                     </ul>
@@ -159,21 +154,17 @@
                                 <div class="card-body">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="about">
-                                            <h5 class="info-text"> Let's start with the basic information (with
-                                                validation)</h5>
+                                            <h5 class="info-text"> Datos de contacto</h5>
                                             <div class="row justify-content-center">
-                                                <div class="col-sm-4">
-                                                    <div class="picture-container">
-                                                        <div class="picture">
-                                                            <img src="{{asset("assets/img/default-avatar.png")}}"
-                                                                 class="picture-src" id="wizardPicturePreview"
-                                                                 title=""/>
-                                                            <input type="file" id="wizard-picture">
-                                                        </div>
-                                                        <h6 class="description">Choose Picture</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
+                                                <div class="col-sm-6" style="margin-top: 21px;">
+                                                    <select class="selectpicker  col-md-12"
+                                                            data-style="btn btn-primary btn-round btn-block"
+                                                            title="Single Select" data-size="20" name="tipopersona"
+                                                            required>
+                                                        <option disabled selected>Tipo de persona</option>
+                                                        <option value="natural">Natural</option>
+                                                        <option value="juridica">Jurídica</option>
+                                                    </select>
                                                     <div class="input-group form-control-lg">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">
@@ -181,30 +172,17 @@
                                                             </span>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="exampleInput1" class="bmd-label-floating">Nombre</label>
-                                                            <input type="text" class="form-control" id="exampleInput1" name="nombre" required>
+                                                            <label for="exampleInput11" class="bmd-label-floating">Nombre
+                                                                (required)</label>
+                                                            <input type="text" class="form-control" id="nombreid"
+                                                                   name="nombre" required>
                                                         </div>
                                                     </div>
                                                     <div class="input-group form-control-lg">
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">
-                                                                <i class="material-icons">record_voice_over</i>
+                                                                <i class="material-icons">email</i>
                                                             </span>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInput11" class="bmd-label-floating">Second
-                                                                Name</label>
-                                                            <input type="text" class="form-control" id="exampleInput11"
-                                                                   name="lastname" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-10 mt-3">
-                                                    <div class="input-group form-control-lg">
-                                                        <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                  <i class="material-icons">email</i>
-                                </span>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleInput1" class="bmd-label-floating">Email
@@ -214,46 +192,167 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-sm-6">
+                                                    <div class="input-group form-control-lg">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">payment</i>
+                                                            </span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInput1"
+                                                                   class="bmd-label-floating">Identificación
+                                                                (required)</label>
+                                                            <input type="number" class="form-control"
+                                                                   id="identificacionid"
+                                                                   name="identificacion" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group form-control-lg">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">record_voice_over</i>
+                                                            </span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInput11" class="bmd-label-floating">Apellido
+                                                                (required)</label>
+                                                            <input type="text" class="form-control" id="apellidoid"
+                                                                   name="apellido" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group form-control-lg">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">call</i>
+                                                            </span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInput1"
+                                                                   class="bmd-label-floating">Telefono
+                                                                (required)</label>
+                                                            <input type="number" class="form-control" id="telefonoid"
+                                                                   name="telefono" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10 mt-3">
+                                                    <div class="input-group form-control-lg">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">map</i>
+                                                            </span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInput1"
+                                                                   class="bmd-label-floating">Dirección
+                                                                (required)</label>
+                                                            <input type="text" class="form-control" id="direccionid"
+                                                                   name="direccion" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="account">
-                                            <h5 class="info-text"> What are you doing? (checkboxes) </h5>
+                                            <h5 class="info-text"> Datos de la Empresa </h5>
                                             <div class="row justify-content-center">
-                                                <div class="col-lg-10">
+                                                <div class="col-md-12">
                                                     <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <div class="choice" data-toggle="wizard-checkbox">
-                                                                <input type="checkbox" name="jobb" value="Design">
-                                                                <div class="icon">
-                                                                    <i class="fa fa-pencil"></i>
+                                                        <div class="col-md-6">
+                                                            <div class="input-group form-control-lg">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">credit_card</i>
+                                                            </span>
                                                                 </div>
-                                                                <h6>Design</h6>
+                                                                <div class="form-group">
+                                                                    <label for="exampleInput1"
+                                                                           class="bmd-label-floating">Nit
+                                                                        (required)</label>
+                                                                    <input type="text" class="form-control"
+                                                                           id="nitid"
+                                                                           name="nit" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-group form-control-lg">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">view_carousel</i>
+                                                            </span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="exampleInput1"
+                                                                           class="bmd-label-floating">Dependencia
+                                                                        (required)</label>
+                                                                    <input type="text" class="form-control"
+                                                                           id="dependenciaid"
+                                                                           name="dependencia" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-group form-control-lg">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">map</i>
+                                                            </span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="exampleInput1"
+                                                                           class="bmd-label-floating">Dirección
+                                                                        (required)</label>
+                                                                    <input type="text" class="form-control"
+                                                                           id="direccionemp"
+                                                                           name="direccionemp" required>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="choice" data-toggle="wizard-checkbox">
-                                                                <input type="checkbox" name="jobb" value="Code">
-                                                                <div class="icon">
-                                                                    <i class="fa fa-terminal"></i>
+                                                        <div class="col-md-6">
+                                                            <div class="input-group form-control-lg">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">account_balance</i>
+                                                            </span>
                                                                 </div>
-                                                                <h6>Code</h6>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-4">
-                                                            <div class="choice" data-toggle="wizard-checkbox">
-                                                                <input type="checkbox" name="jobb" value="Develop">
-                                                                <div class="icon">
-                                                                    <i class="fa fa-laptop"></i>
+                                                                <div class="form-group">
+                                                                    <label for="exampleInput1"
+                                                                           class="bmd-label-floating">Nombre de la
+                                                                        Empresa
+                                                                        (required)</label>
+                                                                    <input type="number" class="form-control"
+                                                                           id="empresaid"
+                                                                           name="empresa" required>
                                                                 </div>
-                                                                <h6>Develop</h6>
                                                             </div>
-                                                            <select class="selectpicker"
-                                                                    data-style="btn btn-primary btn-round"
-                                                                    title="Single Select" data-size="7">
-                                                                <option disabled selected>Choose city</option>
-                                                                <option value="2">Foobar</option>
-                                                                <option value="3">Is great</option>
-                                                            </select>
+                                                            <div class="input-group form-control-lg">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">email</i>
+                                                            </span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="exampleInput1"
+                                                                           class="bmd-label-floating">Email
+                                                                        (required)</label>
+                                                                    <input type="email" class="form-control"
+                                                                           id="emailemp"
+                                                                           name="emailempresa" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-group form-control-lg">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">call</i>
+                                                            </span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="exampleInput1"
+                                                                           class="bmd-label-floating">Telefono
+                                                                        (required)</label>
+                                                                    <input type="number" class="form-control"
+                                                                           id="telefonoemp"
+                                                                           name="telefonoemp" required>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
