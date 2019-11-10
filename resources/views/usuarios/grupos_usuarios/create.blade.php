@@ -6,8 +6,8 @@
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.usuarios')}}"> Usuarios </a><span
-                        class="fa-angle-right fa"></span><a href="{{route('modulo.index')}}"> Módulos
-                        del Sistema </a><span class="fa-angle-right fa"></span> Crear
+                        class="fa-angle-right fa"></span><a href="{{route('pagina.index')}}"> Grupo de
+                        Usuarios </a><span class="fa-angle-right fa"></span> Crear
                 </p>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">DATOS DEL MODULO</h4>
+                        <h4 class="card-title">DATOS DEL GRUPO</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -42,24 +42,32 @@
                         @endcomponent
                     </div>
                     <div class="col-md-12">
-                        <form class="form-horizontal" method="POST" action="{{route('modulo.store')}}">
+                        <form class="form-horizontal" method="POST" action="{{route('grupousuario.store')}}">
                             @csrf
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <br/><input type="text" class="form-control"
-                                                    placeholder="Escriba el nombre del módulo u opción de menú"
-                                                    name="nombre" required="required"/>
+                                        <br/><input type="text" class="form-control" placeholder="Escriba el nombre del grupo o rol de usuario" name="nombre" required="required" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <br/><input type="text" class="form-control"
-                                                    placeholder="Descripción del módulo (Opcional)" name="descripcion"/>
+                                        <br/><input type="text" class="form-control" placeholder="Descripción del grupo (Opcional)" name="descripcion"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <br/><br/><a href="{{route('modulo.index')}}" class="btn btn-danger btn-round">Cancelar</a>
+                                    <div class="form-line">
+                                        <br/>
+                                        <label>Seleccione los Módulos a los que el Grupo Tendrá Acceso</label>
+                                        <select class="form-control selectpicker" data-style="select-with-transition" name="modulos[]" title="Seleccione los Módulos a los que el Grupo Tendrá Acceso" required="" multiple="">
+                                            @foreach($modulos as $key=>$value)
+                                                <option value="{{$key}}">{{$value}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <br/><br/><a href="{{route('grupousuario.index')}}" class="btn btn-danger btn-round">Cancelar</a>
                                     <button class="btn btn-info btn-round" type="reset">Limpiar Formulario</button>
                                     <button class="btn btn-success btn-round" type="submit">Guardar</button>
                                 </div>
@@ -79,10 +87,11 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Agregue nuevos módulos,</strong> el nombre del módulo no debe llevar acentos, eñes (ñ) ni
-                    caracteres especiales, el nombre del módulo debe iniciar con "MOD_" seguido del nombre que usted
-                    desee. Los módulos generales del sistema son las aplicaciones generales representadas en las
-                    opciones del menú. Ejemplo de modulo general: MOD_INICIO, MOD_USUARIO, ETC.
+                    <strong>Agregue nuevas páginas,</strong> el nombre de la página no debe llevar acentos, eñes (ñ) ni
+                    caracteres especiales, el nombre de la página debe iniciar con "PAG_" seguido del nombre que usted
+                    desee. Las paginas o ítems de los módulos del sistema son las funcionalidades más específicas o
+                    detalladas de los módulos. Ejemplo de página general: PAG_MODULOS, PAG_PAGINAS, PAG_USUARIOS,
+                    PAG_PRIVILEGIOS, ETC.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
@@ -93,40 +102,6 @@
 @endsection
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#datatables').DataTable({
-                "pagingType": "full_numbers",
-                "lengthMenu": [
-                    [10, 25, 50, -1],
-                    [10, 25, 50, "All"]
-                ],
-                responsive: true,
-                language: {
-                    search: "_INPUT_",
-                    searchPlaceholder: "Search records",
-                }
-            });
-
-            var table = $('#datatable').DataTable();
-
-            // Edit record
-            table.on('click', '.edit', function () {
-                $tr = $(this).closest('tr');
-                var data = table.row($tr).data();
-                alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-            });
-
-            // Delete a record
-            table.on('click', '.remove', function (e) {
-                $tr = $(this).closest('tr');
-                table.row($tr).remove().draw();
-                e.preventDefault();
-            });
-
-            //Like record
-            table.on('click', '.like', function () {
-                alert('You clicked on Like button');
-            });
-        });
+        $('.select2').select2();
     </script>
 @endsection

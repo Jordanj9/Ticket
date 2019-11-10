@@ -5,9 +5,8 @@
             <div class="col-md-12">
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.usuarios')}}"> Usuarios </a><span
-                        class="fa-angle-right fa"></span><a href="{{route('modulo.index')}}"> Módulos
-                        del Sistema </a><span class="fa-angle-right fa"></span> Crear
+                        href="{{route('admin.usuarios')}}"> Módulo Usuarios </a><span class="fa-angle-right fa"></span>
+                    Páginas del Sistema
                 </p>
             </div>
         </div>
@@ -19,7 +18,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">DATOS DEL MODULO</h4>
+                        <h4 class="card-title">USUARIOS - PÁGINAS DEL SISTEMA</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -29,6 +28,8 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                                    <a href="{{ route('pagina.create') }}" class="dropdown-item" href="#">Agregar nueva
+                                        página</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -37,34 +38,46 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="col-md-12">
-                        @component('layouts.errors')
-                        @endcomponent
-                    </div>
-                    <div class="col-md-12">
-                        <form class="form-horizontal" method="POST" action="{{route('modulo.store')}}">
-                            @csrf
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <br/><input type="text" class="form-control"
-                                                    placeholder="Escriba el nombre del módulo u opción de menú"
-                                                    name="nombre" required="required"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <br/><input type="text" class="form-control"
-                                                    placeholder="Descripción del módulo (Opcional)" name="descripcion"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <br/><br/><a href="{{route('modulo.index')}}" class="btn btn-danger btn-round">Cancelar</a>
-                                    <button class="btn btn-info btn-round" type="reset">Limpiar Formulario</button>
-                                    <button class="btn btn-success btn-round" type="submit">Guardar</button>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="material-datatables">
+                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
+                               width="100%" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>PÁGINA</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>CREADO</th>
+                                <th>MODIFICADO</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($paginas as $pagina)
+                                <tr>
+                                    <td>{{$pagina->id}}</td>
+                                    <td>{{$pagina->nombre}}</td>
+                                    <td>{{$pagina->descripcion}}</td>
+                                    <td>{{$pagina->created_at}}</td>
+                                    <td>{{$pagina->updated_at}}</td>
+                                    <td style="text-align: center;">
+                                        <a href="{{ route('pagina.edit',$pagina->id)}}"
+                                           class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Editar Página"><i class="material-icons">mode_edit</i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>PÁGINA</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>CREADO</th>
+                                <th>MODIFICADO</th>
+                                <th class="text-right">ACCIONES</th>
+                            </tr>
+                            </tfoot>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -79,10 +92,11 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Agregue nuevos módulos,</strong> el nombre del módulo no debe llevar acentos, eñes (ñ) ni
-                    caracteres especiales, el nombre del módulo debe iniciar con "MOD_" seguido del nombre que usted
-                    desee. Los módulos generales del sistema son las aplicaciones generales representadas en las
-                    opciones del menú. Ejemplo de modulo general: MOD_INICIO, MOD_USUARIO, ETC.
+                    <strong>Detalles: </strong>Las páginas o ítems de los módulos del sistema son las funcionalidades
+                    más específicas o detalladas de los módulos. Ejemplo de página general: PAG_MODULOS, PAG_PAGINAS,
+                    PAG_USUARIOS, PAG_PRIVILEGIOS, ETC.
+                    <br/><strong>Nota: </strong> No modifique los nombres de las páginas ya creadas ya que puede
+                    ocasionar fallas en el sistema.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>

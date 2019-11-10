@@ -6,8 +6,8 @@
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.usuarios')}}"> Usuarios </a><span
-                        class="fa-angle-right fa"></span><a href="{{route('modulo.index')}}"> Módulos
-                        del Sistema </a><span class="fa-angle-right fa"></span> Crear
+                        class="fa-angle-right fa"></span><a href="{{route('pagina.index')}}"> Grupo de
+                        Usuarios </a><span class="fa-angle-right fa"></span> Editar
                 </p>
             </div>
         </div>
@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">DATOS DEL MODULO</h4>
+                        <h4 class="card-title">EDITAR DATOS DEL GRUPO DE USUARIO : {{$grupo->nombre}}</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -42,24 +42,53 @@
                         @endcomponent
                     </div>
                     <div class="col-md-12">
-                        <form class="form-horizontal" method="POST" action="{{route('modulo.store')}}">
+                        <form class="form-horizontal" method="POST"
+                              action="{{route('grupousuario.update',$grupo->id)}}">
                             @csrf
+                            <input name="_method" type="hidden" value="PUT"/>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <br/><input type="text" class="form-control"
-                                                    placeholder="Escriba el nombre del módulo u opción de menú"
+                                        <br/><input type="text" value="{{$grupo->nombre}}" class="form-control"
+                                                    placeholder="Escriba el nombre del grupo o rol de usuario"
                                                     name="nombre" required="required"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <br/><input type="text" class="form-control"
-                                                    placeholder="Descripción del módulo (Opcional)" name="descripcion"/>
+                                        <br/><input type="text" value="{{$grupo->descripcion}}" class="form-control"
+                                                    placeholder="Descripción del grupo (Opcional)" name="descripcion"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <br/><br/><a href="{{route('modulo.index')}}" class="btn btn-danger btn-round">Cancelar</a>
+                                    <div class="form-line">
+                                        <br/>
+                                        <label>Seleccione los Módulos a los que el Grupo Tendrá Acceso</label>
+                                        <select class="form-control selectpicker" data-style="select-with-transition" name="modulos[]"
+                                                title="Seleccione los Módulos a los que el Grupo Tendrá Acceso"
+                                                required="" multiple="">
+                                            @foreach($modulos as $key=>$value)
+                                                <?php
+                                                $existe = false;
+                                                ?>
+                                                @foreach($grupo->modulos as $m)
+                                                    @if($m->id==$key)
+                                                        <?php
+                                                        $existe = true;
+                                                        ?>
+                                                    @endif
+                                                @endforeach
+                                                @if($existe)
+                                                    <option value="{{$key}}" selected>{{$value}}</option>
+                                                @else
+                                                    <option value="{{$key}}">{{$value}}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <br/><br/><a href="{{route('grupousuario.index')}}" class="btn btn-danger btn-round">Cancelar</a>
                                     <button class="btn btn-info btn-round" type="reset">Limpiar Formulario</button>
                                     <button class="btn btn-success btn-round" type="submit">Guardar</button>
                                 </div>
@@ -70,19 +99,16 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-mini modal-primary" id="mdModal" tabindex="-1" role="dialog"
+    <div class="modal fade" id="mdModal" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-small">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Agregue nuevos módulos,</strong> el nombre del módulo no debe llevar acentos, eñes (ñ) ni
-                    caracteres especiales, el nombre del módulo debe iniciar con "MOD_" seguido del nombre que usted
-                    desee. Los módulos generales del sistema son las aplicaciones generales representadas en las
-                    opciones del menú. Ejemplo de modulo general: MOD_INICIO, MOD_USUARIO, ETC.
+                    <strong>Edite los datos de los grupos,</strong> Los grupos de usuarios son los roles o agrupaciones de usuarios que permite asignarle privilegios a todo un conglomerado de usuarios que comparte funciones. Ejemplo de grupos de usuarios: ADMINISTRADOR, FELIGRES, ESCUELA SABATICA, MAYORDOMIA, MINISTERIO JUVENIL, ETC.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
@@ -93,40 +119,6 @@
 @endsection
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#datatables').DataTable({
-                "pagingType": "full_numbers",
-                "lengthMenu": [
-                    [10, 25, 50, -1],
-                    [10, 25, 50, "All"]
-                ],
-                responsive: true,
-                language: {
-                    search: "_INPUT_",
-                    searchPlaceholder: "Search records",
-                }
-            });
 
-            var table = $('#datatable').DataTable();
-
-            // Edit record
-            table.on('click', '.edit', function () {
-                $tr = $(this).closest('tr');
-                var data = table.row($tr).data();
-                alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-            });
-
-            // Delete a record
-            table.on('click', '.remove', function (e) {
-                $tr = $(this).closest('tr');
-                table.row($tr).remove().draw();
-                e.preventDefault();
-            });
-
-            //Like record
-            table.on('click', '.like', function () {
-                alert('You clicked on Like button');
-            });
-        });
     </script>
 @endsection
