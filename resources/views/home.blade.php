@@ -26,7 +26,7 @@
                                 <i class="material-icons">account_balance</i>
                             </div>
                             <p class="card-category">Modulo</p>
-                            <h3 class="card-title">Académico</h3>
+                            <h3 class="card-title">Generales</h3>
                         </div>
                         <div class="card-footer">
                         </div>
@@ -41,7 +41,7 @@
                                 <i class="material-icons">assignment</i>
                             </div>
                             <p class="card-category">Modulo</p>
-                            <h3 class="card-title">Planes</h3>
+                            <h3 class="card-title">Mantenimiento</h3>
                         </div>
                         <div class="card-footer">
                         </div>

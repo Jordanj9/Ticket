@@ -22,33 +22,33 @@
                 <div class="card-body">
                     <a href="{{route('modulo.index')}}">
                         <button class="btn btn-outline-info btn-round">
-                            <i class="fa fa-cubes"></i> MODULOS DEL SISTEMA
+                            <i class="fa fa-cubes"></i>  MODULOS DEL SISTEMA
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route("pagina.index")}}">
                         <button class="btn btn-outline-info btn-round">
-                            <i class="fa fa-cubes"></i> PÁGINAS DEL SISTEMA
+                            <i class="fa fa-file-powerpoint-o"></i>  PÁGINAS DEL SISTEMA
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route("grupousuario.index")}}">
                         <button class="btn btn-outline-info btn-round">
-                            <i class="fa fa-cubes"></i> GRUPOS O ROLES DE USUARIOS
+                            <i class="fa fa-user"></i>  GRUPOS O ROLES DE USUARIOS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
 
                     <a href="{{route('grupousuario.privilegios')}}">
                         <button class="btn btn-outline-info btn-round">
-                            <i class="fa fa-cubes"></i> PRIVILÉGIOS A PÁGINAS
+                            <i class="fa fa-key"></i>  PRIVILÉGIOS A PÁGINAS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
 
                     <a href="{{route('usuario.index')}}">
                         <button class="btn btn-outline-info btn-round">
-                            <i class="fa fa-cubes"></i> LISTAR TODOS LOS USUARIOS
+                            <i class="fa fa-users"></i>  LISTAR TODOS LOS USUARIOS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
