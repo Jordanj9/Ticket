@@ -22,6 +22,8 @@ class CreateEquiposTable extends Migration
             $table->string('pantalla');
             $table->longText('licencias');
             $table->year('anio_adquicision');
+            $table->bigInteger('cliente_id')->unsigned();
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('CASCADE');
             $table->timestamps();
         });
     }
