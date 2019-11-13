@@ -43,37 +43,44 @@
                                width="100%" style="width:100%">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>MÓDULO</th>
-                                <th>DESCRIPCIÓN</th>
-                                <th>CREADO</th>
-                                <th>MODIFICADO</th>
+                                <th>CLIENTE</th>
+                                <th>MARCA</th>
+                                <th>PROCESADOR</th>
+                                <th>MEMORIA RAM</th>
+                                <th>DISCO DURO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($modulos as $modulo)
+                            @foreach($equipos as $equipo)
                                 <tr>
-                                    <td>{{$modulo->id}}</td>
-                                    <td>{{$modulo->nombre}}</td>
-                                    <td>{{$modulo->descripcion}}</td>
-                                    <td>{{$modulo->created_at}}</td>
-                                    <td>{{$modulo->updated_at}}</td>
+                                    @if($equipo->cliente->tipopersona == 'NATURAL')
+                                        <td>{{$equipo->cliente->nombre.' '.$equipo->cliente->apellido}}</td>
+                                    @else
+                                        <td>{{$equipo->cliente->empresa}}</td>
+                                    @endif
+
+                                    <td>{{$equipo->marca}}</td>
+                                    <td>{{$equipo->procesador}}</td>
+                                    <td>{{$equipo->memoria_ram}}</td>
+                                    <td>{{$equipo->disco_duro}}</td>
+                                    <td>{{$equipo->created_at}}</td>
+                                    <td>{{$equipo->updated_at}}</td>
                                     <td style="text-align: center;">
-                                        <a href="{{ route('modulo.edit',$modulo->id)}}"
+                                        <a href="{{ route('equipo.edit',$equipo->id)}}"
                                            class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Editar Módulo"><i class="material-icons">mode_edit</i></a>
+                                           data-placement="top" title="Editar Equipo"><i class="material-icons">mode_edit</i></a>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>ID</th>
-                                <th>MÓDULO</th>
-                                <th>DESCRIPCIÓN</th>
-                                <th>CREADO</th>
-                                <th>MODIFICADO</th>
+                                <th>CLIENTE</th>
+                                <th>MARCA</th>
+                                <th>PROCESADOR</th>
+                                <th>MEMORIA RAM</th>
+                                <th>DISCO DURO</th>
                                 <th class="text-right">ACCIONES</th>
                             </tr>
                             </tfoot>
