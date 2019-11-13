@@ -5,9 +5,8 @@
             <div class="col-md-12">
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.usuarios')}}"> Usuarios </a><span
-                        class="fa-angle-right fa"></span><a href="{{route('modulo.index')}}"> Módulos
-                        del Sistema </a><span class="fa-angle-right fa"></span> Crear
+                        href="{{route('admin.usuarios')}}"> Módulo Usuarios </a><span class="fa-angle-right fa"></span>
+                    Grupo de Usuarios
                 </p>
             </div>
         </div>
@@ -19,7 +18,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">DATOS DEL MODULO</h4>
+                        <h4 class="card-title">USUARIOS - GRUPOS DE USUARIOS O ROLES</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -29,6 +28,9 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                                    <a href="{{ route('grupousuario.create') }}" class="dropdown-item" href="#">Agregar
+                                        nuevo
+                                        Grupo</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -37,34 +39,52 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="col-md-12">
-                        @component('layouts.errors')
-                        @endcomponent
-                    </div>
-                    <div class="col-md-12">
-                        <form class="form-horizontal" method="POST" action="{{route('modulo.store')}}">
-                            @csrf
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <br/><input type="text" class="form-control"
-                                                    placeholder="Escriba el nombre del módulo u opción de menú"
-                                                    name="nombre" required="required"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-line">
-                                        <br/><input type="text" class="form-control"
-                                                    placeholder="Descripción del módulo (Opcional)" name="descripcion"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <br/><br/><a href="{{route('modulo.index')}}" class="btn btn-danger btn-round">Cancelar</a>
-                                    <button class="btn btn-info btn-round" type="reset">Limpiar Formulario</button>
-                                    <button class="btn btn-success btn-round" type="submit">Guardar</button>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="material-datatables">
+                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
+                               width="100%" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>GRUPO</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>CREADO</th>
+                                <th>MODIFICADO</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($grupos as $grupo)
+                                <tr>
+                                    <td>{{$grupo->id}}</td>
+                                    <td>{{$grupo->nombre}}</td>
+                                    <td>{{$grupo->descripcion}}</td>
+                                    <td>{{$grupo->created_at}}</td>
+                                    <td>{{$grupo->updated_at}}</td>
+                                    <td style="text-align: center;">
+                                        <a href="{{ route('grupousuario.edit',$grupo->id)}}"
+                                           class="btn btn-link btn-info btn-just-icon" data-toggle="tooltip"
+                                           data-placement="top" title="Editar Grupo de Usuario"><i class="material-icons">mode_edit</i></a>
+                                        <a href="{{ route('grupousuario.show',$grupo->id)}}"
+                                           class="btn btn-link btn-success btn-just-icon" data-toggle="tooltip"
+                                           data-placement="top" title="Ver Datos del Grupo de Usuario"><i class="material-icons">remove_red_eye</i></a>
+                                        <a href="{{ route('grupousuario.delete',$grupo->id)}}"
+                                           class="btn btn-link btn-danger btn-just-icon" data-toggle="tooltip"
+                                           data-placement="top" title="Eliminar Grupo de Usuario"><i class="material-icons">delete</i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>GRUPO</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>CREADO</th>
+                                <th>MODIFICADO</th>
+                                <th class="text-right">ACCIONES</th>
+                            </tr>
+                            </tfoot>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -79,10 +99,9 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Agregue nuevos módulos,</strong> el nombre del módulo no debe llevar acentos, eñes (ñ) ni
-                    caracteres especiales, el nombre del módulo debe iniciar con "MOD_" seguido del nombre que usted
-                    desee. Los módulos generales del sistema son las aplicaciones generales representadas en las
-                    opciones del menú. Ejemplo de modulo general: MOD_INICIO, MOD_USUARIO, ETC.
+                    <strong>Detalles: </strong>Los grupos de usuarios son los roles o agrupaciones de usuarios que
+                    permite asignarle privilegios a todo un conglomerado de usuarios que comparte funciones. Ejemplo de
+                    grupos de usuarios: ADMINISTRADOR, FELIGRES, ESCUELA SABATICA, MAYORDOMIA, MINISTERIO JUVENIL, ETC.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>

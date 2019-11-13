@@ -84,7 +84,7 @@
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
     <div class="container">
         <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Register Page</a>
+            <a class="navbar-brand" href="#pablo">Solicitando Tickets</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -95,24 +95,9 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="../dashboard.html" class="nav-link">
-                        <i class="material-icons">dashboard</i> Dashboard
-                    </a>
-                </li>
-                <li class="nav-item  active ">
-                    <a href="../pages/register.html" class="nav-link">
-                        <i class="material-icons">person_add</i> Register
-                    </a>
-                </li>
                 <li class="nav-item ">
-                    <a href="../pages/login.html" class="nav-link">
+                    <a href="{{route('login')}}" class="nav-link">
                         <i class="material-icons">fingerprint</i> Login
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a href="../pages/lock.html" class="nav-link">
-                        <i class="material-icons">lock_open</i> Lock
                     </a>
                 </li>
             </ul>
@@ -141,7 +126,7 @@
                                     <ul class="nav nav-pills">
                                         <li class="nav-item">
                                             <a class="nav-link active" href="#about" data-toggle="tab" role="tab">
-                                                Datos basicos
+                                                Datos básicos
                                             </a>
                                         </li>
                                         <li class="nav-item">
@@ -160,7 +145,7 @@
                                                     <select class="selectpicker  col-md-12"
                                                             data-style="btn btn-primary btn-round btn-block"
                                                             title="Single Select" data-size="20" name="tipopersona"
-                                                            required>
+                                                            requerido>
                                                         <option disabled selected>Tipo de persona</option>
                                                         <option value="natural">Natural</option>
                                                         <option value="juridica">Jurídica</option>
@@ -173,9 +158,9 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleInput11" class="bmd-label-floating">Nombre
-                                                                (required)</label>
+                                                                (requerido)</label>
                                                             <input type="text" class="form-control" id="nombreid"
-                                                                   name="nombre" required>
+                                                                   name="nombre" requerido>
                                                         </div>
                                                     </div>
                                                     <div class="input-group form-control-lg">
@@ -186,9 +171,9 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleInput1" class="bmd-label-floating">Email
-                                                                (required)</label>
+                                                                (requerido)</label>
                                                             <input type="email" class="form-control" id="exampleemalil"
-                                                                   name="email" required>
+                                                                   name="email" requerido>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -202,10 +187,10 @@
                                                         <div class="form-group">
                                                             <label for="exampleInput1"
                                                                    class="bmd-label-floating">Identificación
-                                                                (required)</label>
+                                                                (requerido)</label>
                                                             <input type="number" class="form-control"
                                                                    id="identificacionid"
-                                                                   name="identificacion" required>
+                                                                   name="identificacion" requerido>
                                                         </div>
                                                     </div>
                                                     <div class="input-group form-control-lg">
@@ -216,9 +201,9 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleInput11" class="bmd-label-floating">Apellido
-                                                                (required)</label>
+                                                                (requerido)</label>
                                                             <input type="text" class="form-control" id="apellidoid"
-                                                                   name="apellido" required>
+                                                                   name="apellido" requerido>
                                                         </div>
                                                     </div>
                                                     <div class="input-group form-control-lg">
@@ -230,9 +215,9 @@
                                                         <div class="form-group">
                                                             <label for="exampleInput1"
                                                                    class="bmd-label-floating">Telefono
-                                                                (required)</label>
+                                                                (requerido)</label>
                                                             <input type="number" class="form-control" id="telefonoid"
-                                                                   name="telefono" required>
+                                                                   name="telefono" requerido>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -246,9 +231,9 @@
                                                         <div class="form-group">
                                                             <label for="exampleInput1"
                                                                    class="bmd-label-floating">Dirección
-                                                                (required)</label>
+                                                                (requerido)</label>
                                                             <input type="text" class="form-control" id="direccionid"
-                                                                   name="direccion" required>
+                                                                   name="direccion" requerido>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -269,10 +254,10 @@
                                                                 <div class="form-group">
                                                                     <label for="exampleInput1"
                                                                            class="bmd-label-floating">Nit
-                                                                        (required)</label>
+                                                                        (requerido)</label>
                                                                     <input type="text" class="form-control"
                                                                            id="nitid"
-                                                                           name="nit" required>
+                                                                           name="nit" requerido>
                                                                 </div>
                                                             </div>
                                                             <div class="input-group form-control-lg">
@@ -284,10 +269,10 @@
                                                                 <div class="form-group">
                                                                     <label for="exampleInput1"
                                                                            class="bmd-label-floating">Dependencia
-                                                                        (required)</label>
+                                                                        (requerido)</label>
                                                                     <input type="text" class="form-control"
                                                                            id="dependenciaid"
-                                                                           name="dependencia" required>
+                                                                           name="dependencia" requerido>
                                                                 </div>
                                                             </div>
                                                             <div class="input-group form-control-lg">
@@ -299,10 +284,10 @@
                                                                 <div class="form-group">
                                                                     <label for="exampleInput1"
                                                                            class="bmd-label-floating">Dirección
-                                                                        (required)</label>
+                                                                        (requerido)</label>
                                                                     <input type="text" class="form-control"
                                                                            id="direccionemp"
-                                                                           name="direccionemp" required>
+                                                                           name="direccionemp" requerido>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -317,10 +302,10 @@
                                                                     <label for="exampleInput1"
                                                                            class="bmd-label-floating">Nombre de la
                                                                         Empresa
-                                                                        (required)</label>
+                                                                        (requerido)</label>
                                                                     <input type="number" class="form-control"
                                                                            id="empresaid"
-                                                                           name="empresa" required>
+                                                                           name="empresa" requerido>
                                                                 </div>
                                                             </div>
                                                             <div class="input-group form-control-lg">
@@ -332,10 +317,10 @@
                                                                 <div class="form-group">
                                                                     <label for="exampleInput1"
                                                                            class="bmd-label-floating">Email
-                                                                        (required)</label>
+                                                                        (requerido)</label>
                                                                     <input type="email" class="form-control"
                                                                            id="emailemp"
-                                                                           name="emailempresa" required>
+                                                                           name="emailempresa" requerido>
                                                                 </div>
                                                             </div>
                                                             <div class="input-group form-control-lg">
@@ -347,10 +332,10 @@
                                                                 <div class="form-group">
                                                                     <label for="exampleInput1"
                                                                            class="bmd-label-floating">Telefono
-                                                                        (required)</label>
+                                                                        (requerido)</label>
                                                                     <input type="number" class="form-control"
                                                                            id="telefonoemp"
-                                                                           name="telefonoemp" required>
+                                                                           name="telefonoemp" requerido>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -408,9 +393,9 @@
                                                name="previous" value="Previous">
                                     </div>
                                     <div class="ml-auto">
-                                        <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next"
-                                               value="Next">
-                                        <input type="button" class="btn btn-finish btn-fill btn-rose btn-wd"
+                                        <input type="button" class="btn btn-next btn-fill btn-info btn-wd" name="next"
+                                               value="Siguiente">
+                                        <input type="button" class="btn btn-finish btn-fill btn-info btn-wd"
                                                name="finish" value="Finish" style="display: none;">
                                     </div>
                                     <div class="clearfix"></div>
@@ -424,37 +409,13 @@
         </div>
         <footer class="footer">
             <div class="container">
-                <nav class="float-left">
-                    <ul>
-                        <li>
-                            <a href="https://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://creative-tim.com/presentation">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
                 <div class="copyright float-right">
                     &copy;
                     <script>
                         document.write(new Date().getFullYear())
                     </script>
-                    , made with <i class="material-icons">favorite</i> by
-                    <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+                    , versión 1.0 Desarollado por
+                    <a href="" target="_blank">Jordan Cuadro, Camilo Colón & Alberto Rojas</a>.
                 </div>
             </div>
         </footer>

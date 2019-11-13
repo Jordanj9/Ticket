@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -12,7 +10,6 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{asset("assets/img/apple-icon.png")}}">
     <link rel="icon" type="image/png" href="{{asset("assets/img/favicon.png")}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -132,13 +129,13 @@
                 <li class="nav-item ">
                     <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
                         <i class="material-icons">account_balance</i>
-                        <p> Académico</p>
+                        <p> General</p>
                     </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
                         <i class="material-icons">assignment</i>
-                        <p> Planes</p>
+                        <p> Mantenimiento</p>
                     </a>
                 </li>
                 <li class="nav-item ">
@@ -170,7 +167,7 @@
                             <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
                         </button>
                     </div>
-                    <a class="navbar-brand" href="#pablo">Registro y Control del Plan de Trabajo y Plan de Desarrollo</a>
+                    <a class="navbar-brand" href="#pablo">Gestión de Tickets</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -220,149 +217,16 @@
         </section>
         <footer class="footer">
             <div class="container-fluid">
-                <nav class="float-left">
-                    <ul>
-                        <li>
-                            <a href="https://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://creative-tim.com/presentation">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
                 <div class="copyright float-right">
                     &copy;
                     <script>
                         document.write(new Date().getFullYear())
                     </script>
-                    , made with <i class="material-icons">favorite</i> by
-                    <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+                    , versión 1.0 Desarollado por
+                    <a href="" target="_blank">Jordan Cuadro, Camilo Colón & Alberto Rojas</a>.
                 </div>
             </div>
         </footer>
-    </div>
-</div>
-<div class="fixed-plugin">
-    <div class="dropdown show-dropdown">
-        <a href="#" data-toggle="dropdown">
-            <i class="fa fa-cog fa-2x"> </i>
-        </a>
-        <ul class="dropdown-menu">
-            <li class="header-title"> Sidebar Filters</li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger active-color">
-                    <div class="badge-colors ml-auto mr-auto">
-                        <span class="badge filter badge-purple" data-color="purple"></span>
-                        <span class="badge filter badge-azure" data-color="azure"></span>
-                        <span class="badge filter badge-green active" data-color="green"></span>
-                        <span class="badge filter badge-warning" data-color="orange"></span>
-                        <span class="badge filter badge-danger" data-color="danger"></span>
-                        <span class="badge filter badge-rose " data-color="rose"></span>
-                    </div>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="header-title">Sidebar Background</li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger background-color">
-                    <div class="ml-auto mr-auto">
-                        <span class="badge filter badge-black " data-background-color="black"></span>
-                        <span class="badge filter badge-white active" data-background-color="white"></span>
-                        <span class="badge filter badge-red" data-background-color="red"></span>
-                    </div>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger">
-                    <p>Sidebar Mini</p>
-                    <label class="ml-auto">
-                        <div class="togglebutton switch-sidebar-mini">
-                            <label>
-                                <input type="checkbox">
-                                <span class="toggle"></span>
-                            </label>
-                        </div>
-                    </label>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger">
-                    <p>Sidebar Images</p>
-                    <label class="switch-mini ml-auto">
-                        <div class="togglebutton switch-sidebar-image">
-                            <label>
-                                <input type="checkbox" checked="">
-                                <span class="toggle"></span>
-                            </label>
-                        </div>
-                    </label>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="header-title">Images</li>
-            <li class="active">
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="{{asset('assets/img/sidebar-1.jpg')}}" alt="">
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="{{asset('assets/img/sidebar-2.jpg')}}" alt="">
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="{{asset('assets/img/sidebar-3.jpg')}}" alt="">
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="{{asset('assets/img/sidebar-4.jpg')}}" alt="">
-                </a>
-            </li>
-            <li class="button-container">
-                <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank"
-                   class="btn btn-rose btn-block btn-fill">Buy Now</a>
-                <a href="https://demos.creative-tim.com/material-dashboard-pro/docs/2.1/getting-started/introduction.html"
-                   target="_blank" class="btn btn-default btn-block">
-                    Documentation
-                </a>
-                <a href="https://www.creative-tim.com/product/material-dashboard" target="_blank"
-                   class="btn btn-info btn-block">
-                    Get Free Demo!
-                </a>
-            </li>
-            <li class="button-container github-star">
-                <a class="github-button" href="https://github.com/creativetimofficial/ct-material-dashboard-pro"
-                   data-icon="octicon-star" data-size="large" data-show-count="true"
-                   aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-            </li>
-            <li class="header-title">Thank you for 95 shares!</li>
-            <li class="button-container text-center">
-                <button id="twitter" class="btn btn-round btn-twitter"><i class="fa fa-twitter"></i> &middot; 45
-                </button>
-                <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot; 50
-                </button>
-                <br>
-                <br>
-            </li>
-        </ul>
     </div>
 </div>
 <!--   Core JS Files   -->
@@ -427,94 +291,6 @@
             window_width = $(window).width();
 
             fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
-            if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
-                if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
-                    $('.fixed-plugin .dropdown').addClass('open');
-                }
-
-            }
-
-            $('.fixed-plugin a').click(function (event) {
-                // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-                if ($(this).hasClass('switch-trigger')) {
-                    if (event.stopPropagation) {
-                        event.stopPropagation();
-                    } else if (window.event) {
-                        window.event.cancelBubble = true;
-                    }
-                }
-            });
-
-            $('.fixed-plugin .active-color span').click(function () {
-                $full_page_background = $('.full-page-background');
-
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
-
-                var new_color = $(this).data('color');
-
-                if ($sidebar.length != 0) {
-                    $sidebar.attr('data-color', new_color);
-                }
-
-                if ($full_page.length != 0) {
-                    $full_page.attr('filter-color', new_color);
-                }
-
-                if ($sidebar_responsive.length != 0) {
-                    $sidebar_responsive.attr('data-color', new_color);
-                }
-            });
-
-            $('.fixed-plugin .background-color .badge').click(function () {
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
-
-                var new_color = $(this).data('background-color');
-
-                if ($sidebar.length != 0) {
-                    $sidebar.attr('data-background-color', new_color);
-                }
-            });
-
-            $('.fixed-plugin .img-holder').click(function () {
-                $full_page_background = $('.full-page-background');
-
-                $(this).parent('li').siblings().removeClass('active');
-                $(this).parent('li').addClass('active');
-
-
-                var new_image = $(this).find("img").attr('src');
-
-                if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-                    $sidebar_img_container.fadeOut('fast', function () {
-                        $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-                        $sidebar_img_container.fadeIn('fast');
-                    });
-                }
-
-                if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-                    var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-                    $full_page_background.fadeOut('fast', function () {
-                        $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-                        $full_page_background.fadeIn('fast');
-                    });
-                }
-
-                if ($('.switch-sidebar-image input:checked').length == 0) {
-                    var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
-                    var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-                    $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-                    $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-                }
-
-                if ($sidebar_responsive.length != 0) {
-                    $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
-                }
-            });
 
             $('.switch-sidebar-image input').change(function () {
                 $full_page_background = $('.full-page-background');

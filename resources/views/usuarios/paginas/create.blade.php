@@ -6,7 +6,7 @@
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.usuarios')}}"> Usuarios </a><span
-                        class="fa-angle-right fa"></span><a href="{{route('modulo.index')}}"> Módulos
+                        class="fa-angle-right fa"></span><a href="{{route('pagina.index')}}"> Página
                         del Sistema </a><span class="fa-angle-right fa"></span> Crear
                 </p>
             </div>
@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-header card-header-success card-header-text">
                     <div class="card-text col-md-6">
-                        <h4 class="card-title">DATOS DEL MODULO</h4>
+                        <h4 class="card-title">DATOS DE LA PÁGINA</h4>
                     </div>
                     <div class="pull-right col-md-6">
                         <ul class="navbar-nav pull-right">
@@ -42,24 +42,25 @@
                         @endcomponent
                     </div>
                     <div class="col-md-12">
-                        <form class="form-horizontal" method="POST" action="{{route('modulo.store')}}">
+                        <form class="form-horizontal" method="POST" action="{{route('pagina.store')}}">
                             @csrf
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="form-line">
                                         <br/><input type="text" class="form-control"
-                                                    placeholder="Escriba el nombre del módulo u opción de menú"
-                                                    name="nombre" required="required"/>
+                                                    placeholder="Escriba el nombre de la página" name="nombre"
+                                                    required="required"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-line">
                                         <br/><input type="text" class="form-control"
-                                                    placeholder="Descripción del módulo (Opcional)" name="descripcion"/>
+                                                    placeholder="Descripción de la página (Opcional)"
+                                                    name="descripcion"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <br/><br/><a href="{{route('modulo.index')}}" class="btn btn-danger btn-round">Cancelar</a>
+                                    <br/><br/><a href="{{route('pagina.index')}}" class="btn btn-danger btn-round">Cancelar</a>
                                     <button class="btn btn-info btn-round" type="reset">Limpiar Formulario</button>
                                     <button class="btn btn-success btn-round" type="submit">Guardar</button>
                                 </div>
@@ -79,10 +80,11 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Agregue nuevos módulos,</strong> el nombre del módulo no debe llevar acentos, eñes (ñ) ni
-                    caracteres especiales, el nombre del módulo debe iniciar con "MOD_" seguido del nombre que usted
-                    desee. Los módulos generales del sistema son las aplicaciones generales representadas en las
-                    opciones del menú. Ejemplo de modulo general: MOD_INICIO, MOD_USUARIO, ETC.
+                    <strong>Agregue nuevas páginas,</strong> el nombre de la página no debe llevar acentos, eñes (ñ) ni
+                    caracteres especiales, el nombre de la página debe iniciar con "PAG_" seguido del nombre que usted
+                    desee. Las paginas o ítems de los módulos del sistema son las funcionalidades más específicas o
+                    detalladas de los módulos. Ejemplo de página general: PAG_MODULOS, PAG_PAGINAS, PAG_USUARIOS,
+                    PAG_PRIVILEGIOS, ETC.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
