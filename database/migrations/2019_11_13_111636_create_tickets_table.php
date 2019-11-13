@@ -21,6 +21,8 @@ class CreateTicketsTable extends Migration
             $table->string('observacion')->nullable();
             $table->bigInteger('empleado_id')->unsigned()->nullable();
             $table->foreign('empleado_id')->references('id')->on('empleados')->onDelete('cascade');
+            $table->bigInteger('cliente_id')->unsigned()->nullable();
+            $table->foreign('cliente')->references('id')->on('clientes')->onDelete('cascade');
             $table->timestamps();
         });
     }
