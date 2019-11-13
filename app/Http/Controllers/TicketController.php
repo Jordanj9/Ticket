@@ -61,7 +61,8 @@ class TicketController extends Controller
             $cliente->save();
         } else {
             $ticket = new Ticket();
-
+            $ticket->descripcion = strtoupper($request->descripcion);
+            $ticket->cliente_id;
         }
     }
 
