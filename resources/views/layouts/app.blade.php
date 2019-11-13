@@ -93,10 +93,12 @@
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo">
-            <a href="{{route('home')}}" class="logo-mini" style="text-align: center; color: black; font-size: 35px; font-family: inherit">
+            <a href="{{route('home')}}" class="logo-mini"
+               style="text-align: center; color: black; font-size: 35px; font-family: inherit">
                 <strong>TK</strong>
             </a>
-            <a href="{{route('home')}}" class="logo-normal" style="text-align: center; color: black; font-size: 35px; font-family: inherit">
+            <a href="{{route('home')}}" class="logo-normal"
+               style="text-align: center; color: black; font-size: 35px; font-family: inherit">
                 <strong>TicKets</strong>
             </a>
         </div>
@@ -120,39 +122,54 @@
                         <p> Inicio </p>
                     </a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route('admin.usuarios')}}">
-                        <i class="material-icons">supervised_user_circle</i>
-                        <p> Usuario </p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
-                        <i class="material-icons">account_balance</i>
-                        <p> General</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
+
+                @if($location=='usuarios')
+                    <li class="nav-item active">
+                @else
+                    <li class="nav-item">
+                @endif
+                        <a class="nav-link" href="{{route('admin.usuarios')}}">
+                            <i class="material-icons">supervised_user_circle</i>
+                            <p> Usuario </p>
+                        </a>
+                    </li>
+
+                    @if($location=='general')
+                        <li class="nav-item active">
+                    @else
+                        <li class="nav-item">
+                    @endif
+                            <a class="nav-link"  href="{{route('admin.general')}}">
+                                <i class="material-icons">account_balance</i>
+                                <p> General</p>
+                            </a>
+                        </li>
+
+                @if($location=='mantenimiento')
+                    <li class="nav-item active">
+                @else
+                    <li class="nav-item">
+                @endif
+                    <a class="nav-link" href="#componentsExamples">
                         <i class="material-icons">assignment</i>
-                        <p> Mantenimiento</p>
+                        <p>Mantenimiento</p>
                     </a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="#formsExamples">
-                        <i class="material-icons">trending_up</i>
-                        <p> Reportes</p>
-                    </a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" data-toggle="collapse" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <li class="nav-item ">
+                            <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+                                <i class="material-icons">trending_up</i>
+                                <p> Reportes</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" data-toggle="collapse" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form2').submit();">
-                        <i class="fa fa-sign-out"></i> Salir
-                    </a>
-                    <form id="logout-form2" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
+                                <i class="fa fa-sign-out"></i> Salir
+                            </a>
+                            <form id="logout-form2" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
             </ul>
         </div>
     </div>
@@ -194,7 +211,8 @@
                                     document.getElementById('logout-form2').submit();">
                                     <i class="fa fa-sign-out"></i> Salir
                                 </a>
-                                <form id="logout-form2" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form2" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
                                     @csrf
                                 </form>
                             </div>

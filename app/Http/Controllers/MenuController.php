@@ -15,4 +15,9 @@ class MenuController extends Controller
     {
         return view('menu.usuarios')->with('location', 'usuarios');
     }
+
+    public function general()
+    {
+        return view('menu.general')->with('location', 'general');
+    }
 }

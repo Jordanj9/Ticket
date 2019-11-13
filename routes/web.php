@@ -27,8 +27,8 @@ Route::post('usuarios/contrasenia/cambiar/admin/finalizar', 'UsuarioController@c
 //GRUPO DE RUTAS PARA LA ADMINISTRACIÓN
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
     Route::get('usuarios', 'MenuController@usuarios')->name('admin.usuarios');
-    Route::get('solicitud', 'MenuController@solicitud')->name('admin.solicitud');
-    Route::get('pqr', 'PqrController@index')->name('admin.pqr');
+    Route::get('general', 'MenuController@general')->name('admin.general');
+    Route::get('mantenimientos', 'MantenimientoController@index')->name('admin.mantenimiento');
     Route::get('reporte', 'MenuController@reporte')->name('admin.reporte');
     Route::post('acceso', 'HomeController@confirmaRol')->name('rol');
     Route::get('inicio', 'HomeController@inicio')->name('inicio');
@@ -51,4 +51,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'usuarios'], function() {
     Route::get('usuario/{id}/delete', 'UsuarioController@destroy')->name('usuario.delete');
     Route::post('operaciones', 'UsuarioController@operaciones')->name('usuario.operaciones');
     Route::post('usuario/contrasenia/cambiar/admin/finalizar', 'UsuarioController@cambiarPass')->name('usuario.cambiarPass');
+});
+
+//GRUPO DE RUTAS PARA GENERAL
+Route::group(['middleware' => 'auth', 'prefix' => 'general'], function() {
+    //EQUIPOS
+    Route::resource('equipos','EquipoController');
+    //TICKETS
+    Route::resource('tickets','TicketController');
 });

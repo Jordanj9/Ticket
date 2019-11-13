@@ -45,6 +45,8 @@ class GrupousuarioController extends Controller
      */
     public function store(GrupousuarioRequest $request)
     {
+
+
         $grupo = new Grupousuario($request->all());
         foreach ($grupo->attributesToArray() as $key => $value) {
             $grupo->$key = strtoupper($value);
