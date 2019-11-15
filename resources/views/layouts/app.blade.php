@@ -133,7 +133,6 @@
                             <p> Usuario </p>
                         </a>
                     </li>
-
                     @if($location=='general')
                         <li class="nav-item active">
                     @else
@@ -144,7 +143,6 @@
                                 <p> General</p>
                             </a>
                         </li>
-
                 @if($location=='mantenimiento')
                     <li class="nav-item active">
                 @else

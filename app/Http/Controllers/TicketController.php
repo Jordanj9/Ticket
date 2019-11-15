@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Empleado;
 use App\Ticket;
 use App\Cliente;
 use Illuminate\Http\Request;
@@ -16,7 +17,18 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $tickets = Ticket::all();
+        $emp = Empleado::all();
+        $empleados = collect();
+        if ($emp != null) {
+            foreach ($emp as $e) {
+                $empleados[$e->id] = $e->identificacion . " " . $e->nombre . " " . $e->apellido;
+            }
+        }
+        return view('general.ticket.list')
+            ->with('location', 'general')
+            ->with('tickets', $tickets)
+            ->with('empleados', $empleados);
     }
 
     /**
@@ -70,12 +82,12 @@ class TicketController extends Controller
         if ($result) {
             $response = "<h5>Señor(a) " . $cliente->nombre . " " . $cliente->apellido . " su ticket ha sido exitoso!</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p>";
             return response()->json([
-                'response'=> $response,
+                'response' => $response,
                 'status' => 'ok'
             ]);
         } else {
             return response()->json([
-                'status'=> 'error'
+                'status' => 'error'
             ]);
         }
     }
@@ -131,9 +143,10 @@ class TicketController extends Controller
      * @param \App\Cliente $identificacion
      * @return \Illuminate\Http\Response Json
      */
-    public function consultar($identificacion){
-        $cliente = Cliente::where('identificacion',$identificacion)->first();
-        if($cliente != null){
+    public function consultar($identificacion)
+    {
+        $cliente = Cliente::where('identificacion', $identificacion)->first();
+        if ($cliente != null) {
             $obj["id"] = $cliente->identificacion;
             $obj["nom"] = $cliente->nombre;
             $obj["ape"] = $cliente->apellido;
@@ -142,13 +155,34 @@ class TicketController extends Controller
             $obj["dir"] = $cliente->direccion;
             $obj["tipo"] = $cliente->tipopersona;
             return response()->json([
-                'response'=> $obj,
+                'response' => $obj,
                 'status' => 'ok'
             ]);
-        }else{
+        } else {
             return response()->json([
-                'status'=> 'error'
+                'status' => 'error'
             ]);
+        }
+    }
+
+    /**
+     * Asignar ticket a empleado
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function asignar(Request $request)
+    {
+
+        $ticket = Ticket::find($request->ticket_id);
+        $ticket->empleado_id = $request->empleado_id;
+        $result = $ticket->save();
+        if ($result) {
+            flash("El Ticket con N° de Radicado: <strong>" . $ticket->radicado . "</strong> le fue asignado al empleado de forma exitosa!")->success();
+            return redirect()->route('tickets.index');
+        } else {
+            flash("El Ticket con N° de Radicado: <strong>" . $ticket->radicado . "</strong> no pudo ser asignado. Error: " . $result)->error();
+            return redirect()->route('tickets.index');
         }
     }
 }

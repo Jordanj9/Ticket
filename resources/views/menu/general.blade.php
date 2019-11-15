@@ -20,15 +20,21 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{route('equipos')}}">
+                    <a href="{{route('equipos.index')}}">
                         <button class="btn btn-outline-info btn-round">
                             <i class="fa fa-cubes"></i> EQUIPOS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route("pagina.index")}}">
+                    <a href="{{route("tickets.index")}}">
                         <button class="btn btn-outline-info btn-round">
-                            <i class="fa fa-file-powerpoint-o"></i>  PÁGINAS DEL SISTEMA
+                            <i class="fa fa-file-powerpoint-o"></i>  TICKETS
+                            <div class="ripple-container"></div>
+                        </button>
+                    </a>
+                    <a href="{{route("tickets.index")}}">
+                        <button class="btn btn-outline-info btn-round">
+                            <i class="fa fa-file-powerpoint-o"></i>  EMPLEADOS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
