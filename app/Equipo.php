@@ -9,7 +9,7 @@ class Equipo extends Model
     protected $fillable = ['id', 'marca', 'procesador', 'memoria_ram', 'disco_duro', 'pantalla', 'licencias', 'anio_adquicision', 'cliente_id','created_at', 'updated_at'];
 
     public function cliente(){
-        return $this->belongsTo('cliente_id');
+        return $this->belongsTo(Cliente::class);
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cliente;
 use App\Equipo;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,7 @@ class EquipoController extends Controller
     {
         $equipos = Equipo::all();
         return view('general.equipos.list')
+            ->with('equipos',$equipos)
             ->with('location','general');
     }
 
@@ -26,7 +28,10 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        //
+        $clientes = Cliente::all();
+        return view('general.equipos.create')
+            ->with('location','general')
+            ->with('clientes',$clientes);
     }
 
     /**
