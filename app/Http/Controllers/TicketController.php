@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Ticket;
 use App\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class TicketController extends Controller
 {
@@ -36,9 +37,8 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-        $existe = Cliente::where('identificacion', $request->identificacion)->first();
-        if ($existe == null) {
+        $cliente = Cliente::where('identificacion', $request->identificacion)->first();
+        if ($cliente == null) {
             if ($request->tipopersona == 'JURIDICA') {
                 $cliente = new Cliente($request->all());
             } else {
@@ -52,17 +52,31 @@ class TicketController extends Controller
                 $cliente->email = $request->email;
             }
             foreach ($cliente->attributesToArray() as $key => $value) {
-                if ($key == 'email') {
+                if ($key == 'email' || $key == 'emailempresa') {
                     $cliente->$key = $value;
                 } else {
                     $cliente->$key = strtoupper($value);
                 }
             }
             $cliente->save();
+        }
+        $ticket = new Ticket();
+        $hoy = getdate();
+        $idr = substr($request->identificacion, -3);
+        $ticket->radicado = $idr . $hoy["year"] . $hoy["mon"] . $hoy["mday"] . $hoy["hours"] . $hoy["minutes"] . $hoy["seconds"];
+        $ticket->descripcion = strtoupper($request->descripcion);
+        $ticket->cliente_id = $cliente->id;
+        $result = $ticket->save();
+        if ($result) {
+            $response = "<h5>Señor(a) " . $cliente->nombre . " " . $cliente->apellido . " su ticket ha sido exitoso!</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p>";
+            return response()->json([
+                'response'=> $response,
+                'status' => 'ok'
+            ]);
         } else {
-            $ticket = new Ticket();
-            $ticket->descripcion = strtoupper($request->descripcion);
-            $ticket->cliente_id;
+            return response()->json([
+                'status'=> 'error'
+            ]);
         }
     }
 
@@ -109,5 +123,32 @@ class TicketController extends Controller
     public function destroy(Ticket $ticket)
     {
         //
+    }
+
+    /**
+     * Get a specific App/Cliente
+     *
+     * @param \App\Cliente $identificacion
+     * @return \Illuminate\Http\Response Json
+     */
+    public function consultar($identificacion){
+        $cliente = Cliente::where('identificacion',$identificacion)->first();
+        if($cliente != null){
+            $obj["id"] = $cliente->identificacion;
+            $obj["nom"] = $cliente->nombre;
+            $obj["ape"] = $cliente->apellido;
+            $obj["tel"] = $cliente->telefono;
+            $obj["corr"] = $cliente->email;
+            $obj["dir"] = $cliente->direccion;
+            $obj["tipo"] = $cliente->tipopersona;
+            return response()->json([
+                'response'=> $obj,
+                'status' => 'ok'
+            ]);
+        }else{
+            return response()->json([
+                'status'=> 'error'
+            ]);
+        }
     }
 }

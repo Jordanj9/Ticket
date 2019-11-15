@@ -109,12 +109,28 @@
     <div class="page-header register-page header-filter" filter-color="black"
          style="background-image: url({{asset("assets/img/register.jpg")}})">
         <div class="container">
+
+            <div class="row">
+                <div class="col-md-8 col-12 mr-auto ml-auto">
+                    @if($response != "null")
+                        <div class="alert alert-info alert-with-icon" data-notify="container">
+                            <i class="material-icons" data-notify="icon">notifications</i>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span data-notify="icon" class="now-ui-icons ui-1_bell-53"></span>
+                            <span data-notify="message">{!!$response!!}</span>
+                        </div>
+                    @endif
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-8 col-12 mr-auto ml-auto">
                     <!--      Wizard container        -->
                     <div class="wizard-container">
                         <div class="card card-wizard" style="opacity: 1;" data-color="rose" id="wizardProfile">
-                            <form class="form-horizontal" method="POST" action="{{route('ticket.store')}}">
+                            <form class="form-horizontal" id="formulario" method="POST"
+                                  action="{{route('ticket.store')}}">
                             @csrf
                             <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                                 <div class="card-header text-center">
@@ -146,8 +162,9 @@
                                                     <select class="selectpicker  col-md-12"
                                                             data-style="btn btn-primary btn-round btn-block"
                                                             title="Single Select" data-size="20" name="tipopersona"
+                                                            id="tipopersona"
                                                             onchange="verificar(this.value)"
-                                                            required>
+                                                            required="required">
                                                         <option disabled selected>Tipo de persona</option>
                                                         <option value="NATURAL">Natural</option>
                                                         <option value="JURIDICA">Jurídica</option>
@@ -192,7 +209,8 @@
                                                                 (requerido)</label>
                                                             <input type="number" class="form-control"
                                                                    id="identificacionid"
-                                                                   name="identificacion" required>
+                                                                   name="identificacion" required="required"
+                                                                   onblur="consultar()">
                                                         </div>
                                                     </div>
                                                     <div class="input-group form-control-lg">
@@ -205,7 +223,7 @@
                                                             <label for="exampleInput11" class="bmd-label-floating">Apellido
                                                                 (requerido)</label>
                                                             <input type="text" class="form-control" id="apellidoid"
-                                                                   name="apellido" required>
+                                                                   name="apellido" required="required">
                                                         </div>
                                                     </div>
                                                     <div class="input-group form-control-lg">
@@ -219,7 +237,7 @@
                                                                    class="bmd-label-floating">Telefono
                                                                 (requerido)</label>
                                                             <input type="number" class="form-control" id="telefonoid"
-                                                                   name="telefono" required>
+                                                                   name="telefono" required="required">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -235,7 +253,7 @@
                                                                    class="bmd-label-floating">Dirección
                                                                 (requerido)</label>
                                                             <input type="text" class="form-control" id="direccionid"
-                                                                   name="direccion" required>
+                                                                   name="direccion" required="required">
                                                         </div>
                                                     </div>
                                                     <div class="input-group form-control-lg">
@@ -248,8 +266,8 @@
                                                             <label for="exampleInput1"
                                                                    class="bmd-label-floating">Descripción
                                                                 (requerido)</label>
-                                                            <input type="text" class="form-control"
-                                                                   name="descripcion" required>
+                                                            <input type="text" class="form-control" id="descripcion"
+                                                                   name="descripcion" required="required">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -272,8 +290,7 @@
                                                                            class="bmd-label-floating">Nit
                                                                         (requerido)</label>
                                                                     <input type="text" class="form-control"
-                                                                           id="nitid"
-                                                                           name="nit" required>
+                                                                           id="nitid" name="nit" required>
                                                                 </div>
                                                             </div>
                                                             <div class="input-group form-control-lg">
@@ -409,9 +426,9 @@
                                                name="previous" value="Previous">
                                     </div>
                                     <div class="ml-auto">
-                                        <input class="btn btn-next btn-fill btn-info btn-wd" name="next"
+                                        <input type="button" class="btn btn-next btn-fill btn-info btn-wd" name="next"
                                                id="siguiente">
-                                        <input class="btn btn-finish btn-fill btn-info btn-wd"
+                                        <input type="button" class="btn btn-finish btn-fill btn-info btn-wd"
                                                name="finish" id="finish" value="Finish">
                                     </div>
                                     <div class="clearfix"></div>
@@ -642,12 +659,51 @@
     $(document).ready(function () {
         $("#account").attr('style', 'display:none');
         $("#finish").attr('style', 'display:none');
-        $("#siguiente").attr('type', 'submit');
         $("#siguiente").attr('value', 'Registrar');
-        $("#finish").attr('type', 'button');
+        $("#siguiente").attr('onclick', 'guardar()');
         md.checkFullPageBackgroundImage();
         // Initialise the wizard
         demo.initMaterialWizard();
+        var $validator = $('.card-wizard form').validate({
+            rules: {
+                nombre: {
+                    required: true,
+                    minlength: 3
+                },
+                apellido: {
+                    required: true,
+                    minlength: 3
+                },
+                tipopersona: {
+                    required: true,
+                    minlength: 3,
+                },
+                identificacion: {
+                    required: true,
+                },
+                descripcion: {
+                    required: true,
+                    minlength: 3,
+                },
+                telefono: {
+                    required: true,
+                },
+                direccion: {
+                    required: true,
+                    minlength: 3,
+                }
+            },
+
+            highlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-success').addClass('has-danger');
+            },
+            success: function (element) {
+                $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
+            },
+            errorPlacement: function (error, element) {
+                $(element).append(error);
+            }
+        });
         setTimeout(function () {
             $('.card.card-wizard').addClass('active');
         }, 600);
@@ -656,16 +712,111 @@
     function verificar(id) {
         if (id == 'JURIDICA') {
             $("#account").removeAttr('style');
+            $("#itemempresa").removeAttr('style');
             $("#siguiente").attr('type', 'button');
             $("#siguiente").attr('value', 'siguiente');
-            $("#finish").attr('type', 'submit');
+            $("#siguiente").removeAttr('onclick', 'guardar()');
+            $("#finish").attr('onclick', 'guardar()');
         } else {
             $("#itemempresa").attr('style', 'display:none');
             $("#account").attr('style', 'display:none');
-            $("#siguiente").attr('type', 'submit');
             $("#siguiente").attr('value', 'Registrar');
-            $("#finish").attr('type', 'button');
+            $("#finish").removeAttr('onclick', 'guardar()');
         }
+    }
+
+    function consultar() {
+        var id = $("#identificacionid").val();
+        if (id.length <= 0) {
+            $.notify({
+                icon: "add_alert",
+                message: 'Por favor ingrese su identificación. Atención!'
+            }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+            return;
+        } else {
+            limpiar();
+            $.ajax({
+                type: 'GET',
+                url: '{{url("tickest/consultar/")}}/' + id + "/cliente",
+                data: {},
+            }).done(function (msg) {
+                if (msg.status == "ok") {
+                    $("#nombreid").val(msg.response.nom).trigger("change");
+                    $("#apellidoid").val(msg.response.ape).trigger("change");
+                    $("#telefonoid").val(msg.response.tel).trigger("change");
+                    $("#exampleemalil").val(msg.response.corr).trigger("change");
+                    $("#direccionid").val(msg.response.dir).trigger("change");
+                    $("#tipopersona").val(msg.response.tipo).trigger("change");
+                } else {
+                    $.notify({
+                        icon: "add_alert",
+                        message: 'No se encontro registro con esa identificación. Debe llenar el formulario.'
+                    }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                    return;
+                }
+            });
+        }
+    }
+
+    function limpiar() {
+        $("#nombreid").val("").trigger('change');
+        $("#apellidoid").val("").trigger('change');
+        $("#telefonoid").val("").trigger('change');
+        $("#exampleemalil").val("").trigger('change');
+        $("#direccionid").val("").trigger('change');
+    }
+
+    function inhabilitar() {
+        $("#nombreid").attr('disabled', true);
+        $("#apellidoid").attr('disabled', true);
+        $("#telefonoid").attr('disabled', true);
+        $("#email").attr('disabled', true);
+        $("#direccionid").attr('disabled', true);
+    }
+
+    function guardar() {
+        var $request = $("#formulario").serialize();
+        var iden = $("#identificacionid").val();
+        var tipo = $("#tipopersona").val();
+        var des = $("#descripcion").val();
+        var nom = $("#nombreid").val();
+        var tel = $("#telefonoid").val();
+        var dir = $("#direccionid").val();
+        var empresa = $("#empresaid").val();
+        var diremp = $("#direccionemp").val();
+        var telemp = $("#telefonoemp").val();
+        var nit = $("#nitid").val();
+        if (iden.length <= 0 || tipo.length <= 0 || des.length <= 0 || nom.length <= 0 || dir.length <= 0) {
+            $.notify({
+                icon: "add_alert",
+                message: 'Llene todos los campos requeridos. Atencion!'
+            }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+            return;
+        }
+        if (tipo == 'JURIDICA') {
+            if (empresa.length <= 0 || diremp.length <= 0 || telemp.length <= 0 || nit.length <= 0) {
+                $.notify({
+                    icon: "add_alert",
+                    message: 'Llene todos los campos requeridos. Atencion!'
+                }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                return;
+            }
+        }
+        $.post(
+            '{{url('tickets/publico/crear/')}}', $request
+        ).done(function (msg) {
+            if (msg.status == "ok") {
+                $.notify({
+                    icon: "add_alert",
+                    message: msg.response
+                }, {type: 'info', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+            } else {
+                $.notify({
+                    icon: "add_alert",
+                    message: 'El ticket no fue alamcenado de forma exitsa. Error!'
+                }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+            }
+        });
     }
 </script>
 </body>

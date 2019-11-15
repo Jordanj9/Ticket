@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('tickets/publico/crear/', 'TicketController@store')->name('ticket.store');
+Route::get('tickest/consultar/{id}/cliente/', 'TicketController@consultar')->name('ticket.consultar');
 
 //cambiar contraseñas
 Route::get('usuarios/contrasenia/cambiar', 'UsuarioController@vistacontrasenia')->name('usuario.vistacontrasenia');
@@ -27,7 +28,7 @@ Route::post('usuarios/contrasenia/cambiar/admin/finalizar', 'UsuarioController@c
 
 //TODOS LOS MENUS
 //GRUPO DE RUTAS PARA LA ADMINISTRACIÓN
-Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
+Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('usuarios', 'MenuController@usuarios')->name('admin.usuarios');
     Route::get('general', 'MenuController@general')->name('admin.general');
     Route::get('mantenimientos', 'MantenimientoController@index')->name('admin.mantenimiento');
@@ -37,7 +38,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 });
 
 //GRUPO DE RUTAS PARA LA ADMINISTRACIÓN DE USUARIOS
-Route::group(['middleware' => 'auth', 'prefix' => 'usuarios'], function() {
+Route::group(['middleware' => 'auth', 'prefix' => 'usuarios'], function () {
     //MODULOS
     Route::resource('modulo', 'ModuloController');
     //PAGINAS O ITEMS DE LOS MODULOS
@@ -56,9 +57,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'usuarios'], function() {
 });
 
 //GRUPO DE RUTAS PARA GENERAL
-Route::group(['middleware' => 'auth', 'prefix' => 'general'], function() {
+Route::group(['middleware' => 'auth', 'prefix' => 'general'], function () {
     //EQUIPOS
-    Route::resource('equipos','EquipoController');
+    Route::resource('equipos', 'EquipoController');
     //TICKETS
-    Route::resource('tickets','TicketController');
+    Route::resource('tickets', 'TicketController');
 });

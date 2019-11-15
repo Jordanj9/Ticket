@@ -19,7 +19,7 @@ class CreateClientesTable extends Migration
             $table->string('identificacion', 16)->unique();
             $table->string('nombre', 100);
             $table->string('apellido', 100);
-            $table->integer('telefono');
+            $table->string('telefono');
             $table->string('email', 80);
             $table->string('direccion', 100);
             $table->string('nit', 20)->nullable();
@@ -27,7 +27,7 @@ class CreateClientesTable extends Migration
             $table->string('direccionemp', 100)->nullable();
             $table->string('dependencia', 80)->nullable();
             $table->string('emailempresa', 80)->nullable();
-            $table->integer('telefonoemp')->nullable();
+            $table->string('telefonoemp')->nullable();
             $table->timestamps();
         });
     }
