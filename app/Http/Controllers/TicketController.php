@@ -198,21 +198,20 @@ class TicketController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function estado(Request $request){
-        dd($request);
-        $ticket = Ticket::find($request->ticket_id);
-        if($request->estado == 'FINALIZADO'){
+    public function estado($ticket_id,$estado,$obse){
+        $ticket = Ticket::find($ticket_id);
+        if($estado == 'FINALIZADO'){
             $ticket->estado == 'FINALIZADO';
-            $ticket->observacion == strtoupper($request->observacion);
+            $ticket->observacion == strtoupper($obse);
         }else{
-            $ticket->estado == $request->estado;
+            $ticket->estado == $estado;
         }
         $result = $ticket->save();
         if($result){
-            flash("El Ticket con N° de Radicado: <strong>" . $ticket->radicado . "</strong> fue ". $request->estado." de forma exitosa!")->success();
+            flash("El Ticket con N° de Radicado: <strong>" . $ticket->radicado . "</strong> fue ". $estado." de forma exitosa!")->success();
             return redirect()->route('tickets.index');
         }else{
-            flash("El Ticket con N° de Radicado: <strong>" . $ticket->radicado . "</strong> no pudo ser ". $request->estado."!. Error: ",$result)->error();
+            flash("El Ticket con N° de Radicado: <strong>" . $ticket->radicado . "</strong> no pudo ser ". $estado."!. Error: ",$result)->error();
             return redirect()->route('tickets.index');
         }
     }

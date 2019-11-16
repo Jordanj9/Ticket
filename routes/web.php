@@ -65,7 +65,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'general'], function () {
     Route::resource('tickets', 'TicketController');
     Route::get('tickets/{id}/delete', 'TicketController@destroy')->name('tickets.delete');
     Route::post('tickets/asignar/empleado/asignar', 'TicketController@asignar')->name('tickets.asignar');
-    Route::post('tickets/cambiar/estado', 'TicketController@estado')->name('tickets.estado');
+    Route::get('tickets/cambiar/{ticketid}/{estado}/{obs}/estado', 'TicketController@estado')->name('tickets.estado');
     //EMPLEADO
     Route::resource('empleado', 'EmpleadoController');
     Route::get('empleado/{id}/delete', 'EmpleadoController@destroy')->name('empleado.delete');

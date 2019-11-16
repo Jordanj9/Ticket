@@ -190,57 +190,57 @@
                 </div>
                 <div class="modal-body">
                     <div class="col-md-12">
-                        <form class="form-horizontal" method="POST" action="{{route('tickets.estado')}}">
-                                @csrf
-                            <input type="hidden" id="ticketid" name="ticket_id">
-                            <div class="col-md-12">
-                                <h5><strong>Cambiar estado de ticket</strong></h5>
-                                <div class="row">
-                                    <div class="col-md-12 checkbox-radios" style="margin-left: 150px;">
-                                        <div class="form-check form-check-inline">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="radio" name="estado"
-                                                      value="FINALIZADO" id="finalizar" onclick="estado(event,this.id)"/>
-                                                Finalizar
-                                                <span class="circle"><span class="check"></span></span>
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="radio" name="estado"
-                                                       value="APLAZADO" id="aplazar" onclick="estado(event,this.id)"> Aplazar
-                                                <span class="circle"><span class="check"></span></span>
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input" type="radio" name="estado"
-                                                     value="CANCELADO"   id="cancelar" onclick="estado(event,this.id)"> Cancelar
-                                                <span class="circle"><span class="check"></span></span>
-                                            </label>
-                                        </div>
+                        {{--                        <form class="form-horizontal" method="POST" action="{{route('tickets.estado')}}">--}}
+                        {{--                                @csrf--}}
+                        <input type="hidden" id="ticketid" name="ticket_id">
+                        <div class="col-md-12">
+                            <h5><strong>Cambiar estado de ticket</strong></h5>
+                            <div class="row">
+                                <div class="col-md-12 checkbox-radios" style="margin-left: 150px;">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="estado"
+                                                   value="FINALIZADO" id="finalizar" onclick="estado(this.id)"/>
+                                            Finalizar
+                                            <span class="circle"><span class="check"></span></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="estado"
+                                                   value="APLAZADO" id="aplazar" onclick="estado(this.id)"> Aplazar
+                                            <span class="circle"><span class="check"></span></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="estado"
+                                                   value="CANCELADO" id="cancelar" onclick="estado(this.id)"> Cancelar
+                                            <span class="circle"><span class="check"></span></span>
+                                        </label>
                                     </div>
                                 </div>
-                                <div class="row" id="rowobservacion">
-                                    <div class="col-md-12">
-                                        <div class="form-group bmd-form-group">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control"
-                                                       placeholder="Observación"
-                                                       name="observacion" id="observacion"/>
-                                            </div>
+                            </div>
+                            <div class="row" id="rowobservacion">
+                                <div class="col-md-12">
+                                    <div class="form-group bmd-form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control"
+                                                   placeholder="Observación"
+                                                   name="observacion" id="observacion"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <br>
-                            <div class="modal-footer">
-                                <button class="btn btn-info btn-round" style="margin-right: 50px;" type="reset">Limpiar
-                                    Formulario
-                                </button>
-                                <button class="btn btn-success btn-round" type="submit">Guardar</button>
-                            </div>
-                        </form>
+                        </div>
+                        <br>
+                        <div class="modal-footer">
+                            <button class="btn btn-info btn-round" style="margin-right: 50px;" type="reset">Limpiar
+                                Formulario
+                            </button>
+                            <button class="btn btn-success btn-round" type="button" onclick="guardar()">Guardar</button>
+                        </div>
+                        {{--                        </form>--}}
                     </div>
                 </div>
             </div>
@@ -296,8 +296,7 @@
             $("#observacion").val("");
         }
 
-        function estado(event,estado) {
-            event.preventDefault();
+        function estado(estado) {
             if (estado == 'finalizar') {
                 $("#rowobservacion").removeAttr('style');
             } else {
@@ -307,12 +306,29 @@
         }
 
         function guardar() {
-          var d =  $("#cancelar").attr('checked');
-          console.log( $("#cancelar").val());
-            if($("#cancelar").val() == "on"){
-                alert('entro');
-            }else{
-                alert('else');
+            var band = true;
+            var ticket = $("#ticketid").val();
+            var obse = $("#observacion").val();
+            if ($("#finalizar").prop('checked')) {
+                var estado = $("#finalizar").val();
+                if ($("#observacion").length <= 0) {
+                    band = false;
+                }
+            } else {
+                if($("#cancelar").prop('checked')){
+                    var estado = $("#cancelar").val();
+                }else{
+                    var estado = $("#aplazar").val();
+                }
+                if (band == false) {
+                    $.notify({
+                        icon: "add_alert",
+                        message: 'Por favor ingrese la observación. Atención!'
+                    }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                    return;
+                } else {
+                        //ruta 'tickets/cambiar/{ticket}/{estado}/{obs}/estado'
+                }
             }
         }
     </script>
