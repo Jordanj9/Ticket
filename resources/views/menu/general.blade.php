@@ -32,7 +32,7 @@
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-                    <a href="{{route("tickets.index")}}">
+                    <a href="{{route("empleado.index")}}">
                         <button class="btn btn-outline-info btn-round">
                             <i class="fa fa-file-powerpoint-o"></i>  EMPLEADOS
                             <div class="ripple-container"></div>
