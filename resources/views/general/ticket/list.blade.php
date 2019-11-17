@@ -73,9 +73,10 @@
                                                data-toggle="tooltip"
                                                data-placement="top" title="Asignar ticket"><i class="material-icons">perm_data_setting</i></a>
                                         @endif
-                                        <a href="{{ route('tickets.edit',$t->id)}}"
+                                        <a data-toggle="modal"
+                                           data-target="#estados" onclick="selectEmpleado('{{$t->id}}')"
                                            class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Finalizar Ticket"><i class="material-icons">layers_clear</i></a>
+                                           data-placement="top" title="Cambiar Estado Ticket"><i class="material-icons">layers_clear</i></a>
                                         <a href="{{ route('tickets.edit',$t->id)}}"
                                            class="btn btn-link btn-primary btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Editar Módulo"><i class="material-icons">mode_edit</i></a>
@@ -83,12 +84,6 @@
                                            class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Ver Tickets"><i
                                                 class="material-icons">style</i></a>
-                                        <a href="{{ route('tickets.delete',$t->id)}}"
-                                           class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Cancelar tickets"><i class="material-icons">delete</i></a>
-                                        <a href="{{ route('tickets.edit',$t->id)}}"
-                                           class="btn btn-link btn-primary btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Aplazar Ticket"><i class="material-icons">date_range</i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -113,6 +108,7 @@
         </div>
     </div>
 
+    <!-- modal detalles -->
     <div class="modal fade modal-mini modal-primary" id="mdModal" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-small">
@@ -133,6 +129,8 @@
             </div>
         </div>
     </div>
+    <!-- end modal detalles -->
+    <!-- modal asignar -->
     <div class="modal fade modal-mini modal-primary" id="addEjeTematico" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -169,7 +167,9 @@
                             </div>
                             <br>
                             <div class="modal-footer">
-                                <button class="btn btn-info btn-round" style="margin-right: 50px;" type="reset">Limpiar Formulario</button>
+                                <button class="btn btn-info btn-round" style="margin-right: 50px;" type="reset">Limpiar
+                                    Formulario
+                                </button>
                                 <button class="btn btn-success btn-round" type="submit">Guardar</button>
                             </div>
                         </form>
@@ -178,10 +178,80 @@
             </div>
         </div>
     </div>
+    <!-- end modal asignar -->
+    <!-- modal acciones -->
+    <div class="modal fade modal-mini modal-primary" id="estados" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i
+                            class="material-icons">clear</i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-md-12">
+                        {{--                        <form class="form-horizontal" method="POST" action="{{route('tickets.estado')}}">--}}
+                        {{--                                @csrf--}}
+                        <input type="hidden" id="ticketid" name="ticket_id">
+                        <div class="col-md-12">
+                            <h5><strong>Cambiar estado de ticket</strong></h5>
+                            <div class="row">
+                                <div class="col-md-12 checkbox-radios" style="margin-left: 150px;">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="estado"
+                                                   value="FINALIZADO" id="finalizar" onclick="estado(this.id)"/>
+                                            Finalizar
+                                            <span class="circle"><span class="check"></span></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="estado"
+                                                   value="APLAZADO" id="aplazar" onclick="estado(this.id)"> Aplazar
+                                            <span class="circle"><span class="check"></span></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="estado"
+                                                   value="CANCELADO" id="cancelar" onclick="estado(this.id)"> Cancelar
+                                            <span class="circle"><span class="check"></span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="rowobservacion">
+                                <div class="col-md-12">
+                                    <div class="form-group bmd-form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control"
+                                                   placeholder="Observación"
+                                                   name="observacion" id="observacion"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="modal-footer">
+                            <button class="btn btn-info btn-round" style="margin-right: 50px;" type="reset">Limpiar
+                                Formulario
+                            </button>
+                            <button class="btn btn-success btn-round" type="button" onclick="guardar()">Guardar</button>
+                        </div>
+                        {{--                        </form>--}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal acciones -->
 @endsection
 @section('script')
     <script type="text/javascript">
         $(document).ready(function () {
+            $("#rowobservacion").attr('style', 'display:none');
             $('#datatables').DataTable({
                 "pagingType": "full_numbers",
                 "lengthMenu": [
@@ -219,6 +289,47 @@
 
         function selectEmpleado(id) {
             document.getElementById('ticket_id').value = id;
+            document.getElementById('ticketid').value = id;
+        }
+
+        function limpiar() {
+            $("#observacion").val("");
+        }
+
+        function estado(estado) {
+            if (estado == 'finalizar') {
+                $("#rowobservacion").removeAttr('style');
+            } else {
+                $("#observacion").val("");
+                $("#rowobservacion").attr('style', 'display:none');
+            }
+        }
+
+        function guardar() {
+            var band = true;
+            var ticket = $("#ticketid").val();
+            var obse = $("#observacion").val();
+            if ($("#finalizar").prop('checked')) {
+                var estado = $("#finalizar").val();
+                if ($("#observacion").length <= 0) {
+                    band = false;
+                }
+            } else {
+                if($("#cancelar").prop('checked')){
+                    var estado = $("#cancelar").val();
+                }else{
+                    var estado = $("#aplazar").val();
+                }
+                if (band == false) {
+                    $.notify({
+                        icon: "add_alert",
+                        message: 'Por favor ingrese la observación. Atención!'
+                    }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                    return;
+                } else {
+                        //ruta 'tickets/cambiar/{ticket}/{estado}/{obs}/estado'
+                }
+            }
         }
     </script>
 @endsection

@@ -6,6 +6,7 @@ use App\Empleado;
 use App\Ticket;
 use App\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class TicketController extends Controller
@@ -17,13 +18,19 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::all();
         $emp = Empleado::all();
         $empleados = collect();
         if ($emp != null) {
             foreach ($emp as $e) {
                 $empleados[$e->id] = $e->identificacion . " " . $e->nombre . " " . $e->apellido;
             }
+        }
+        $u = Auth::user();
+        $empleado = Empleado::where('identificacion',$u->identificacion)->first();
+        if($empleado != null){
+            $tickets = $empleado->tickets();
+        }else{
+            $tickets = Ticket::all();
         }
         return view('general.ticket.list')
             ->with('location', 'general')
@@ -173,7 +180,6 @@ class TicketController extends Controller
      */
     public function asignar(Request $request)
     {
-
         $ticket = Ticket::find($request->ticket_id);
         $ticket->empleado_id = $request->empleado_id;
         $result = $ticket->save();
@@ -182,6 +188,30 @@ class TicketController extends Controller
             return redirect()->route('tickets.index');
         } else {
             flash("El Ticket con N° de Radicado: <strong>" . $ticket->radicado . "</strong> no pudo ser asignado. Error: " . $result)->error();
+            return redirect()->route('tickets.index');
+        }
+    }
+
+    /**
+     * Cambiar estado de ticket (aplazar,finalizar,cancelar)
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function estado($ticket_id,$estado,$obse){
+        $ticket = Ticket::find($ticket_id);
+        if($estado == 'FINALIZADO'){
+            $ticket->estado == 'FINALIZADO';
+            $ticket->observacion == strtoupper($obse);
+        }else{
+            $ticket->estado == $estado;
+        }
+        $result = $ticket->save();
+        if($result){
+            flash("El Ticket con N° de Radicado: <strong>" . $ticket->radicado . "</strong> fue ". $estado." de forma exitosa!")->success();
+            return redirect()->route('tickets.index');
+        }else{
+            flash("El Ticket con N° de Radicado: <strong>" . $ticket->radicado . "</strong> no pudo ser ". $estado."!. Error: ",$result)->error();
             return redirect()->route('tickets.index');
         }
     }
