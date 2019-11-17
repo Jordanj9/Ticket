@@ -1,6 +1,6 @@
 demo = {
 
-      initContactUsMap: function(){
+      /*initContactUsMap: function(){
            var myLatlng = new google.maps.LatLng(44.433530, 26.093928);
            var mapOptions = {
              zoom: 14,
@@ -16,9 +16,9 @@ demo = {
                title:"Hello World!"
            });
            marker.setMap(map);
-       },
+       },*/
 
-       initContactUs2Map: function(){
+       /*initContactUs2Map: function(){
            var lat = 44.433530;
            var long = 26.093928;
 
@@ -41,7 +41,7 @@ demo = {
                title:"Hello World!"
            });
            marker.setMap(map);
-       },
+       },*/
 
        presentationAnimations: function(){
            $(function() {

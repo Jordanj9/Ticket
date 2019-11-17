@@ -112,20 +112,6 @@
 
             <div class="row">
                 <div class="col-md-8 col-12 mr-auto ml-auto">
-                    @if($response != "null")
-                        <div class="alert alert-info alert-with-icon" data-notify="container">
-                            <i class="material-icons" data-notify="icon">notifications</i>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <i class="material-icons">close</i>
-                            </button>
-                            <span data-notify="icon" class="now-ui-icons ui-1_bell-53"></span>
-                            <span data-notify="message">{!!$response!!}</span>
-                        </div>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8 col-12 mr-auto ml-auto">
                     <!--      Wizard container        -->
                     <div class="wizard-container">
                         <div class="card card-wizard" style="opacity: 1;" data-color="rose" id="wizardProfile">
