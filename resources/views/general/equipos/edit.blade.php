@@ -7,7 +7,7 @@
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
                         href="{{route('admin.general')}}"> General </a><span
                         class="fa-angle-right fa"></span><a href="{{route('equipos.index')}}"> Equipos</a><span
-                        class="fa-angle-right fa"></span> Crear
+                        class="fa-angle-right fa"></span> Editar
                 </p>
             </div>
         </div>
@@ -42,8 +42,9 @@
                         @endcomponent
                     </div>
                     <div class="col-md-12">
-                        <form class="form-horizontal" method="POST" action="{{route('equipos.store')}}">
+                        <form class="form-horizontal" method="POST" action="{{route('equipos.update',$equipo->id)}}">
                             @csrf
+                            <input name="_method" type="hidden" value="PUT"/>
                             <div class="row">
                                 <div class="col-md-8">
                                 </div>
@@ -53,13 +54,13 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="row" id="datos_cliente" style="display: none;">
+                            <div class="row" id="datos_cliente" >
                                 <div class="col-md-4">
-                                    <input type="hidden" name="cliente_id" id="cliente_id" required>
+                                    <input type="hidden" name="cliente_id" id="cliente_id" required value="{{$equipo->cliente->id}}">
                                     <div class="form-group bmd-form-group">
                                         <div class="form-line">
                                             <label class="control-label">Identificaciòn</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" value="{{$equipo->cliente->identificacion}}"
                                                    required="required" id="identificacion_cliente" disabled placeholder=""
                                             />
                                         </div>
@@ -69,7 +70,7 @@
                                     <div class="form-group bmd-form-group">
                                         <div class="form-line">
                                             <label class="control-label">Nombres</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" value="{{$equipo->cliente->nombre.' '.$equipo->cliente->apellido}}"
                                                    required="required" id="nombre_cliente" disabled placeholder=""
                                             />
                                         </div>
@@ -83,7 +84,7 @@
                                     <div class="form-group bmd-form-group">
                                         <div class="form-line">
                                             <label class="control-label">Año de Aquisiciòn</label>
-                                            <input type="number" min="1998" max="2019" class="form-control" name="anio_adquicision"
+                                            <input type="number" min="1998" max="2019" class="form-control" value="{{$equipo->anio_adquicision}}" name="anio_adquicision"
                                                    required="required" placeholder="Año en el cual el cliente adquirio el equipo"
                                             />
                                         </div>
@@ -93,7 +94,7 @@
                                     <div class="form-group bmd-form-group">
                                         <div class="form-line">
                                             <label class="control-label">Pantalla</label>
-                                            <input type="text" class="form-control" name="pantalla"
+                                            <input type="text" class="form-control" name="pantalla" value="{{$equipo->pantalla}}"
                                                    required="required" placeholder="Detalle de la pantalla"
                                             />
                                         </div>
@@ -103,7 +104,7 @@
                                     <div class="form-group bmd-form-group">
                                         <div class="form-line">
                                             <label class="control-label">Marca</label>
-                                            <input type="text" class="form-control" name="marca"
+                                            <input type="text" class="form-control" value="{{$equipo->marca}}" name="marca"
                                                    required="required" placeholder="marca del equipo"
                                             />
                                         </div>
@@ -114,7 +115,7 @@
                                         <div class="form-line">
                                             <label class="control-label">Procesador</label>
                                             <input type="text" class="form-control"
-                                                   required="required" name="procesador" placeholder="Detalle del procesador"
+                                                   required="required" value="{{$equipo->procesador}}" name="procesador" placeholder="Detalle del procesador"
                                             />
                                         </div>
                                     </div>
@@ -124,7 +125,7 @@
                                         <div class="form-line">
                                             <label class="control-label">Memoria Ram</label>
                                             <input type="text" class="form-control"
-                                                   required="required" name="memoria_ram"
+                                                   required="required" value="{{$equipo->memoria_ram}}" name="memoria_ram"
                                                    placeholder="Detalle de la memoria ram"
                                             />
                                         </div>
@@ -135,7 +136,7 @@
                                         <div class="form-line">
                                             <label class="control-label">Disco Duro</label>
                                             <input type="text" class="form-control"
-                                                   required="required" name="disco_duro"
+                                                   required="required" value="{{$equipo->disco_duro}}" name="disco_duro"
                                                    placeholder="Detalle del disco duro"
                                             />
                                         </div>
@@ -147,7 +148,7 @@
                                             <label class="control-label">Licencias</label>
                                             <textarea id="licencias" disabled
                                                       class="form-control" id="" cols="30" rows="10" name ="licencias"
-                                                      placeholder="licencias con las que cuenta el equipo"></textarea>
+                                                      placeholder="licencias con las que cuenta el equipo">{{$equipo->licencias}}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -160,6 +161,17 @@
                                        class="btn bg-defaut waves-effect btn-round"><i class="material-icons">
                                             fingerprint
                                         </i> Agregar licencia
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                </div>
+                                <div class="col-md-4" style="margin-top: -100px;">
+                                    <a onclick="editLicencia()"
+                                       class="btn bg-success waves-effect btn-round"><i class="material-icons">
+                                            fingerprint
+                                        </i> Editar licencias
                                     </a>
                                 </div>
                             </div>
@@ -339,5 +351,10 @@
                 }, {type: 'danger', timer: 3e3, placement: {from: 'top', align: 'right'}});
             }
         }
+
+        function editLicencia(){
+            $('#licencias').removeAttr('disabled');
+        }
+
     </script>
 @endsection

@@ -43,6 +43,7 @@
                                width="100%" style="width:100%">
                             <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>CLIENTE</th>
                                 <th>MARCA</th>
                                 <th>PROCESADOR</th>
@@ -56,6 +57,7 @@
                             <tbody>
                             @foreach($equipos as $equipo)
                                 <tr>
+                                    <td>{{$equipo->id}}</td>
                                     @if($equipo->cliente->tipopersona == 'NATURAL')
                                         <td>{{$equipo->cliente->nombre.' '.$equipo->cliente->apellido}}</td>
                                     @else
@@ -72,12 +74,16 @@
                                         <a href="{{ route('equipos.edit',$equipo->id)}}"
                                            class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Editar Equipo"><i class="material-icons">mode_edit</i></a>
+                                        <a href="{{ route('equipos.delete',$equipo->id)}}"
+                                           class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Eliminar Equipo"><i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
+                                <th>ID</th>
                                 <th>CLIENTE</th>
                                 <th>MARCA</th>
                                 <th>PROCESADOR</th>

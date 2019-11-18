@@ -727,12 +727,23 @@
                 data: {},
             }).done(function (msg) {
                 if (msg.status == "ok") {
+
                     $("#nombreid").val(msg.response.nom).trigger("change");
                     $("#apellidoid").val(msg.response.ape).trigger("change");
                     $("#telefonoid").val(msg.response.tel).trigger("change");
                     $("#exampleemalil").val(msg.response.corr).trigger("change");
                     $("#direccionid").val(msg.response.dir).trigger("change");
                     $("#tipopersona").val(msg.response.tipo).trigger("change");
+
+                    if(msg.response.tipo == 'JURIDICA'){
+                        $("#dependenciaid").val(msg.response.dependencia).trigger("change");
+                        $("#empresaid").val(msg.response.empresa).trigger("change");
+                        $("#nitid").val(msg.response.nit).trigger("change");
+                        $("#telefonoemp").val(msg.response.telefonoemp).trigger("change");
+                        $("#emailemp").val(msg.response.emailempresa).trigger("change");
+                        $("#direccionemp").val(msg.response.direccionemp).trigger("change");
+                    }
+
                 } else {
                     $.notify({
                         icon: "add_alert",
@@ -750,6 +761,13 @@
         $("#telefonoid").val("").trigger('change');
         $("#exampleemalil").val("").trigger('change');
         $("#direccionid").val("").trigger('change');
+        $("#direccionemp").val("").trigger('change');
+        $("#nitid").val("").trigger('change');
+        $("#telefonoemp").val("").trigger('change');
+        $("#emailemp").val("").trigger('change');
+        $("#empresaid").val("").trigger('change');
+        $("#dependenciaid").val("").trigger('change');
+        $("#descripcion").val("").trigger('change');
     }
 
     function inhabilitar() {
@@ -796,6 +814,7 @@
                     icon: "add_alert",
                     message: msg.response
                 }, {type: 'info', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                limpiar();
             } else {
                 $.notify({
                     icon: "add_alert",

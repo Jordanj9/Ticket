@@ -28,4 +28,8 @@ class Cliente extends Model
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function  equipos(){
+        return $this->hasMany(Equipo::class);
+    }
 }

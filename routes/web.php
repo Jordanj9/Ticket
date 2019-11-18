@@ -31,7 +31,7 @@ Route::post('usuarios/contrasenia/cambiar/admin/finalizar', 'UsuarioController@c
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('usuarios', 'MenuController@usuarios')->name('admin.usuarios');
     Route::get('general', 'MenuController@general')->name('admin.general');
-    //Route::get('mantenimientos', 'MantenimientoController@index')->name('admin.mantenimiento');
+    Route::get('mantenimiento', 'MenuController@mantenimiento')->name('admin.mantenimiento');
     Route::get('reporte', 'MenuController@reporte')->name('admin.reporte');
     Route::post('acceso', 'HomeController@confirmaRol')->name('rol');
     Route::get('inicio', 'HomeController@inicio')->name('inicio');
@@ -69,5 +69,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'general'], function () {
     //EMPLEADO
     Route::resource('empleado', 'EmpleadoController');
     Route::get('empleado/{id}/delete', 'EmpleadoController@destroy')->name('empleado.delete');
+
+});
+
+
+//GRUPO DE RUTAS PARA MANTENIMIENTO
+Route::group(['middleware' => 'auth', 'prefix' => 'mantenimiento'], function () {
+
+    //MANTENIMIENTO
+    Route::resource('mantenimiento','MantenimientoController');
 
 });

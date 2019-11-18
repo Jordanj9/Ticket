@@ -148,7 +148,7 @@
                 @else
                     <li class="nav-item">
                 @endif
-                    <a class="nav-link" href="#componentsExamples">
+                    <a class="nav-link" href="{{route('admin.mantenimiento')}}">
                         <i class="material-icons">assignment</i>
                         <p>Mantenimiento</p>
                     </a>
@@ -271,6 +271,7 @@
 <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
 <script src="{{asset('assets/js/plugins/fullcalendar.min.js')}}"></script>
 <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+<script src="{{asset('assets/js/plugins/axios.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/jquery-jvectormap.js')}}"></script>
 <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
 <script src="{{asset('assets/js/plugins/nouislider.min.js')}}"></script>

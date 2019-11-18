@@ -42,7 +42,25 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $equipo = new Equipo($request->all());
+        foreach ($equipo->attributesToArray() as $key => $value) {
+            if ($key == 'licencias') {
+                $equipo->$key = $value;
+            } else {
+                $equipo->$key = strtoupper($value);
+            }
+        }
+        $result = $equipo->save();
+
+        if($result){
+            flash("El Equipo <strong>" .$equipo->id .''.$equipo->marca . "-" . $equipo->procesador. "</strong> fue almacenado de forma exitosa!")->success();
+            return redirect()->route('equipos.index');
+        }else{
+            flash("El Equipo <strong>" . $equipo->id .''.$equipo->marca . "-" . $equipo->procesador . "</strong>no pudo ser almacenado de forma exitosa!")->success();
+            return redirect()->route('equipos.index');
+        }
+
     }
 
     /**
@@ -62,9 +80,14 @@ class EquipoController extends Controller
      * @param  \App\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Equipo $equipo)
+    public function edit($id)
     {
-        //
+        $clientes = Cliente::all();
+        $equipo = Equipo::find($id);
+        return view('general.equipos.edit')
+            ->with('location', 'general')
+            ->with('equipo', $equipo)
+            ->with('clientes',$clientes);
     }
 
     /**
@@ -74,9 +97,27 @@ class EquipoController extends Controller
      * @param  \App\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Equipo $equipo)
+    public function update(Request $request, $id)
     {
-        //
+        $equipo = Equipo::find($id);
+        foreach ($equipo->attributesToArray() as $key => $value) {
+            if (isset($request->$key)) {
+                if ($key == 'licencias') {
+                    $equipo->$key = $request->$key;
+                } else {
+                    $equipo->$key = strtoupper($request->$key);
+                }
+            }
+        }
+        $result = $equipo->save();
+
+        if($result){
+            flash("El Equipo <strong>" .$equipo->id .' '.$equipo->marca . "-" . $equipo->procesador. "</strong> fue modificado de forma exitosa!")->success();
+            return redirect()->route('equipos.index');
+        }else{
+            flash("El Equipo <strong>" . $equipo->id .' '.$equipo->marca . "-" . $equipo->procesador . "</strong>no pudo ser modificado de forma exitosa!")->success();
+            return redirect()->route('equipos.index');
+        }
     }
 
     /**
@@ -85,8 +126,24 @@ class EquipoController extends Controller
      * @param  \App\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Equipo $equipo)
+    public function destroy($id)
     {
-        //
+        $equipo = Equipo::find($id);
+        if (count($equipo->mantenimientos) > 0) {
+            flash("El Equipo <strong>" . $equipo->id . ' ' . $equipo->marca . "-" . $equipo->procesador . "</strong> no pudo ser eliminado porque tiene mantenimientos asociados.")->warning();
+            return redirect()->route('equipos.index');
+        } else {
+            $result = $equipo->delete();
+            if ($result) {
+
+                flash("El Equipo <strong>" . $equipo->id . ' ' . $equipo->marca . "-" . $equipo->procesador . "</strong> fue eliminado de forma exitosa!")->success();
+                return redirect()->route('equipos.index');
+            } else {
+                flash("El Equipo <strong>" . $equipo->id . '-' . $equipo->marca . "-" . $equipo->procesador . "</strong> no pudo ser eliminado. Error: " . $result)->error();
+                return redirect()->route('equipos.index');
+            }
+        }
+
     }
+
 }

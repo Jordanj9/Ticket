@@ -12,4 +12,9 @@ class Equipo extends Model
         return $this->belongsTo(Cliente::class);
     }
 
+    public function mantenimientos(){
+        return $this->hasMany(Mantenimiento::class);
+    }
+
+
 }

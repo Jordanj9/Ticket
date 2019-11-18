@@ -152,15 +152,28 @@ class TicketController extends Controller
      */
     public function consultar($identificacion)
     {
-        $cliente = Cliente::where('identificacion', $identificacion)->first();
+        $cliente = Cliente::where([
+            ['identificacion', $identificacion]
+        ])->orWhere([
+            ['nit', $identificacion]
+        ])->first();
         if ($cliente != null) {
             $obj["id"] = $cliente->identificacion;
+            $obj["equipos"] = $cliente->equipos;
             $obj["nom"] = $cliente->nombre;
             $obj["ape"] = $cliente->apellido;
             $obj["tel"] = $cliente->telefono;
             $obj["corr"] = $cliente->email;
             $obj["dir"] = $cliente->direccion;
             $obj["tipo"] = $cliente->tipopersona;
+            if($cliente->tipopersona == 'JURIDICA'){
+                $obj["nit"] = $cliente->nit;
+                $obj["empresa"] = $cliente->empresa;
+                $obj["dependencia"] = $cliente->dependencia;
+                $obj["emailempresa"] = $cliente->emailempresa;
+                $obj["telefonoemp"] = $cliente->telefonoemp;
+                $obj['direccionemp'] = $cliente->direccionemp;
+            }
             return response()->json([
                 'response' => $obj,
                 'status' => 'ok'
