@@ -822,7 +822,7 @@
         var tel = $("#telefonoid").val();
         var dir = $("#direccionid").val();
         var empresa = $("#empresaid").val();
-        var dependencia = $("#dependencia").val();
+        var dependencia = $("#dependenciaid").val();
         var diremp = $("#direccionemp").val();
         var telemp = $("#telefonoemp").val();
         var nit = $("#nitid").val();

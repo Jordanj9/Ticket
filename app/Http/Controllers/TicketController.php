@@ -122,7 +122,8 @@ class TicketController extends Controller
         if ($result) {
             $response = "<h5>Señor(a) " . $clienteNatural->nombre . " " . $clienteNatural->apellido . " su ticket ha sido exitoso!</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p>";
             if($request->tipopersona == 'JURIDICA'){
-                Mail::to($clienteJuridico->email)->send(new NotificationTicket($response));
+                $responseJurica = "<h5>Nueva solicitud de ticket</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p><p><b>Descripción: </b> ".$request->descripcion."</p></br><h5>Detalles del Cliente</h5><p><b>Nombre: ".$clienteNatural->nombre." ".$clienteNatural->apellido."</b></p><p><b>Telefon: ".$clienteNatural->telefono."</b></p>";
+                Mail::to($clienteJuridico->email)->send(new NotificationTicket($responseJurica));
             }
             Mail::to($clienteNatural->email)->send(new NotificationTicket($response));
             Mail::to('colonca1999@gmail.com')->send(new NotificationTicket($response));
