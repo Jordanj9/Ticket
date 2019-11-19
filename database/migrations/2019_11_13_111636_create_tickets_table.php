@@ -19,10 +19,14 @@ class CreateTicketsTable extends Migration
             $table->string('descripcion');
             $table->string('estado', 20)->default('PENDIENTE');
             $table->string('observacion')->nullable();
+            $table->string('dependencia')->nullable();
             $table->bigInteger('empleado_id')->unsigned()->nullable();
             $table->foreign('empleado_id')->references('id')->on('empleados')->onDelete('cascade');
-            $table->bigInteger('cliente_id')->unsigned()->nullable();
-            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
+            $table->bigInteger('natural_id')->unsigned()->nullable();
+            $table->foreign('natural_id')->references('id')->on('Clientes_Naturales')->onDelete('cascade');
+            $table->bigInteger('juridica_id')->unsigned()->nullable();
+            $table->foreign('juridica_id')->references('id')->on('Clientes_Juridicos')->onDelete('cascade');
+            $table->enum('solicitante',['JURIDICA','NATURAL']);
             $table->timestamps();
         });
     }

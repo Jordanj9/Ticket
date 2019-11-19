@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
+use App\Cliente_Juridico;
+use App\Cliente_Natural;
 use App\Equipo;
 use Illuminate\Http\Request;
 
@@ -17,8 +19,8 @@ class EquipoController extends Controller
     {
         $equipos = Equipo::all();
         return view('general.equipos.list')
-            ->with('equipos',$equipos)
-            ->with('location','general');
+            ->with('equipos', $equipos)
+            ->with('location', 'general');
     }
 
     /**
@@ -28,22 +30,54 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        $clientes = Cliente::all();
+        $clientesNaturales = Cliente_Natural::all();
+        $clientesJuridicos = Cliente_Juridico::all();
+        $clientes = collect();
+
+        foreach ($clientesNaturales as $item) {
+
+            $clientes[] = [
+                'id' => $item->id,
+                'identificacion' => $item->identificacion,
+                'nombre' => $item->nombre . ' ' . $item->apellido,
+                'tipo' => 'NATURAL'
+            ];
+
+        }
+
+        foreach ($clientesJuridicos as $item) {
+
+            $clientes[] = [
+                'id' => $item->id,
+                'identificacion' => $item->nit,
+                'nombre' => $item->empresa,
+                'tipo' => 'JURIDICA'
+            ];
+
+        }
+
         return view('general.equipos.create')
-            ->with('location','general')
-            ->with('clientes',$clientes);
+            ->with('location', 'general')
+            ->with('clientes', $clientes);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
 
         $equipo = new Equipo($request->all());
+
+        if($request->tipo == 'NATURAL'){
+             $equipo->natural_id =  $request->cliente_id;
+        }else{
+            $equipo->juridica_id = $request->cliente_id;
+        }
+
         foreach ($equipo->attributesToArray() as $key => $value) {
             if ($key == 'licencias') {
                 $equipo->$key = $value;
@@ -53,11 +87,11 @@ class EquipoController extends Controller
         }
         $result = $equipo->save();
 
-        if($result){
-            flash("El Equipo <strong>" .$equipo->id .''.$equipo->marca . "-" . $equipo->procesador. "</strong> fue almacenado de forma exitosa!")->success();
+        if ($result) {
+            flash("El Equipo <strong>" . $equipo->id . '' . $equipo->marca . "-" . $equipo->procesador . "</strong> fue almacenado de forma exitosa!")->success();
             return redirect()->route('equipos.index');
-        }else{
-            flash("El Equipo <strong>" . $equipo->id .''.$equipo->marca . "-" . $equipo->procesador . "</strong>no pudo ser almacenado de forma exitosa!")->success();
+        } else {
+            flash("El Equipo <strong>" . $equipo->id . '' . $equipo->marca . "-" . $equipo->procesador . "</strong>no pudo ser almacenado de forma exitosa!")->success();
             return redirect()->route('equipos.index');
         }
 
@@ -66,7 +100,7 @@ class EquipoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Equipo  $equipo
+     * @param \App\Equipo $equipo
      * @return \Illuminate\Http\Response
      */
     public function show(Equipo $equipo)
@@ -77,24 +111,48 @@ class EquipoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Equipo  $equipo
+     * @param \App\Equipo $equipo
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $clientes = Cliente::all();
+        $clientesNaturales = Cliente_Natural::all();
+        $clientesJuridicos = Cliente_Juridico::all();
+        $clientes = collect();
+
+        foreach ($clientesNaturales as $item) {
+
+            $clientes[] = [
+                'id' => $item->id,
+                'identificacion' => $item->identificacion,
+                'nombre' => $item->nombre . ' ' . $item->apellido,
+                'tipo' => 'NATURAL'
+            ];
+
+        }
+
+        foreach ($clientesJuridicos as $item) {
+
+            $clientes[] = [
+                'id' => $item->id,
+                'identificacion' => $item->nit,
+                'nombre' => $item->empresa,
+                'tipo' => 'JURIDICA'
+            ];
+
+        }
         $equipo = Equipo::find($id);
         return view('general.equipos.edit')
             ->with('location', 'general')
             ->with('equipo', $equipo)
-            ->with('clientes',$clientes);
+            ->with('clientes', $clientes);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Equipo  $equipo
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Equipo $equipo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -111,11 +169,11 @@ class EquipoController extends Controller
         }
         $result = $equipo->save();
 
-        if($result){
-            flash("El Equipo <strong>" .$equipo->id .' '.$equipo->marca . "-" . $equipo->procesador. "</strong> fue modificado de forma exitosa!")->success();
+        if ($result) {
+            flash("El Equipo <strong>" . $equipo->id . ' ' . $equipo->marca . "-" . $equipo->procesador . "</strong> fue modificado de forma exitosa!")->success();
             return redirect()->route('equipos.index');
-        }else{
-            flash("El Equipo <strong>" . $equipo->id .' '.$equipo->marca . "-" . $equipo->procesador . "</strong>no pudo ser modificado de forma exitosa!")->success();
+        } else {
+            flash("El Equipo <strong>" . $equipo->id . ' ' . $equipo->marca . "-" . $equipo->procesador . "</strong>no pudo ser modificado de forma exitosa!")->success();
             return redirect()->route('equipos.index');
         }
     }
@@ -123,7 +181,7 @@ class EquipoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Equipo  $equipo
+     * @param \App\Equipo $equipo
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

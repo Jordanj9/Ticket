@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('tickets/publico/crear/', 'TicketController@store')->name('ticket.store');
 Route::get('tickest/consultar/{id}/cliente/', 'TicketController@consultar')->name('ticket.consultar');
+Route::get('tickest/consultar/{id}/juridica/', 'TicketController@consultarJuridica')->name('ticket.consultarJuridica');
 
 //cambiar contraseñas
 Route::get('usuarios/contrasenia/cambiar', 'UsuarioController@vistacontrasenia')->name('usuario.vistacontrasenia');
@@ -75,8 +76,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'general'], function () {
 
 //GRUPO DE RUTAS PARA MANTENIMIENTO
 Route::group(['middleware' => 'auth', 'prefix' => 'mantenimiento'], function () {
-
     //MANTENIMIENTO
     Route::resource('mantenimiento','MantenimientoController');
-
 });

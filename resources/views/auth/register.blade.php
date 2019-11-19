@@ -275,7 +275,7 @@
                                                                     <label for="exampleInput1"
                                                                            class="bmd-label-floating">Nit
                                                                         (requerido)</label>
-                                                                    <input type="text" class="form-control"
+                                                                    <input type="text" class="form-control" onblur="consultarJuridica()"
                                                                            id="nitid" name="nit" required>
                                                                 </div>
                                                             </div>
@@ -703,11 +703,28 @@
             $("#siguiente").attr('value', 'siguiente');
             $("#siguiente").removeAttr('onclick', 'guardar()');
             $("#finish").attr('onclick', 'guardar()');
+
+            $("#dependenciaid").attr('required','true');
+            $("#empresaid").attr('required','true');
+            $("#nitid").attr('required','true');
+            $("#telefonoemp").attr('required','true');
+            $("#emailemp").attr('required','true');
+            $("#direccionemp").attr('required','true');
+
         } else {
+
             $("#itemempresa").attr('style', 'display:none');
             $("#account").attr('style', 'display:none');
             $("#siguiente").attr('value', 'Registrar');
+            $("#siguiente").attr('onclick', 'guardar()');
             $("#finish").removeAttr('onclick', 'guardar()');
+
+            $("#dependenciaid").removeAttr('required');
+            $("#empresaid").removeAttr('required');
+            $("#nitid").removeAttr('required');
+            $("#telefonoemp").removeAttr('required');
+            $("#emailemp").removeAttr('required');
+            $("#direccionemp").removeAttr('required');
         }
     }
 
@@ -755,6 +772,24 @@
         }
     }
 
+    function consultarJuridica() {
+        var id = $("#nitid").val();
+        if (id.length > 0) {
+            $.ajax({
+                type: 'GET',
+                url: '{{url("tickest/consultar/")}}/' + id + "/juridica",
+                data: {},
+            }).done(function (msg) {
+                if (msg.status == "ok") {
+                        $("#empresaid").val(msg.response.empresa).trigger("change");
+                        $("#telefonoemp").val(msg.response.telefonoemp).trigger("change");
+                        $("#emailemp").val(msg.response.emailempresa).trigger("change");
+                        $("#direccionemp").val(msg.response.direccionemp).trigger("change");
+                }
+            });
+        }
+    }
+
     function limpiar() {
         $("#nombreid").val("").trigger('change');
         $("#apellidoid").val("").trigger('change');
@@ -787,6 +822,7 @@
         var tel = $("#telefonoid").val();
         var dir = $("#direccionid").val();
         var empresa = $("#empresaid").val();
+        var dependencia = $("#dependencia").val();
         var diremp = $("#direccionemp").val();
         var telemp = $("#telefonoemp").val();
         var nit = $("#nitid").val();
@@ -798,7 +834,7 @@
             return;
         }
         if (tipo == 'JURIDICA') {
-            if (empresa.length <= 0 || diremp.length <= 0 || telemp.length <= 0 || nit.length <= 0) {
+            if (empresa.length <= 0 || diremp.length <= 0 || telemp.length <= 0 || nit.length <= 0||dependencia.length <= 0) {
                 $.notify({
                     icon: "add_alert",
                     message: 'Llene todos los campos requeridos. Atencion!'
@@ -823,6 +859,7 @@
             }
         });
     }
+
 </script>
 </body>
 

@@ -20,10 +20,12 @@ class CreateEquiposTable extends Migration
             $table->string('memoria_ram');
             $table->string('disco_duro');
             $table->string('pantalla');
-            $table->longText('licencias');
+            $table->longText('licencias')->nullable();
             $table->year('anio_adquicision');
-            $table->bigInteger('cliente_id')->unsigned();
-            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('CASCADE');
+            $table->bigInteger('natural_id')->unsigned()->nullable();
+            $table->foreign('natural_id')->references('id')->on('Clientes_Naturales')->onDelete('cascade');
+            $table->bigInteger('juridica_id')->unsigned()->nullable();
+            $table->foreign('juridica_id')->references('id')->on('Clientes_Juridicos')->onDelete('cascade');
             $table->timestamps();
         });
     }

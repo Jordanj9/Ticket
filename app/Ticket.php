@@ -12,7 +12,7 @@ class Ticket extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'radicado', 'descripcion', 'estado', 'observacion', 'empleado_id', 'cliente_id', 'created_at', 'updated_at'
+        'id', 'radicado', 'descripcion', 'estado', 'observacion', 'dependencia', 'empleado_id', 'natural_id', 'juridica_id', 'solicitante', 'created_at', 'updated_at'
     ];
 
     /**
@@ -24,13 +24,19 @@ class Ticket extends Model
         //
     ];
 
-    public function cliente()
+    public function cliente_natural()
     {
-        return $this->belongsTo(Cliente::class);
+        return $this->belongsTo(Cliente_Natural::class,'natural_id');
+    }
+
+    public function cliente_juridico()
+    {
+        return $this->belongsTo(Cliente_Juridico::class,'juridica_id');
     }
 
     public function empleado()
     {
         return $this->belongsTo(Empleado::class);
     }
+
 }
