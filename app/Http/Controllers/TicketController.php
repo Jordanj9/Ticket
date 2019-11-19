@@ -9,6 +9,7 @@ use App\Cliente_Natural;
 use App\Cliente_Juridico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class TicketController extends Controller
