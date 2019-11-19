@@ -262,8 +262,6 @@
 <script src="{{asset('assets/js/plugins/bootstrap-selectpicker.js')}}"></script>
 <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
 <script src="{{asset('assets/js/plugins/bootstrap-datetimepicker.min.js')}}"></script>
-<!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-<script src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
 <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
 <script src="{{asset('assets/js/plugins/bootstrap-tagsinput.js')}}"></script>
 <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
@@ -290,7 +288,16 @@
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{asset('assets/js/material-dashboard.min.js?v=2.1.0')}}" type="text/javascript"></script>
 <!-- Jquery DataTable Plugin Js -->
-<script src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/jquery-datatable/jquery.dataTables.js')}}"></script>
+<script src="{{asset('js/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
+<script src="{{asset('js/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('js/jquery-datatable/extensions/export/buttons.flash.min.js')}}"></script>
+<script src="{{asset('js/jquery-datatable/extensions/export/jszip.min.js')}}"></script>
+<script src="{{asset('js/jquery-datatable/extensions/export/pdfmake.min.js')}}"></script>
+<script src="{{asset('js/jquery-datatable/extensions/export/vfs_fonts.js')}}"></script>
+<script src="{{asset('js/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
+<script src="{{asset('js/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
+<script src="{{asset('js/pages/tables/jquery-datatable.js')}}"></script>
 
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{asset('assets/demo/demo.js')}}"></script>
