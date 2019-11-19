@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Empleado;
+use App\Mail\NotificationTicket;
 use App\Ticket;
 use App\Cliente_Natural;
 use App\Cliente_Juridico;
@@ -119,6 +120,12 @@ class TicketController extends Controller
         $result = $ticket->save();
         if ($result) {
             $response = "<h5>Señor(a) " . $clienteNatural->nombre . " " . $clienteNatural->apellido . " su ticket ha sido exitoso!</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p>";
+            if($request->tipopersona == 'JURIDICA'){
+                Mail::to($clienteJuridico->email)->send(new NotificationTicket($response));
+            }
+            Mail::to($clienteNatural->email)->send(new NotificationTicket($response));
+            Mail::to('colonca1999@gmail.com')->send(new NotificationTicket($response));
+
             return response()->json([
                 'response' => $response,
                 'status' => 'ok'
