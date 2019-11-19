@@ -49,8 +49,6 @@
                                 <th>PROCESADOR</th>
                                 <th>MEMORIA RAM</th>
                                 <th>DISCO DURO</th>
-                                <th>CREADO</th>
-                                <th>ACTUALIZADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </thead>
@@ -58,18 +56,16 @@
                             @foreach($equipos as $equipo)
                                 <tr>
                                     <td>{{$equipo->id}}</td>
-                                    @if($equipo->cliente->tipopersona == 'NATURAL')
-                                        <td>{{$equipo->cliente->nombre.' '.$equipo->cliente->apellido}}</td>
+                                    @if($equipo->cliente_natural != null)
+                                        <td>{{$equipo->cliente_natural->nombre.' '.$equipo->cliente_natural->apellido}}</td>
                                     @else
-                                        <td>{{$equipo->cliente->empresa}}</td>
+                                        <td>{{'EMPRESA - '.$equipo->cliente_juridico->empresa}}</td>
                                     @endif
 
                                     <td>{{$equipo->marca}}</td>
                                     <td>{{$equipo->procesador}}</td>
                                     <td>{{$equipo->memoria_ram}}</td>
                                     <td>{{$equipo->disco_duro}}</td>
-                                    <td>{{$equipo->created_at}}</td>
-                                    <td>{{$equipo->updated_at}}</td>
                                     <td style="text-align: center;">
                                         <a href="{{ route('equipos.edit',$equipo->id)}}"
                                            class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
@@ -89,8 +85,6 @@
                                 <th>PROCESADOR</th>
                                 <th>MEMORIA RAM</th>
                                 <th>DISCO DURO</th>
-                                <th>CREADO</th>
-                                <th>ACTUALIZADO</th>
                                 <th class="text-right">ACCIONES</th>
                             </tr>
                             </tfoot>

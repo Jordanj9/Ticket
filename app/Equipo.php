@@ -9,11 +9,11 @@ class Equipo extends Model
     protected $fillable = ['id', 'marca', 'procesador', 'memoria_ram', 'disco_duro', 'pantalla', 'licencias', 'anio_adquicision', 'natural_id', 'juridica_id', 'created_at', 'updated_at'];
 
     public function cliente_natural(){
-        return $this->belongsTo(Cliente_Natural::class);
+        return $this->belongsTo(Cliente_Natural::class,'natural_id');
     }
 
     public function cliente_juridico(){
-        return $this->belongsTo(Cliente_Juridico::class);
+        return $this->belongsTo(Cliente_Juridico::class,'juridica_id');
     }
 
 
