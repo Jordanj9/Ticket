@@ -38,8 +38,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="material-datatables">
-                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
+                    <div class="table-responsive">
+                        <table id="datatables" class="table table-bordered table-striped table-hover table-responsive table-condensed dataTable js-exportable" width="100%" cellspacing="0"
                                width="100%" style="width:100%">
                             <thead>
                             <tr>
