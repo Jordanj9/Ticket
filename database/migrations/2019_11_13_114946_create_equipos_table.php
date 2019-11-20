@@ -26,6 +26,7 @@ class CreateEquiposTable extends Migration
             $table->foreign('natural_id')->references('id')->on('Clientes_Naturales')->onDelete('cascade');
             $table->bigInteger('juridica_id')->unsigned()->nullable();
             $table->foreign('juridica_id')->references('id')->on('Clientes_Juridicos')->onDelete('cascade');
+            $table->string('propietario',8);
             $table->timestamps();
         });
     }

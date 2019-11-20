@@ -50,12 +50,15 @@
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
     <link href="{{asset('assets/css/material-dashboard.min.css?v=2.1.0')}}" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet"/>
     <!-- JQuery DataTable Css -->
-    <link href="{{asset('css/dataTables.bootstrap.css')}}" rel="stylesheet">
+
     <!-- Google Tag Manager -->
     <script>
         (function (w, d, s, l, i) {
@@ -271,7 +274,6 @@
 <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
 <script src="{{asset('assets/js/plugins/fullcalendar.min.js')}}"></script>
 <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-<script src="{{asset('assets/js/plugins/axios.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/jquery-jvectormap.js')}}"></script>
 <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
 <script src="{{asset('assets/js/plugins/nouislider.min.js')}}"></script>
@@ -284,14 +286,11 @@
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Chartist JS -->
-<script src="{{asset('assets/js/plugins/chartist.min.js')}}"></script>
+<script src="{{asset('')}}assets/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
 <script src="{{asset('assets/js/plugins/bootstrap-notify.js')}}"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{asset('assets/js/material-dashboard.min.js?v=2.1.0')}}" type="text/javascript"></script>
-<!-- Jquery DataTable Plugin Js -->
-<script src="{{asset('assets/js/plugins/jquery.dataTables.min.js')}}"></script>
-
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{asset('assets/demo/demo.js')}}"></script>
 <script>
