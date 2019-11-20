@@ -74,8 +74,10 @@ class EquipoController extends Controller
 
         if($request->tipo == 'NATURAL'){
              $equipo->natural_id =  $request->cliente_id;
+             $equipo->propietario = 'NATURAL';
         }else{
             $equipo->juridica_id = $request->cliente_id;
+            $equipo->propietario = 'JURIDICA';
         }
 
         foreach ($equipo->attributesToArray() as $key => $value) {
@@ -144,7 +146,7 @@ class EquipoController extends Controller
         $equipo = Equipo::find($id);
         $newEquipo = [];
 
-        if($equipo->natural_id != null){
+        if($equipo->propietario == "NATURAL"){
             $cliente = [
                 'id' => $equipo->cliente_natural->id,
                 'identificacion' => $equipo->cliente_natural->identificacion,
@@ -180,10 +182,10 @@ class EquipoController extends Controller
 
         if($request->tipo == 'NATURAL'){
             $equipo->natural_id =  $request->cliente_id;
-            $equipo->juridica_id = "";
+            $equipo->propietario = 'NATURAL';
         }else{
             $equipo->juridica_id = $request->cliente_id;
-            $equipo->natural_id = "";
+            $equipo->propietario = 'JURIDICA';
         }
 
         foreach ($equipo->attributesToArray() as $key => $value) {

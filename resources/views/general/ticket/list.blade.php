@@ -43,21 +43,21 @@
                                width="100%" style="width:100%">
                             <thead>
                             <tr>
-                                <th>TIPO DE PERSONA</th>
-                                <th>IDENTIFICACIÓN</th>
-                                <th>NOMBRE</th>
-                                <th>DESCRIPCIÓN</th>
+                                <th>RADICADO</th>
+                                <th>CLIENTE</th>
                                 <th>TELEFONO</th>
-                                <th>EMAIL</th>
-                                <th>CREADO</th>
-                                <th>MODIFICADO</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>ESTADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($tickets as $t)
                                 <tr>
-                                    <td>{{$t->cliente->tipopersona}}</td>
+                                    <td>{{$t->radicado}}</td>
+                                    @if($t->solicitante == '')
+
+                                    @endif
                                     <td>{{$t->cliente->identificacion}}</td>
                                     <td>{{$t->cliente->nombre." ".$t->cliente->apellido}}</td>
                                     <td>{{$t->cliente->telefono}}</td>
@@ -90,14 +90,11 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>TIPO DE PERSONA</th>
-                                <th>IDENTIFICACIÓN</th>
-                                <th>NOMBRE</th>
-                                <th>DESCRIPCIÓN</th>
+                                <th>RADICADO</th>
+                                <th>CLIENTE</th>
                                 <th>TELEFONO</th>
-                                <th>EMAIL</th>
-                                <th>CREADO</th>
-                                <th>MODIFICADO</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>ESTADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </tfoot>

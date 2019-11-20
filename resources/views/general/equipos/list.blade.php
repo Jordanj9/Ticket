@@ -56,7 +56,7 @@
                             @foreach($equipos as $equipo)
                                 <tr>
                                     <td>{{$equipo->id}}</td>
-                                    @if($equipo->cliente_natural != null)
+                                    @if($equipo->propietario == 'NATURAL')
                                         <td>{{$equipo->cliente_natural->nombre.' '.$equipo->cliente_natural->apellido}}</td>
                                     @else
                                         <td>{{'EMPRESA - '.$equipo->cliente_juridico->empresa}}</td>
