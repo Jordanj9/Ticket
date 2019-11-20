@@ -1,0 +1,212 @@
+[33mcommit fea53185a0325a1ad6185c255f94409923d2ad0b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Tue Nov 19 16:43:15 2019 -0500
+
+    version 8.1 17 de noviembre del 2019 Camilo Colón
+
+[33mcommit 149d70ec93cb17430927b9f68b018bb8b0c4921f[m
+Merge: cdf821b 08c49cb
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Tue Nov 19 15:37:45 2019 -0500
+
+    Merge branch 'master' of https://github.com/Jordanj9/Ticket
+
+[33mcommit cdf821b20dffa0b6e4bb99e26ba4c62071130ea6[m
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Tue Nov 19 15:37:33 2019 -0500
+
+    version 8.0 17 de noviembre del 2019 Camilo Colón
+
+[33mcommit 08c49cb312aacc0b460dc4703462e3bde96a9d78[m
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Tue Nov 19 15:36:48 2019 -0500
+
+    Version 8.3 19 de Noviembre de 2019 03:36 JORDAN
+
+[33mcommit ee7e1282a7c2c3dba847c8b0e7bd50fc92750ddd[m
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Tue Nov 19 15:16:16 2019 -0500
+
+    Version 8.2 19 de Noviembre de 2019 03:16 JORDAN
+
+[33mcommit 4b7d628338fb1a35cb9a518510e7e901eb7ced3b[m
+Merge: 79354b4 738ffe6
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Tue Nov 19 14:25:42 2019 -0500
+
+    Merge branch 'master' of https://github.com/Jordanj9/Ticket
+
+[33mcommit 79354b479be1168622419b1698b53f6faa9656e5[m
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Tue Nov 19 14:25:31 2019 -0500
+
+    Version 8.1 19 de Noviembre de 2019 02:00 JORDAN
+
+[33mcommit 738ffe6134e5169ac3d30dc1e17cdd7d89196863[m
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Tue Nov 19 14:23:21 2019 -0500
+
+    version 8.0 17 de noviembre del 2019 Camilo Colón
+
+[33mcommit 99e51b6f87fd593e7bf8fe720907eb5eb2144c02[m
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Tue Nov 19 13:31:04 2019 -0500
+
+    version 8.0 17 de noviembre del 2019 Camilo Colón
+
+[33mcommit 2bafbb8151988ea97412a3110a2f2b1d20df6269[m
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Tue Nov 19 00:41:44 2019 -0500
+
+    version 8.0 17 de noviembre del 2019 Camilo Colón
+
+[33mcommit 6c701956e48faadf46b5457c0a5127e57693e716[m
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Mon Nov 18 17:01:38 2019 -0500
+
+    version 7.0 17 de noviembre del 2019 Camilo Colón
+
+[33mcommit 8dc2c4fcde6db84f0facbe015f1a31e0ae5409e3[m
+Merge: 4ce7ff5 a1dbc4e
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Sun Nov 17 09:59:36 2019 -0500
+
+    Merge branch 'master' of https://github.com/Jordanj9/Ticket
+
+[33mcommit 4ce7ff5a2e72314937feed442a1cb3bd4400c598[m
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Sun Nov 17 09:59:24 2019 -0500
+
+    version 6.0 17 de noviembre del 2019 Camilo Colón
+
+[33mcommit a1dbc4e12110f7608c3c276c7fcb328084925763[m
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Sat Nov 16 15:00:34 2019 -0500
+
+    Version 5.0 16 de Noviembre de 2019 15:00 JORDAN
+
+[33mcommit 2d126e3780d1b8a1c9086241c7873f6ae461c9cb[m
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Sat Nov 16 12:42:35 2019 -0500
+
+    Version 5.0 16 de Noviembre de 2019 12:42 JORDAN
+
+[33mcommit ce97adc3b991277d129960921375ba22ea918fac[m
+Merge: c8b22c4 d6c024a
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Fri Nov 15 07:02:32 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit c8b22c4b42012bb774fbc8ac85ad22e60d3cc4fe[m
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Fri Nov 15 06:59:07 2019 -0500
+
+    Version 4.0 15 de Noviembre de 2019 6:58 JORDAN
+
+[33mcommit d6c024ac28da4094cbc56a94a54a0087567c8895[m
+Merge: 5ebe11b 6d1ed4e
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Fri Nov 15 06:58:03 2019 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 5ebe11bf2c805ca42df870e7a57025723b2c7d36[m
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Fri Nov 15 06:57:21 2019 -0500
+
+    version 3.4 13 de noviembre del 2019 Camilo Colón
+
+[33mcommit 6d1ed4e8656c97fd2dd7e18697f90030076531ee[m
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Wed Nov 13 17:26:12 2019 -0500
+
+    Version 3.4 13 de Noviembre de 2019 05:25 JORDAN
+
+[33mcommit 05b281011ff6ba168c515de568486f0c71df15bb[m
+Merge: 9a8b0e0 8c4f391
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Wed Nov 13 08:43:39 2019 -0500
+
+    Merge branch 'master' of https://github.com/Jordanj9/Ticket
+
+[33mcommit 9a8b0e03fa1aeb23383710b616db0e138a09552b[m
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Wed Nov 13 08:43:19 2019 -0500
+
+    version 3.4 13 de noviembre del 2019 Camilo Colón
+
+[33mcommit 8c4f39164365b2c6a2f4d6add4c9dd79f9962198[m
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Wed Nov 13 08:43:07 2019 -0500
+
+    Version 3.2 13 de Noviembre de 2019 08:42 JORDAN
+
+[33mcommit 2b2f67e8e20a7fcc69660a6a5b4b69782830edcd[m
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Wed Nov 13 08:28:04 2019 -0500
+
+    version 3.2 13 de noviembre del 2019 Camilo Colón
+
+[33mcommit f7336f06e0790e4702d82f984da450b3189e7f26[m
+Merge: 092a6dd 2d67b67
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Wed Nov 13 08:25:05 2019 -0500
+
+    Merge branch 'master' of https://github.com/Jordanj9/Ticket
+
+[33mcommit 092a6dd3feae801a28c2340de6d12d648894af8f[m
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Wed Nov 13 08:24:42 2019 -0500
+
+    version 3.1 13 de noviembre del 2019 Camilo Colón
+
+[33mcommit 2d67b67f5454be8119820ebd2a5ae7dacd86609a[m
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Wed Nov 13 08:20:56 2019 -0500
+
+    Version 3.0 13 de Noviembre de 2019 08:20 JORDAN
+
+[33mcommit 698284d6fe0961a23d50e5bfdd1169306ce8af6d[m
+Merge: cf3f1a4 1fcc5f0
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Wed Nov 13 05:27:01 2019 -0500
+
+    Merge branch 'master' of https://github.com/Jordanj9/Ticket
+
+[33mcommit cf3f1a417adabc87d41c2faa206c9c7c2aa2508f[m
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Wed Nov 13 05:23:34 2019 -0500
+
+    Version 2.0 9 de Noviembre de 2019 20:39 JORDAN
+
+[33mcommit 1fcc5f0b79f3093b2e5fbab0f3fa6cf88fa0248b[m
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Tue Nov 12 15:28:02 2019 -0500
+
+    version 2.0 09 de noviembre del 2019 Camilo Colón
+
+[33mcommit 5a3a61c68830a51e61f01430835cbce6ca6d1888[m
+Merge: 66510cc c384e9a
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Sat Nov 9 21:19:17 2019 -0500
+
+    Merge branch 'master' of https://github.com/Jordanj9/Ticket
+
+[33mcommit 66510cc2b763c53cab1bfb38cacf83a369b736d1[m
+Author: Camilo <c_colon10@hotmail.com>
+Date:   Sat Nov 9 20:50:32 2019 -0500
+
+    version 1.3 09 de noviembre del 2019 Camilo Colón
+
+[33mcommit c384e9ad3e81072818c83d9751e5c4ffed00ffa5[m
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Sat Nov 9 20:39:23 2019 -0500
+
+    Version 1.1 9 de Noviembre de 2019 20:39 JORDAN
+
+[33mcommit 602a6952b805f1667370390c9ae854db78981e5e[m
+Author: Jordan <jordan_j9@hotmail.com>
+Date:   Sat Nov 9 18:26:39 2019 -0500
+
+    version 1.0 9 de noviembre del 2019 Jordan Cuadro Negrete
