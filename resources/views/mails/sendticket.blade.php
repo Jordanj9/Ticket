@@ -170,7 +170,7 @@
                                         <![endif]-->
                                         <div style="font-size:1px;line-height:15px"> </div>
                                         <img alt="Image" border="0" class="left autowidth"
-                                             src="{{asset('assets/img/images/ecommerce-template_logo.png')}}"
+                                             src="{{$message->embed(asset('assets/img/images/ecommerce-template_logo.png'))}}"
                                              style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 186px; display: block;"
                                              title="Image" width="186"/>
                                         <div style="font-size:1px;line-height:15px"> </div>
@@ -314,7 +314,7 @@
                                             <tr style="line-height:0px">
                                                 <td style="padding-right: 0px;padding-left: 0px;" align="center">
                                         <![endif]--><img align="center" alt="Image" border="0" class="center autowidth"
-                                                         src="{{asset('assets/img/images/okok.gif')}}"
+                                                         src="{{$message->embed(asset('assets/img/images/okok.gif'))}}"
                                                          style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 250px; display: block;"
                                                          title="Image" width="250"/>
                                         <!--[if mso]></td></tr></table><![endif]-->
@@ -560,21 +560,21 @@
                                                             valign="top"><a href="https://www.facebook.com/"
                                                                             target="_blank"><img alt="Facebook"
                                                                                                  height="32"
-                                                                                                 src="{{asset('assets/img/images/facebook@2x.png')}}"
+                                                                                                 src="{{$message->embed(asset('assets/img/images/facebook@2x.png'))}}"
                                                                                                  style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;"
                                                                                                  title="Facebook"
                                                                                                  width="32"/></a></td>
                                                         <td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 3px; padding-left: 3px;"
                                                             valign="top"><a href="https://twitter.com/" target="_blank"><img
                                                                     alt="Twitter" height="32"
-                                                                    src="{{asset('assets/img/images/twitter@2x.png')}}"
+                                                                    src="{{$message->embed(asset('assets/img/images/twitter@2x.png'))}}"
                                                                     style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;"
                                                                     title="Twitter" width="32"/></a></td>
                                                         <td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 3px; padding-left: 3px;"
                                                             valign="top"><a href="https://plus.google.com/"
                                                                             target="_blank"><img alt="Google+"
                                                                                                  height="32"
-                                                                                                 src="{{asset('assets/img/images/googleplus@2x.png')}}"
+                                                                                                 src="{{$message->embed(asset('assets/img/images/googleplus@2x.png'))}}"
                                                                                                  style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;"
                                                                                                  title="Google+"
                                                                                                  width="32"/></a></td>

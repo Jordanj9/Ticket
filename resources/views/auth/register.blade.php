@@ -144,119 +144,124 @@
                                         <div class="tab-pane active" id="about">
                                             <h5 class="info-text"> Datos de contacto</h5>
                                             <div class="row justify-content-center">
-                                                <div class="col-sm-6" style="margin-top: 21px;">
-                                                    <select class="selectpicker  col-md-12"
-                                                            data-style="btn btn-primary btn-round btn-block"
-                                                            title="Single Select" data-size="20" name="tipopersona"
-                                                            id="tipopersona"
-                                                            onchange="verificar(this.value)"
-                                                            required="required">
-                                                        <option disabled selected>Tipo de persona</option>
-                                                        <option value="NATURAL">Natural</option>
-                                                        <option value="JURIDICA">Jurídica</option>
-                                                    </select>
-                                                    <div class="input-group form-control-lg">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">face</i>
-                                                            </span>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInput11" class="bmd-label-floating">Nombre
-                                                                (requerido)</label>
-                                                            <input type="text" class="form-control" id="nombreid"
-                                                                   name="nombre" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group form-control-lg">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">email</i>
-                                                            </span>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInput1" class="bmd-label-floating">Email
-                                                                (requerido)</label>
-                                                            <input type="email" class="form-control" id="exampleemalil"
-                                                                   name="email" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="input-group form-control-lg">
-                                                        <div class="input-group-prepend">
+                                                   <div class="col-md-6">
+                                                       <select class="selectpicker  col-md-12"
+                                                                                  data-style="btn btn-primary btn-round btn-block"
+                                                                                  title="Single Select" data-size="20" name="tipopersona"
+                                                                                  id="tipopersona"
+                                                                                  onchange="verificar(this.value)"
+                                                                                  required="required">
+                                                           <option disabled selected>Tipo de persona</option>
+                                                           <option value="NATURAL">Natural</option>
+                                                           <option value="JURIDICA">Jurídica</option>
+                                                       </select>
+                                                   </div>
+                                                   <div class="col-md-6">
+                                                       <div class="input-group form-control-lg">
+                                                           <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="material-icons">payment</i>
                                                             </span>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInput1"
-                                                                   class="bmd-label-floating">Identificación
-                                                                (requerido)</label>
-                                                            <input type="number" class="form-control"
-                                                                   id="identificacionid"
-                                                                   name="identificacion" required="required"
-                                                                   onblur="consultar()">
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group form-control-lg">
-                                                        <div class="input-group-prepend">
+                                                           </div>
+                                                           <div class="form-group">
+                                                               <label for="exampleInput1"
+                                                                      class="bmd-label-floating">Identificación
+                                                                   (requerido)</label>
+                                                               <input type="number" class="form-control"
+                                                                      id="identificacionid"
+                                                                      name="identificacion" required="required"
+                                                                      onblur="consultar()">
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                   <div class="col-md-6">
+                                                       <div class="input-group form-control-lg">
+                                                           <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">face</i>
+                                                            </span>
+                                                           </div>
+                                                           <div class="form-group">
+                                                               <label for="exampleInput11" class="bmd-label-floating">Nombre
+                                                                   (requerido)</label>
+                                                               <input type="text" class="form-control" id="nombreid"
+                                                                      name="nombre" required>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                   <div class="col-md-6">
+                                                       <div class="input-group form-control-lg">
+                                                           <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="material-icons">record_voice_over</i>
                                                             </span>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInput11" class="bmd-label-floating">Apellido
-                                                                (requerido)</label>
-                                                            <input type="text" class="form-control" id="apellidoid"
-                                                                   name="apellido" required="required">
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group form-control-lg">
-                                                        <div class="input-group-prepend">
+                                                           </div>
+                                                           <div class="form-group">
+                                                               <label for="exampleInput11" class="bmd-label-floating">Apellido
+                                                                   (requerido)</label>
+                                                               <input type="text" class="form-control" id="apellidoid"
+                                                                      name="apellido" required="required">
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                   <div class="col-md-6">
+                                                       <div class="input-group form-control-lg">
+                                                           <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="material-icons">email</i>
+                                                            </span>
+                                                           </div>
+                                                           <div class="form-group">
+                                                               <label for="exampleInput1" class="bmd-label-floating">Email
+                                                                   (requerido)</label>
+                                                               <input type="email" class="form-control" id="exampleemalil"
+                                                                      name="email" required>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                   <div class="col-md-6">
+                                                       <div class="input-group form-control-lg">
+                                                           <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="material-icons">call</i>
                                                             </span>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInput1"
-                                                                   class="bmd-label-floating">Telefono
-                                                                (requerido)</label>
-                                                            <input type="number" class="form-control" id="telefonoid"
-                                                                   name="telefono" required="required">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-10 mt-3">
-                                                    <div class="input-group form-control-lg">
-                                                        <div class="input-group-prepend">
+                                                           </div>
+                                                           <div class="form-group">
+                                                               <label for="exampleInput1"
+                                                                      class="bmd-label-floating">Telefono
+                                                                   (requerido)</label>
+                                                               <input type="number" class="form-control" id="telefonoid"
+                                                                      name="telefono" required="required">
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                   <div class="col-md-12">
+                                                       <div class="input-group form-control-lg">
+                                                           <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="material-icons">map</i>
                                                             </span>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInput1"
-                                                                   class="bmd-label-floating">Dirección
-                                                                (requerido)</label>
-                                                            <input type="text" class="form-control" id="direccionid"
-                                                                   name="direccion" required="required">
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-group form-control-lg">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">
-                                                                <i class="material-icons">list</i>
-                                                            </span>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInput1"
-                                                                   class="bmd-label-floating">Descripción
-                                                                (requerido)</label>
-                                                            <input type="text" class="form-control" id="descripcion"
-                                                                   name="descripcion" required="required">
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                           </div>
+                                                           <div class="form-group">
+                                                               <label for="exampleInput1"
+                                                                      class="bmd-label-floating">Dirección
+                                                                   (requerido)</label>
+                                                               <input type="text" class="form-control" id="direccionid"
+                                                                      name="direccion" required="required">
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                                   <div class="col-md-8 offset-2">
+                                                       <div class="input-group form-control-lg">
+                                                           <div class="form-group">
+                                                               <label for="exampleInput1"
+                                                                      class="bmd-label-floating">Descripción
+                                                                   (requerido)</label>
+                                                               <textarea cols="30" rows="10" class="form-control" id="descripcion"
+                                                                      name="descripcion" required="required"></textarea>
+                                                           </div>
+                                                       </div>
+                                                   </div>
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="account">
@@ -275,7 +280,8 @@
                                                                     <label for="exampleInput1"
                                                                            class="bmd-label-floating">Nit
                                                                         (requerido)</label>
-                                                                    <input type="text" class="form-control" onblur="consultarJuridica()"
+                                                                    <input type="text" class="form-control"
+                                                                           onblur="consultarJuridica()"
                                                                            id="nitid" name="nit" required>
                                                                 </div>
                                                             </div>
@@ -362,48 +368,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane" id="address">
-                                            <div class="row justify-content-center">
-                                                <div class="col-sm-12">
-                                                    <h5 class="info-text"> Are you living in a nice area? </h5>
-                                                </div>
-                                                <div class="col-sm-7">
-                                                    <div class="form-group">
-                                                        <label>Street Name</label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <div class="form-group">
-                                                        <label>Street No.</label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-5">
-                                                    <div class="form-group">
-                                                        <label>City</label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-5">
-                                                    <div class="form-group select-wizard">
-                                                        <label>Country</label>
-                                                        <select class="selectpicker" data-size="7"
-                                                                data-style="select-with-transition"
-                                                                title="Single Select">
-                                                            <option value="Afghanistan"> Afghanistan</option>
-                                                            <option value="Albania"> Albania</option>
-                                                            <option value="Algeria"> Algeria</option>
-                                                            <option value="American Samoa"> American Samoa</option>
-                                                            <option value="Andorra"> Andorra</option>
-                                                            <option value="Angola"> Angola</option>
-                                                            <option value="Anguilla"> Anguilla</option>
-                                                            <option value="Antarctica"> Antarctica</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -440,7 +405,15 @@
         </footer>
     </div>
 </div>
-
+<div id="loader" style="display: none; position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('{{asset("assets/img/images/loader.gif")}}') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;">
+</div>
 <!--   Core JS Files   -->
 <script src="{{asset("assets/js/core/jquery.min.js")}}"></script>
 <script src="{{asset("assets/js/core/popper.min.js")}}"></script>
@@ -704,12 +677,12 @@
             $("#siguiente").removeAttr('onclick', 'guardar()');
             $("#finish").attr('onclick', 'guardar()');
 
-            $("#dependenciaid").attr('required','true');
-            $("#empresaid").attr('required','true');
-            $("#nitid").attr('required','true');
-            $("#telefonoemp").attr('required','true');
-            $("#emailemp").attr('required','true');
-            $("#direccionemp").attr('required','true');
+            $("#dependenciaid").attr('required', 'true');
+            $("#empresaid").attr('required', 'true');
+            $("#nitid").attr('required', 'true');
+            $("#telefonoemp").attr('required', 'true');
+            $("#emailemp").attr('required', 'true');
+            $("#direccionemp").attr('required', 'true');
 
         } else {
 
@@ -730,13 +703,7 @@
 
     function consultar() {
         var id = $("#identificacionid").val();
-        if (id.length <= 0) {
-            $.notify({
-                icon: "add_alert",
-                message: 'Por favor ingrese su identificación. Atención!'
-            }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
-            return;
-        } else {
+        if (id.length > 0) {
             limpiar();
             $.ajax({
                 type: 'GET',
@@ -746,27 +713,31 @@
                 if (msg.status == "ok") {
 
                     $("#nombreid").val(msg.response.nom).trigger("change");
+                    $("#nombreid").closest('.form-group').removeClass('has-danger').addClass('has-success');
                     $("#apellidoid").val(msg.response.ape).trigger("change");
+                    $("#apellidoid").closest('.form-group').removeClass('has-danger').addClass('has-success');
                     $("#telefonoid").val(msg.response.tel).trigger("change");
+                    $("#telefonoid").closest('.form-group').removeClass('has-danger').addClass('has-success');
                     $("#exampleemalil").val(msg.response.corr).trigger("change");
+                    $("#exampleemalil").closest('.form-group').removeClass('has-danger').addClass('has-success');
                     $("#direccionid").val(msg.response.dir).trigger("change");
+                    $("#direccionid").closest('.form-group').removeClass('has-danger').addClass('has-success');
                     $("#tipopersona").val(msg.response.tipo).trigger("change");
 
-                    if(msg.response.tipo == 'JURIDICA'){
+                    if (msg.response.tipo == 'JURIDICA') {
                         $("#dependenciaid").val(msg.response.dependencia).trigger("change");
+                        $("#dependenciaid").closest('.form-group').removeClass('has-danger').addClass('has-success');
                         $("#empresaid").val(msg.response.empresa).trigger("change");
+                        $("#empresaid").closest('.form-group').removeClass('has-danger').addClass('has-success');
                         $("#nitid").val(msg.response.nit).trigger("change");
+                        $("#nitid").closest('.form-group').removeClass('has-danger').addClass('has-success');
                         $("#telefonoemp").val(msg.response.telefonoemp).trigger("change");
+                        $("#telefonoemp").closest('.form-group').removeClass('has-danger').addClass('has-success');
                         $("#emailemp").val(msg.response.emailempresa).trigger("change");
+                        $("#emailemp").closest('.form-group').removeClass('has-danger').addClass('has-success');
                         $("#direccionemp").val(msg.response.direccionemp).trigger("change");
+                        $("#direccionemp").closest('.form-group').removeClass('has-danger').addClass('has-success');
                     }
-
-                } else {
-                    $.notify({
-                        icon: "add_alert",
-                        message: 'No se encontro registro con esa identificación. Debe llenar el formulario.'
-                    }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
-                    return;
                 }
             });
         }
@@ -781,10 +752,14 @@
                 data: {},
             }).done(function (msg) {
                 if (msg.status == "ok") {
-                        $("#empresaid").val(msg.response.empresa).trigger("change");
-                        $("#telefonoemp").val(msg.response.telefonoemp).trigger("change");
-                        $("#emailemp").val(msg.response.emailempresa).trigger("change");
-                        $("#direccionemp").val(msg.response.direccionemp).trigger("change");
+                    $("#empresaid").val(msg.response.empresa).trigger("change");
+                    $("#empresaid").closest('.form-group').removeClass('has-danger').addClass('has-success');
+                    $("#telefonoemp").val(msg.response.telefonoemp).trigger("change");
+                    $("#telefonoemp").closest('.form-group').removeClass('has-danger').addClass('has-success');
+                    $("#emailemp").val(msg.response.emailempresa).trigger("change");
+                    $("#emailemp").closest('.form-group').removeClass('has-danger').addClass('has-success');
+                    $("#direccionemp").val(msg.response.direccionemp).trigger("change");
+                    $("#direccionemp").closest('.form-group').removeClass('has-danger').addClass('has-success');
                 }
             });
         }
@@ -826,36 +801,50 @@
         var diremp = $("#direccionemp").val();
         var telemp = $("#telefonoemp").val();
         var nit = $("#nitid").val();
+
+        if (tipo.length <= 0) {
+            $.notify({
+                icon: "add_alert",
+                message: 'Por favor, Selecione el tipo de persona'
+            }, {type: 'warning', timer: 3e3, placement: {from: 'top', align: 'right'}});
+            return;
+        }
         if (iden.length <= 0 || tipo.length <= 0 || des.length <= 0 || nom.length <= 0 || dir.length <= 0) {
             $.notify({
                 icon: "add_alert",
-                message: 'Llene todos los campos requeridos. Atencion!'
-            }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                message: 'Por favor, Llene todos los campos requeridos.'
+            }, {type: 'warning', timer: 3e3, placement: {from: 'top', align: 'right'}});
             return;
         }
         if (tipo == 'JURIDICA') {
-            if (empresa.length <= 0 || diremp.length <= 0 || telemp.length <= 0 || nit.length <= 0||dependencia.length <= 0) {
+            if (empresa.length <= 0 || diremp.length <= 0 || telemp.length <= 0 || nit.length <= 0 || dependencia.length <= 0) {
                 $.notify({
                     icon: "add_alert",
-                    message: 'Llene todos los campos requeridos. Atencion!'
-                }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                    message: 'Por favor, Llene todos los campos requeridos.'
+                }, {type: 'warning', timer: 3e3, placement: {from: 'top', align: 'right'}});
                 return;
             }
         }
+        const loader = document.getElementById('loader');
+        loader.style.display = 'block';
         $.post(
             '{{url('tickets/publico/crear/')}}', $request
         ).done(function (msg) {
             if (msg.status == "ok") {
-                $.notify({
-                    icon: "add_alert",
-                    message: msg.response
-                }, {type: 'info', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                loader.style.background = "url('{{asset("assets/img/images/mailenviado.gif")}}') 50% 50% no-repeat rgb(249,249,249)";
+                setTimeout(function () {
+                    loader.style.display = 'none';
+                    $.notify({
+                        icon: "add_alert",
+                        message: msg.response
+                    }, {type: 'info', timer: 3e3, placement: {from: 'top', align: 'right'}});
+                }, 3000);
                 limpiar();
             } else {
                 $.notify({
                     icon: "add_alert",
-                    message: 'El ticket no fue alamcenado de forma exitsa. Error!'
-                }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                    message: '<h1>Ha surgido un problema</h1><br><p>Error interno. inténtelo otra vez más tarde.</p>'
+                }, {type: 'warning', timer: 3e3, placement: {from: 'top', align: 'right'}});
             }
         });
     }
