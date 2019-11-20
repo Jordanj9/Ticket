@@ -55,11 +55,10 @@
                             @foreach($tickets as $t)
                                 <tr>
                                     <td>{{$t->radicado}}</td>
-                                    @if($t->solicitante == '')
-
+                                    @if($t->solicitante == 'JURIDICA')
+                                        <td>{{$t->cliente_juridico->empresa}}</td>
                                     @endif
-                                    <td>{{$t->cliente->identificacion}}</td>
-                                    <td>{{$t->cliente->nombre." ".$t->cliente->apellido}}</td>
+                                    <td>{{$t->cliente_natura}}</td>
                                     <td>{{$t->cliente->telefono}}</td>
                                     <td>{{$t->cliente->email}}</td>
                                     <td>{{$t->direccion}}</td>
