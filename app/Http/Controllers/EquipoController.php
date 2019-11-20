@@ -139,13 +139,32 @@ class EquipoController extends Controller
                 'nombre' => $item->empresa,
                 'tipo' => 'JURIDICA'
             ];
-
         }
+
         $equipo = Equipo::find($id);
+        $newEquipo = [];
+
+        if($equipo->natural_id != null){
+            $cliente = [
+                'id' => $equipo->cliente_natural->id,
+                'identificacion' => $equipo->cliente_natural->identificacion,
+                'nombre' =>  $equipo->cliente_natural->nombre.' '.$equipo->cliente_natural->apellido,
+                'tipo' => 'NATURAL'
+            ];
+        }else{
+            $cliente = [
+                'id' => $equipo->cliente_juridico->id,
+                'identificacion' => $equipo->cliente_juridico->nit,
+                'nombre' =>  $equipo->cliente_juridico->empresa,
+                'tipo' => 'JURIDICA'
+            ];
+        }
+
         return view('general.equipos.edit')
             ->with('location', 'general')
             ->with('equipo', $equipo)
-            ->with('clientes', $clientes);
+            ->with('clientes', $clientes)
+            ->with('cliente',$cliente);
     }
 
     /**
@@ -158,13 +177,20 @@ class EquipoController extends Controller
     public function update(Request $request, $id)
     {
         $equipo = Equipo::find($id);
+
+        if($request->tipo == 'NATURAL'){
+            $equipo->natural_id =  $request->cliente_id;
+            $equipo->juridica_id = "";
+        }else{
+            $equipo->juridica_id = $request->cliente_id;
+            $equipo->natural_id = "";
+        }
+
         foreach ($equipo->attributesToArray() as $key => $value) {
-            if (isset($request->$key)) {
-                if ($key == 'licencias') {
-                    $equipo->$key = $request->$key;
-                } else {
-                    $equipo->$key = strtoupper($request->$key);
-                }
+            if ($key == 'licencias') {
+                $equipo->$key = $value;
+            } else {
+                $equipo->$key = strtoupper($value);
             }
         }
         $result = $equipo->save();
