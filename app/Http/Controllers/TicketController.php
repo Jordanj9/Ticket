@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Empleado;
+use App\Mail\NotificationTicket;
 use App\Ticket;
-use App\Cliente;
+use App\Cliente_Natural;
+use App\Cliente_Juridico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class TicketController extends Controller
@@ -56,42 +59,81 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $cliente = Cliente::where('identificacion', $request->identificacion)->first();
-        if ($cliente == null) {
-            if ($request->tipopersona == 'JURIDICA') {
-                $cliente = new Cliente($request->all());
-            } else {
-                $cliente = new Cliente();
-                $cliente->tipopersona = $request->tipopersona;
-                $cliente->nombre = $request->nombre;
-                $cliente->apellido = $request->apellido;
-                $cliente->identificacion = $request->identificacion;
-                $cliente->telefono = $request->telefono;
-                $cliente->direccion = $request->direccion;
-                $cliente->email = $request->email;
-            }
-            foreach ($cliente->attributesToArray() as $key => $value) {
-                if ($key == 'email' || $key == 'emailempresa') {
-                    $cliente->$key = $value;
+        $clienteNatural = Cliente_Natural::where('identificacion', $request->identificacion)->first();
+        $clienteJuridico = Cliente_Juridico::where('nit', $request->nit)->first();
+
+        if ($clienteNatural == null) {
+
+            $clienteNatural = new Cliente_Natural();
+            $clienteNatural->nombre = $request->nombre;
+            $clienteNatural->apellido = $request->apellido;
+            $clienteNatural->identificacion = $request->identificacion;
+            $clienteNatural->telefono = $request->telefono;
+            $clienteNatural->direccion = $request->direccion;
+            $clienteNatural->email = $request->email;
+
+            foreach ($clienteNatural->attributesToArray() as $key => $value) {
+                if ($key == 'email') {
+                    $clienteNatural->$key = $value;
                 } else {
-                    $cliente->$key = strtoupper($value);
+                    $clienteNatural->$key = strtoupper($value);
                 }
             }
-            $cliente->save();
+            $clienteNatural->save();
         }
+
+        if($request->tipopersona == 'JURIDICA'){
+
+            if ($clienteJuridico == null) {
+                $clienteJuridico = new Cliente_Juridico();
+                $clienteJuridico->nit = $request->nit;
+                $clienteJuridico->empresa = $request->empresa;
+                $clienteJuridico->direccion = $request->direccionemp;
+                $clienteJuridico->email = $request->emailempresa;
+                $clienteJuridico->telefono = $request->telefonoemp;
+
+
+                foreach ($clienteJuridico->attributesToArray() as $key => $value) {
+                    if ($key == 'email') {
+                        $clienteJuridico->$key = $value;
+                    } else {
+                        $clienteJuridico->$key = strtoupper($value);
+                    }
+                }
+                $clienteJuridico->save();
+            }
+
+        }
+
         $ticket = new Ticket();
         $hoy = getdate();
         $idr = substr($request->identificacion, -3);
         $ticket->radicado = $idr . $hoy["year"] . $hoy["mon"] . $hoy["mday"] . $hoy["hours"] . $hoy["minutes"] . $hoy["seconds"];
         $ticket->descripcion = strtoupper($request->descripcion);
-        $ticket->cliente_id = $cliente->id;
+        $ticket->natural_id = $clienteNatural->id;
+        $solicitante = 'NATURAL';
+        if($request->tipopersona == 'JURIDICA'){
+            $solicitante = 'JURIDICA';
+            $ticket->juridica_id = $clienteJuridico->id;
+            $ticket->dependencia = $request->dependencia;
+        }
+        $ticket->solicitante = $solicitante;
         $result = $ticket->save();
         if ($result) {
-            $response = "<h5>Señor(a) " . $cliente->nombre . " " . $cliente->apellido . " su ticket ha sido exitoso!</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p>";
+            $response = "<h5>Señor(a) " . $clienteNatural->nombre . " " . $clienteNatural->apellido . " su ticket ha sido exitoso!</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p>";
+            if($request->tipopersona == 'JURIDICA'){
+                $responseJurico = "<h5>Nueva solicitud de tickets!</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p><p><b>Dependencia: ".$request->dependencia."</b></p><p><b>Observaciòn: ".$request->observacion."</b></p><br><h5>Detalles del Solicitante</h5><br><p><b>Nombre: ".$clienteNatural->nombre." ".$clienteNatural->apellido."</b></p><p><b>Telefono: ".$clienteNatural->telefono."</b></p>";
+                Mail::to($clienteJuridico->email)->send(new NotificationTicket($responseJurico));
+            }
+            Mail::to($clienteNatural->email)->send(new NotificationTicket($response));
+
+            $responseAdmin = "<h5>Señor(a) admin se ha recibido una nueva solicitud de ticket </h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p><br><h5>Detalles del Solicitante</h5><br><p><b>Nombre: ".$clienteNatural->nombre." ".$clienteNatural->apellido."</b></p><p><b>Telefono: ".$clienteNatural->telefono."</b></p>";
+            Mail::to('colonca1999@gmail.com')->send(new NotificationTicket($responseAdmin));
             return response()->json([
                 'response' => $response,
                 'status' => 'ok'
             ]);
+
         } else {
             return response()->json([
                 'status' => 'error'
@@ -152,11 +194,10 @@ class TicketController extends Controller
      */
     public function consultar($identificacion)
     {
-        $cliente = Cliente::where([
+        $cliente = Cliente_Natural::where([
             ['identificacion', $identificacion]
-        ])->orWhere([
-            ['nit', $identificacion]
         ])->first();
+
         if ($cliente != null) {
             $obj["id"] = $cliente->identificacion;
             $obj["equipos"] = $cliente->equipos;
@@ -165,15 +206,15 @@ class TicketController extends Controller
             $obj["tel"] = $cliente->telefono;
             $obj["corr"] = $cliente->email;
             $obj["dir"] = $cliente->direccion;
-            $obj["tipo"] = $cliente->tipopersona;
-            if($cliente->tipopersona == 'JURIDICA'){
+            $obj["tipo"] = '';
+            /*if($cliente->tipopersona == 'JURIDICA'){
                 $obj["nit"] = $cliente->nit;
                 $obj["empresa"] = $cliente->empresa;
                 $obj["dependencia"] = $cliente->dependencia;
                 $obj["emailempresa"] = $cliente->emailempresa;
                 $obj["telefonoemp"] = $cliente->telefonoemp;
                 $obj['direccionemp'] = $cliente->direccionemp;
-            }
+            }*/
             return response()->json([
                 'response' => $obj,
                 'status' => 'ok'
@@ -184,7 +225,31 @@ class TicketController extends Controller
             ]);
         }
     }
+    public function consultarJuridica($nit)
+    {
+        $cliente = Cliente_Juridico::where([
+            ['nit', $nit]
+        ])->first();
 
+        if ($cliente != null) {
+
+                $obj["nit"] = $cliente->nit;
+                $obj["empresa"] = $cliente->empresa;
+                $obj["emailempresa"] = $cliente->email;
+                $obj["telefonoemp"] = $cliente->telefono;
+                $obj['direccionemp'] = $cliente->direccion;
+
+            return response()->json([
+                'response' => $obj,
+                'status' => 'ok'
+            ]);
+
+        } else {
+            return response()->json([
+                'status' => 'error'
+            ]);
+        }
+    }
     /**
      * Asignar ticket a empleado
      *

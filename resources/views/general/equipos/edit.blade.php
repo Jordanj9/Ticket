@@ -56,11 +56,12 @@
                             </div>
                             <div class="row" id="datos_cliente" >
                                 <div class="col-md-4">
-                                    <input type="hidden" name="cliente_id" id="cliente_id" required value="{{$equipo->cliente->id}}">
+                                    <input type="hidden" name="cliente_id" id="cliente_id" required value="{{$cliente['id']}}">
+                                    <input type="hidden" name="tipo" id="tipo" required value="{{$cliente['tipo']}}">
                                     <div class="form-group bmd-form-group">
                                         <div class="form-line">
                                             <label class="control-label">Identificaciòn</label>
-                                            <input type="text" class="form-control" value="{{$equipo->cliente->identificacion}}"
+                                            <input type="text" class="form-control" value="{{$cliente['identificacion']}}"
                                                    required="required" id="identificacion_cliente" disabled placeholder=""
                                             />
                                         </div>
@@ -70,7 +71,7 @@
                                     <div class="form-group bmd-form-group">
                                         <div class="form-line">
                                             <label class="control-label">Nombres</label>
-                                            <input type="text" class="form-control" value="{{$equipo->cliente->nombre.' '.$equipo->cliente->apellido}}"
+                                            <input type="text" class="form-control" value="{{$cliente['nombre']}}"
                                                    required="required" id="nombre_cliente" disabled placeholder=""
                                             />
                                         </div>
@@ -226,8 +227,6 @@
                             <tr>
                                 <th>IDENTIFICACION</th>
                                 <th>NOMBRES</th>
-                                <th>TELEFONO</th>
-                                <th>EMAIL</th>
                                 <th>TIPO PERSONA</th>
                                 <th class="text-right">ACCIONES</th>
                             </tr>
@@ -235,14 +234,12 @@
                             <tbody>
                             @foreach($clientes as $cliente)
                                 <tr>
-                                    <td>{{$cliente->identificacion}}</td>
-                                    <td>{{$cliente->nombre.' '.$cliente->apellido}}</td>
-                                    <td>{{$cliente->telefono}}</td>
-                                    <td>{{$cliente->email}}</td>
-                                    <td>{{$cliente->tipopersona}}</td>
+                                    <td>{{$cliente['identificacion']}}</td>
+                                    <td>{{$cliente['nombre']}}</td>
+                                    <td>{{$cliente['tipo']}}</td>
                                     <td style="text-align: center;">
                                         <a href=""
-                                           onclick="selecionarCliente(event,'{{$cliente->identificacion}}','{{$cliente->nombre." ".$cliente->apellido}}','{{$cliente->id}}')"
+                                           onclick="selecionarCliente(event,'{{$cliente['identificacion']}}','{{$cliente['nombre']}}','{{$cliente['id']}}','{{$cliente['tipo']}}')"
                                            class="btn btn-link btn-info btn-just-icon remove" title="Editar Equipo"><i
                                                 class="material-icons">
                                                 arrow_forward_ios
@@ -256,8 +253,6 @@
                             <tr>
                                 <th>IDENTIFICACION</th>
                                 <th>NOMBRES</th>
-                                <th>TELEFONO</th>
-                                <th>EMAIL</th>
                                 <th>TIPO PERSONA</th>
                                 <th class="text-right">ACCIONES</th>
                             </tr>
@@ -320,16 +315,50 @@
 @section('script')
     <script type="text/javascript">
         $(document).ready(function () {
-            var table = $('#datatables').DataTable();
+            $('#datatables').DataTable({
+                "pagingType": "full_numbers",
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search records",
+                }
+            });
+
+            var table = $('#datatable').DataTable();
+
+            // Edit record
+            table.on('click', '.edit', function() {
+                $tr = $(this).closest('tr');
+                var data = table.row($tr).data();
+                alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+            });
+
+            // Delete a record
+            table.on('click', '.remove', function(e) {
+                $tr = $(this).closest('tr');
+                table.row($tr).remove().draw();
+                e.preventDefault();
+            });
+
+            //Like record
+            table.on('click', '.like', function() {
+                alert('You clicked on Like button');
+            });
         });
-        function selecionarCliente(event, identificacion, nombres, id) {
+        function selecionarCliente(event, identificacion, nombres,id,tipo) {
             event.preventDefault();
             $('#clientes').modal('hide');
             $('#identificacion_cliente').val(identificacion);
             $('#nombre_cliente').val(nombres);
             $('#cliente_id').val(id);
+            $('#tipo').val(tipo);
             $('#datos_cliente').attr('style', 'display:flex;');
         }
+
 
         function agregarLicecncia() {
             $('#licencia').modal('hide');

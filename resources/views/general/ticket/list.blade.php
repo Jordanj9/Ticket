@@ -38,28 +38,27 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="material-datatables">
-                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
+                    <div class="table-responsive">
+                        <table id="datatables" class="table table-bordered table-striped table-hover table-responsive table-condensed dataTable js-exportable" width="100%" cellspacing="0"
                                width="100%" style="width:100%">
                             <thead>
                             <tr>
-                                <th>TIPO DE PERSONA</th>
-                                <th>IDENTIFICACIÓN</th>
-                                <th>NOMBRE</th>
-                                <th>DESCRIPCIÓN</th>
+                                <th>RADICADO</th>
+                                <th>CLIENTE</th>
                                 <th>TELEFONO</th>
-                                <th>EMAIL</th>
-                                <th>CREADO</th>
-                                <th>MODIFICADO</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>ESTADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($tickets as $t)
                                 <tr>
-                                    <td>{{$t->cliente->tipopersona}}</td>
-                                    <td>{{$t->cliente->identificacion}}</td>
-                                    <td>{{$t->cliente->nombre." ".$t->cliente->apellido}}</td>
+                                    <td>{{$t->radicado}}</td>
+                                    @if($t->solicitante == 'JURIDICA')
+                                        <td>{{$t->cliente_juridico->empresa}}</td>
+                                    @endif
+                                    <td>{{$t->cliente_natura}}</td>
                                     <td>{{$t->cliente->telefono}}</td>
                                     <td>{{$t->cliente->email}}</td>
                                     <td>{{$t->direccion}}</td>
@@ -90,14 +89,11 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>TIPO DE PERSONA</th>
-                                <th>IDENTIFICACIÓN</th>
-                                <th>NOMBRE</th>
-                                <th>DESCRIPCIÓN</th>
+                                <th>RADICADO</th>
+                                <th>CLIENTE</th>
                                 <th>TELEFONO</th>
-                                <th>EMAIL</th>
-                                <th>CREADO</th>
-                                <th>MODIFICADO</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>ESTADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </tfoot>

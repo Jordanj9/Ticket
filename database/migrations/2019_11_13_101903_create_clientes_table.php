@@ -13,23 +13,28 @@ class CreateClientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('clientes', function (Blueprint $table) {
+
+        Schema::create('Clientes_Naturales', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('tipopersona', ['NATURAL', 'JURIDICA']);
             $table->string('identificacion', 16)->unique();
             $table->string('nombre', 100);
             $table->string('apellido', 100);
             $table->string('telefono');
             $table->string('email', 80);
             $table->string('direccion', 100);
-            $table->string('nit', 20)->nullable();
-            $table->string('empresa', 150)->nullable();
-            $table->string('direccionemp', 100)->nullable();
-            $table->string('dependencia', 80)->nullable();
-            $table->string('emailempresa', 80)->nullable();
-            $table->string('telefonoemp')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('Clientes_Juridicos', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nit', 20)->unique();
+            $table->string('empresa', 150);
+            $table->string('direccion', 100);
+            $table->string('email', 80);
+            $table->string('telefono');
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -39,6 +44,7 @@ class CreateClientesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('Clientes_Naturales');
+        Schema::dropIfExists('Clientes_Juridicos');
     }
 }

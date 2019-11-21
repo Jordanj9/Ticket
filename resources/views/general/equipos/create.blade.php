@@ -56,6 +56,7 @@
                             <div class="row" id="datos_cliente" style="display: none;">
                                 <div class="col-md-4">
                                     <input type="hidden" name="cliente_id" id="cliente_id" required>
+                                    <input type="hidden" name="tipo" id="tipo" required>
                                     <div class="form-group bmd-form-group">
                                         <div class="form-line">
                                             <label class="control-label">Identificaciòn</label>
@@ -214,8 +215,6 @@
                             <tr>
                                 <th>IDENTIFICACION</th>
                                 <th>NOMBRES</th>
-                                <th>TELEFONO</th>
-                                <th>EMAIL</th>
                                 <th>TIPO PERSONA</th>
                                 <th class="text-right">ACCIONES</th>
                             </tr>
@@ -223,14 +222,12 @@
                             <tbody>
                             @foreach($clientes as $cliente)
                                 <tr>
-                                    <td>{{$cliente->identificacion}}</td>
-                                    <td>{{$cliente->nombre.' '.$cliente->apellido}}</td>
-                                    <td>{{$cliente->telefono}}</td>
-                                    <td>{{$cliente->email}}</td>
-                                    <td>{{$cliente->tipopersona}}</td>
+                                    <td>{{$cliente['identificacion']}}</td>
+                                    <td>{{$cliente['nombre']}}</td>
+                                    <td>{{$cliente['tipo']}}</td>
                                     <td style="text-align: center;">
                                         <a href=""
-                                           onclick="selecionarCliente(event,'{{$cliente->identificacion}}','{{$cliente->nombre." ".$cliente->apellido}}','{{$cliente->id}}')"
+                                           onclick="selecionarCliente(event,'{{$cliente['identificacion']}}','{{$cliente['nombre']}}','{{$cliente['id']}}','{{$cliente['tipo']}}')"
                                            class="btn btn-link btn-info btn-just-icon remove" title="Editar Equipo"><i
                                                 class="material-icons">
                                                 arrow_forward_ios
@@ -244,8 +241,6 @@
                             <tr>
                                 <th>IDENTIFICACION</th>
                                 <th>NOMBRES</th>
-                                <th>TELEFONO</th>
-                                <th>EMAIL</th>
                                 <th>TIPO PERSONA</th>
                                 <th class="text-right">ACCIONES</th>
                             </tr>
@@ -310,12 +305,13 @@
         $(document).ready(function () {
             var table = $('#datatables').DataTable();
         });
-        function selecionarCliente(event, identificacion, nombres, id) {
+        function selecionarCliente(event, identificacion, nombres,id,tipo) {
             event.preventDefault();
             $('#clientes').modal('hide');
             $('#identificacion_cliente').val(identificacion);
             $('#nombre_cliente').val(nombres);
             $('#cliente_id').val(id);
+            $('#tipo').val(tipo);
             $('#datos_cliente').attr('style', 'display:flex;');
         }
 
