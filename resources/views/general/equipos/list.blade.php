@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.usuarios')}}">General</a><span class="fa-angle-right fa"></span>
+                        href="{{route('admin.general')}}">General</a><span class="fa-angle-right fa"></span>
                     Equipos
                 </p>
             </div>
@@ -108,10 +108,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Los módulos generales del sistema son las aplicaciones generales
-                    representadas en las opciones del menú. Ejemplo de módulo general: MOD_INICIO, MOD_USUARIOS.
-                    <br/><strong>Nota: </strong> No modifique los nombres de los módulos ya creados ya que puede
-                    ocasionar fallas en el sistema.
+                    <strong>Detalles: </strong>Los Equipos son computadores pertenecientes a una Persona o Empresa.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>

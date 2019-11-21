@@ -97,12 +97,12 @@
       -->
         <div class="logo">
             <a href="{{route('home')}}" class="logo-mini"
-               style="text-align: center; color: black; font-size: 35px; font-family: inherit">
-                <strong>TK</strong>
+               style="text-align: center; color: darkblue; font-size: 35px; font-family: inherit">
+                <strong>PC</strong>
             </a>
             <a href="{{route('home')}}" class="logo-normal"
-               style="text-align: center; color: black; font-size: 35px; font-family: inherit">
-                <strong>TicKets</strong>
+               style="text-align: center; color: darkblue; font-size: 35px; font-family: inherit">
+                <strong>TOOLS</strong>
             </a>
         </div>
         <div class="sidebar-wrapper">
@@ -152,7 +152,7 @@
                     <li class="nav-item">
                 @endif
                     <a class="nav-link" href="{{route('admin.mantenimiento')}}">
-                        <i class="material-icons">assignment</i>
+                        <i class="material-icons">build</i>
                         <p>Mantenimiento</p>
                     </a>
                 </li>
@@ -242,7 +242,7 @@
                         document.write(new Date().getFullYear())
                     </script>
                     , versión 1.0 Desarollado por
-                    <a href="" target="_blank">Jordan Cuadro, Camilo Colón & Alberto Rojas</a>.
+                    <a href="" target="_blank">Skynet</a>.
                 </div>
             </div>
         </footer>

@@ -22,19 +22,19 @@
                 <div class="card-body">
                     <a href="{{route('equipos.index')}}">
                         <button class="btn btn-outline-info btn-round">
-                            <i class="fa fa-cubes"></i> EQUIPOS
+                            <i class="material-icons">desktop_mac</i> EQUIPOS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route("tickets.index")}}">
                         <button class="btn btn-outline-info btn-round">
-                            <i class="fa fa-file-powerpoint-o"></i>  TICKETS
+                            <i class="material-icons">style</i>  TICKETS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route("empleado.index")}}">
                         <button class="btn btn-outline-info btn-round">
-                            <i class="fa fa-file-powerpoint-o"></i>  EMPLEADOS
+                            <i class="material-icons">people_alt</i>  EMPLEADOS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
