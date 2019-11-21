@@ -75,15 +75,15 @@
                                         @endif
                                         <a data-toggle="modal"
                                            data-target="#estados" onclick="selectEmpleado('{{$t->id}}')"
-                                           class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Cambiar Estado Ticket"><i class="material-icons">layers_clear</i></a>
+                                           class="btn btn-link btn-warning btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Cambiar Estado Ticket"><i class="material-icons">sync_alt</i></a>
                                         <a href="{{ route('tickets.edit',$t->id)}}"
-                                           class="btn btn-link btn-primary btn-just-icon remove" data-toggle="tooltip"
+                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Editar Módulo"><i class="material-icons">mode_edit</i></a>
                                         <a href="{{ route('tickets.show',$t->id)}}"
-                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
+                                           class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Ver Tickets"><i
-                                                class="material-icons">style</i></a>
+                                                class="material-icons">visibility</i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -118,10 +118,8 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Detalles: </strong>Los módulos generales del sistema son las aplicaciones generales
-                    representadas en las opciones del menú. Ejemplo de módulo general: MOD_INICIO, MOD_USUARIOS.
-                    <br/><strong>Nota: </strong> No modifique los nombres de los módulos ya creados ya que puede
-                    ocasionar fallas en el sistema.
+                    <strong>Detalles: </strong>los tickets son solicitudes de servicios realizadas por los clientes
+                    <br/><strong>Nota: </strong> los iconos del ticket permiten aplazar, .
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>

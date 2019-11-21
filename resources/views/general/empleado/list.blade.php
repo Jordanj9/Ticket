@@ -65,7 +65,7 @@
                                     <td>{{$emp->updated_at}}</td>
                                     <td style="text-align: center;">
                                         <a href="{{ route('empleado.edit',$emp->id)}}"
-                                           class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
+                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Editar Empleado"><i class="material-icons">mode_edit</i></a>
                                         <a href="{{ route('empleado.delete',$emp->id)}}"
                                            class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
