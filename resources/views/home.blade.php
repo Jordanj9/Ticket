@@ -6,7 +6,7 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <a href="{{route('admin.usuarios')}}">
                     <div class="card card-stats">
-                        <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-header card-header-success card-header-icon">
                             <div class="card-icon">
                                 <i class="material-icons">supervised_user_circle</i>
                             </div>
@@ -26,7 +26,7 @@
                                 <i class="material-icons">account_balance</i>
                             </div>
                             <p class="card-category">Modulo</p>
-                            <h3 class="card-title">Generales</h3>
+                            <h3 class="card-title">General</h3>
                         </div>
                         <div class="card-footer">
                         </div>
@@ -38,7 +38,7 @@
                     <div class="card card-stats">
                         <div class="card-header card-header-success card-header-icon">
                             <div class="card-icon">
-                                <i class="material-icons">assignment</i>
+                                <i class="material-icons">build</i>
                             </div>
                             <p class="card-category">Modulo</p>
                             <h3 class="card-title">Mantenimiento</h3>
@@ -51,7 +51,7 @@
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <a href="{{route('admin.reporte')}}">
                     <div class="card card-stats">
-                        <div class="card-header card-header-info card-header-icon">
+                        <div class="card-header card-header-success card-header-icon" >
                             <div class="card-icon">
                                 <i class="material-icons">trending_up</i>
                             </div>

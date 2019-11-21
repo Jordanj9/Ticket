@@ -84,7 +84,7 @@
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
     <div class="container">
         <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Bienvenido</a>
+            <a class="navbar-brand">BIENVENIDO</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -172,7 +172,7 @@
                         document.write(new Date().getFullYear())
                     </script>
                     , versión 1.0 Desarollado por
-                    <a href="" target="_blank">Jordan Cuadro, Camilo Colón & Alberto Rojas</a>.
+                    <a href="" target="_blank">Skynet</a>.
                 </div>
             </div>
         </footer>

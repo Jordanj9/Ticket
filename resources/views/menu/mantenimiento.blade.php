@@ -22,13 +22,13 @@
                 <div class="card-body">
                     <a href="{{route('mantenimiento.create')}}">
                         <button class="btn btn-outline-info btn-round">
-                            <i class="fa fa-cubes"></i> NUEVO MANTENIMIENTO
+                            <i class="material-icons">build</i> NUEVO MANTENIMIENTO
                             <div class="ripple-container"></div>
                         </button>
                     </a>
                     <a href="{{route("tickets.index")}}">
                         <button class="btn btn-outline-info btn-round">
-                            <i class="fa fa-file-powerpoint-o"></i>  INFORME
+                            <i class="material-icons">assignment</i>  INFORME
                             <div class="ripple-container"></div>
                         </button>
                     </a>
