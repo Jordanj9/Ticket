@@ -21,8 +21,14 @@ class MenuController extends Controller
         return view('menu.general')->with('location', 'general');
     }
 
-    public function mantenimiento(){
-        return view('menu.mantenimiento')->with('location','mantenimiento');
+    public function mantenimiento()
+    {
+        return view('menu.mantenimiento')->with('location', 'mantenimiento');
+    }
+
+    public function reporte()
+    {
+        return view('menu.reporte')->with('location', 'reporte');
     }
 
 }

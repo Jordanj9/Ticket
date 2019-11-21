@@ -57,6 +57,8 @@
     <link href="{{asset('assets/css/material-dashboard.min.css?v=2.1.0')}}" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet"/>
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css')}}">
     <!-- JQuery DataTable Css -->
 
     <!-- Google Tag Manager -->
@@ -157,7 +159,7 @@
                     </a>
                 </li>
                         <li class="nav-item ">
-                            <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+                            <a class="nav-link" href="{{route('admin.reporte')}}">
                                 <i class="material-icons">trending_up</i>
                                 <p> Reportes</p>
                             </a>
@@ -285,6 +287,9 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2Yno10-YTnLjjn_Vtk0V8cdcY5lC4plU"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Select2 -->
+<script src="{{asset('select2/dist/js/select2.full.min.js')}}"></script>
+<script src="{{asset('js/chosen/chosen.jquery.js')}}"></script>
 <!-- Chartist JS -->
 <script src="{{asset('')}}assets/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->

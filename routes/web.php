@@ -79,3 +79,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'mantenimiento'], function () 
     //MANTENIMIENTO
     Route::resource('mantenimiento','MantenimientoController');
 });
+
+//GRUPO DE RUTAS PARA REPORTES
+Route::group(['middleware' => 'auth', 'prefix' => 'reporte'], function () {
+    //REPORTE GENERAL
+    Route::resource('reporte','ReporteController');
+    Route::get('reporte/menu/{estado}/{fechai}/{fechaf}/{cliente}/tickets', 'ReporteController@getTickets')->name('reportes.getTickets');
+
+});
