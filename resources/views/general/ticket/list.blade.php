@@ -28,8 +28,6 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a href="{{ route('modulo.create') }}" class="dropdown-item" href="#">Agregar nuevo
-                                        equipo</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -38,16 +36,17 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="datatables" class="table table-bordered table-striped table-hover table-responsive table-condensed dataTable js-exportable" width="100%" cellspacing="0"
-                               width="100%" style="width:100%">
+                    <div class="material-datatables">
+                        <table id="datatables" class="table table-bordered table-striped table-hover" width="100%" cellspacing="0">
                             <thead>
                             <tr>
                                 <th>RADICADO</th>
                                 <th>CLIENTE</th>
                                 <th>TELEFONO</th>
-                                <th>DESCRIPCIÓN</th>
                                 <th>ESTADO</th>
+                                <th>SOLICITANTE</th>
+                                <th>CREADO</th>
+                                <th>ACTUALIZADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </thead>
@@ -57,11 +56,13 @@
                                     <td>{{$t->radicado}}</td>
                                     @if($t->solicitante == 'JURIDICA')
                                         <td>{{$t->cliente_juridico->empresa}}</td>
+                                        <td>{{$t->cliente_juridico->telefono}}</td>
+                                    @else
+                                        <td>{{$t->cliente_natural->nombre." ".$t->cliente_natural->apellido}}</td>
+                                        <td>{{$t->cliente_natural->telefono}}</td>
                                     @endif
-                                    <td>{{$t->cliente_natura}}</td>
-                                    <td>{{$t->cliente->telefono}}</td>
-                                    <td>{{$t->cliente->email}}</td>
-                                    <td>{{$t->direccion}}</td>
+                                    <td>{{$t->estado}}</td>
+                                    <td>{{"PERSONA ". $t->solicitante}}</td>
                                     <td>{{$t->created_at}}</td>
                                     <td>{{$t->updated_at}}</td>
                                     <td>
@@ -76,13 +77,6 @@
                                            data-target="#estados" onclick="selectEmpleado('{{$t->id}}')"
                                            class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Cambiar Estado Ticket"><i class="material-icons">layers_clear</i></a>
-                                        <a href="{{ route('tickets.edit',$t->id)}}"
-                                           class="btn btn-link btn-primary btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Editar Módulo"><i class="material-icons">mode_edit</i></a>
-                                        <a href="{{ route('tickets.show',$t->id)}}"
-                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Ver Tickets"><i
-                                                class="material-icons">style</i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -92,8 +86,10 @@
                                 <th>RADICADO</th>
                                 <th>CLIENTE</th>
                                 <th>TELEFONO</th>
-                                <th>DESCRIPCIÓN</th>
                                 <th>ESTADO</th>
+                                <th>SOLICITANTE</th>
+                                <th>CREADO</th>
+                                <th>ACTUALIZADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </tfoot>
@@ -151,7 +147,6 @@
                                                         style="width: 100%;" required="required"
                                                         title="--Seleccione una opción--"
                                                         name="empleado_id">
-                                                    <option value="">--Seleccione una opción--</option>
                                                     @foreach($empleados as $key=>$value)
                                                         <option value="{{$key}}">{{$value}}</option>
                                                     @endforeach
@@ -186,8 +181,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="col-md-12">
-                        {{--                        <form class="form-horizontal" method="POST" action="{{route('tickets.estado')}}">--}}
-                        {{--                                @csrf--}}
+                        {{--<form class="form-horizontal" method="POST" action="{{route('tickets.estado')}}">--}}
+                        {{--@csrf--}}
                         <input type="hidden" id="ticketid" name="ticket_id">
                         <div class="col-md-12">
                             <h5><strong>Cambiar estado de ticket</strong></h5>
@@ -260,72 +255,51 @@
                     searchPlaceholder: "Search records",
                 }
             });
-
-            var table = $('#datatable').DataTable();
-
-            // Edit record
-            table.on('click', '.edit', function () {
-                $tr = $(this).closest('tr');
-                var data = table.row($tr).data();
-                alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-            });
-
-            // Delete a record
-            table.on('click', '.remove', function (e) {
-                $tr = $(this).closest('tr');
-                table.row($tr).remove().draw();
-                e.preventDefault();
-            });
-
-            //Like record
-            table.on('click', '.like', function () {
-                alert('You clicked on Like button');
-            });
         });
+            function selectEmpleado(id) {
+                document.getElementById('ticket_id').value = id;
+                document.getElementById('ticketid').value = id;
+            }
 
-        function selectEmpleado(id) {
-            document.getElementById('ticket_id').value = id;
-            document.getElementById('ticketid').value = id;
-        }
-
-        function limpiar() {
-            $("#observacion").val("");
-        }
-
-        function estado(estado) {
-            if (estado == 'finalizar') {
-                $("#rowobservacion").removeAttr('style');
-            } else {
+            function limpiar() {
                 $("#observacion").val("");
-                $("#rowobservacion").attr('style', 'display:none');
             }
-        }
 
-        function guardar() {
-            var band = true;
-            var ticket = $("#ticketid").val();
-            var obse = $("#observacion").val();
-            if ($("#finalizar").prop('checked')) {
-                var estado = $("#finalizar").val();
-                if ($("#observacion").length <= 0) {
-                    band = false;
-                }
-            } else {
-                if($("#cancelar").prop('checked')){
-                    var estado = $("#cancelar").val();
-                }else{
-                    var estado = $("#aplazar").val();
-                }
-                if (band == false) {
-                    $.notify({
-                        icon: "add_alert",
-                        message: 'Por favor ingrese la observación. Atención!'
-                    }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
-                    return;
+            function estado(estado) {
+                if (estado == 'finalizar') {
+                    $("#rowobservacion").removeAttr('style');
                 } else {
-                        //ruta 'tickets/cambiar/{ticket}/{estado}/{obs}/estado'
+                    $("#observacion").val("");
+                    $("#rowobservacion").attr('style', 'display:none');
                 }
             }
-        }
+
+            function guardar() {
+                var band = true;
+                var ticket = $("#ticketid").val();
+                var obse = $("#observacion").val();
+                if ($("#finalizar").prop('checked')) {
+                    var estado = $("#finalizar").val();
+                    if ($("#observacion").length <= 0) {
+                        band = false;
+                    }
+                } else {
+                    if ($("#cancelar").prop('checked')) {
+                        var estado = $("#cancelar").val();
+                    } else {
+                        var estado = $("#aplazar").val();
+                    }
+                    if (band == false) {
+                        $.notify({
+                            icon: "add_alert",
+                            message: 'Por favor ingrese la observación. Atención!'
+                        }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                        return;
+                    } else {
+                        //ruta 'tickets/cambiar/{ticket}/{estado}/{obs}/estado'
+                    }
+                }
+            }
+
     </script>
 @endsection

@@ -12,4 +12,8 @@ class Mantenimiento extends Model
         return $this->belongsTo(Equipo::class);
     }
 
+    public function empleado(){
+        return $this->belongsTo(Empleado::class);
+    }
+
 }

@@ -16,7 +16,6 @@ class Equipo extends Model
         return $this->belongsTo(Cliente_Juridico::class,'juridica_id');
     }
 
-
     public function mantenimientos(){
         return $this->hasMany(Mantenimiento::class);
     }

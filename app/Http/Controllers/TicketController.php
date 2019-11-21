@@ -35,6 +35,7 @@ class TicketController extends Controller
         }else{
             $tickets = Ticket::all();
         }
+
         return view('general.ticket.list')
             ->with('location', 'general')
             ->with('tickets', $tickets)
@@ -129,6 +130,7 @@ class TicketController extends Controller
 
             $responseAdmin = "<h5>Señor(a) admin se ha recibido una nueva solicitud de ticket </h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p><br><h5>Detalles del Solicitante</h5><br><p><b>Nombre: ".$clienteNatural->nombre." ".$clienteNatural->apellido."</b></p><p><b>Telefono: ".$clienteNatural->telefono."</b></p>";
             Mail::to('colonca1999@gmail.com')->send(new NotificationTicket($responseAdmin));
+
             return response()->json([
                 'response' => $response,
                 'status' => 'ok'
@@ -238,6 +240,7 @@ class TicketController extends Controller
                 $obj["emailempresa"] = $cliente->email;
                 $obj["telefonoemp"] = $cliente->telefono;
                 $obj['direccionemp'] = $cliente->direccion;
+                $obj["equipos"] = $cliente->equipos;
 
             return response()->json([
                 'response' => $obj,

@@ -105,9 +105,12 @@ class EquipoController extends Controller
      * @param \App\Equipo $equipo
      * @return \Illuminate\Http\Response
      */
-    public function show(Equipo $equipo)
+    public function show($id)
     {
-        //
+        $equipo = Equipo::find($id);
+        return view('general.equipos.show')
+               ->with('location','general')
+               ->with('equipo',$equipo);
     }
 
     /**
@@ -204,6 +207,7 @@ class EquipoController extends Controller
             flash("El Equipo <strong>" . $equipo->id . ' ' . $equipo->marca . "-" . $equipo->procesador . "</strong>no pudo ser modificado de forma exitosa!")->success();
             return redirect()->route('equipos.index');
         }
+
     }
 
     /**
