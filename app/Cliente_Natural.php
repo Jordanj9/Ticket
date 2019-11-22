@@ -19,7 +19,7 @@ class Cliente_Natural extends Model
 
     public function tickets()
     {
-        return $this->hasMany(Ticket::class);
+        return $this->hasMany(Ticket::class, 'natural_id');
     }
 
 }

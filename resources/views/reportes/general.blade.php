@@ -90,14 +90,13 @@
                                width="100%" style="width:100%">
                             <thead>
                             <tr>
-                                <th>IDENTIFICACION</th>
-                                <th>NOMBRE</th>
-                                <th>TELEFONO</th>
-                                <th>EMAIL</th>
-                                <th>DIRECCIÓN</th>
-                                <th>CREADO</th>
-                                <th>MODIFICADO</th>
-                                <th>ACCIONES</th>
+                                <th>RADICADO</th>
+                                <th>CLIENTE</th>
+                                <th>TIPO</th>
+                                <th>ESTADO</th>
+                                <th>SOLICITANTE</th>
+                                <th>DEPENDENCIA</th>
+                                <th>FECHA</th>
                             </tr>
                             </thead>
                             <tbody id="tb2">
@@ -105,14 +104,13 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>IDENTIFICACION</th>
-                                <th>NOMBRE</th>
-                                <th>TELEFONO</th>
-                                <th>EMAIL</th>
-                                <th>DIRECCIÓN</th>
-                                <th>CREADO</th>
-                                <th>MODIFICADO</th>
-                                <th>ACCIONES</th>
+                                <th>RADICADO</th>
+                                <th>CLIENTE</th>
+                                <th>TIPO</th>
+                                <th>ESTADO</th>
+                                <th>SOLICITANTE</th>
+                                <th>DEPENDENCIA</th>
+                                <th>FECHA</th>
                             </tr>
                             </tfoot>
                         </table>
@@ -160,20 +158,23 @@
                 if (msg !== "null") {
                     var m = JSON.parse(msg);
                     var html = "";
-                    $.each(m.data, function (index, item) {
+                    $.each(m, function (index, item) {
                         html = html + "<tr><td>" + item.radicado + "</td>";
-                        html = html + "<td>" + item.docente + "</td>";
-                        html = html + "<td>" + item.titulo + "</td>";
+                        html = html + "<td>" + item.cliente + "</td>";
                         html = html + "<td>" + item.tipo + "</td>";
                         html = html + "<td>" + item.estado + "</td>";
-                        html = html + "<td>" + item.ps + "</td>";
-                        html = html + "<td>" + item.bo + "</td>";
-                        html = html + "<td>" + item.creado.date + "</td>";
+                        html = html + "<td>" + item.solicitante + "</td>";
+                        html = html + "<td>" + item.dependencia + "</td>";
+                        html = html + "<td>" + item.fecha + "</td>";
                         +"</tr>";
                     });
                     $("#tb2").html(html);
                 } else {
-                    notify('Atención', 'No hay solicitudes para los parametros seleccionados', 'error');
+                    $.notify({
+                        icon: "add_alert",
+                        message: 'Alerta, No hay tickets para los parametros seleccionados.'
+                    }, {type: 'warning', timer: 3e3, placement: {from: 'top', align: 'right'}});
+                    return;
                 }
             });
         }

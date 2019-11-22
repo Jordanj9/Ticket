@@ -71,20 +71,28 @@ class ReporteController extends Controller
                     }
                 }
             }
-            if($tickets != null){
-                $response = null;
-                foreach ($tickets as $value){
-                    $obj['radicado']=$value->radicado;
-                    if($value->solicitante == 'JURIDICA'){
-                        $obj['cliente']=$value->cliente_juridico->empresa;
-                    }else{
-                        $obj['cliente']=$value->cliente_natural->nombre." ".$value->cliente_natural->apellido;
-                    }
+        }
+        if ($tickets != null) {
+            $response = null;
+            foreach ($tickets as $value) {
+                $obj['radicado'] = $value->radicado;
+                if ($value->solicitante == 'JURIDICA') {
+                    $obj['cliente'] = $value->cliente_juridico->empresa;
+                    $obj['documento'] = $value->cliente_juridico->nit;
+                    $obj['dependencia'] = $value->dependencia;
+                } else {
+                    $obj['cliente'] = $value->cliente_natural->nombre . " " . $value->cliente_natural->apellido;
+                    $obj['documento'] = $value->cliente_natural->identificacion;
+                    $obj['dependencia'] = "NO APLICA";
                 }
-            }else{
-                return "null";
+                $obj['tipo'] = $value->solicitante;
+                $obj['solicitante'] = $value->cliente_natural->nombre . " " . $value->cliente_natural->apellido;
+                $obj['fecha'] = $value->updated_at;
+                $obj['estado'] = $value->estado;
+                $response[] = $obj;
             }
-        }else{
+            return json_encode($response);
+        } else {
             return "null";
         }
     }
