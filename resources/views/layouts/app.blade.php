@@ -59,7 +59,10 @@
     <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet"/>
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css')}}">
+
     <!-- JQuery DataTable Css -->
+    <link rel="stylesheet" href="{{ asset('css/export/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/export/buttons.dataTables.min.css')}}">
 
     <!-- Google Tag Manager -->
     <script>
@@ -255,6 +258,15 @@
 <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+
+
+<script src="{{asset('js/export/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/export/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('js/export/jszip.min.js')}}"></script>
+<script src="{{asset('js/export/pdfmake.min.js')}}"></script>
+<script src="{{asset('js/export/vfs_fonts.js')}}"></script>
+<script src="{{asset('js/export/buttons.html5.min.js')}}"></script>
+
 <!-- Plugin for the momentJs  -->
 <script src="{{asset('assets/js/plugins/moment.min.js')}}"></script>
 <!--  Plugin for Sweet Alert -->
@@ -298,6 +310,7 @@
 <script src="{{asset('assets/js/material-dashboard.min.js?v=2.1.0')}}" type="text/javascript"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{asset('assets/demo/demo.js')}}"></script>
+
 <script>
     $(document).ready(function () {
         $().ready(function () {

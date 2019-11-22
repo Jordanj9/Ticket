@@ -86,13 +86,12 @@
                 </div>
                 <div class="col-md-12">
                     <div class="material-datatables">
-                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
+                        <table id="datatables" class="table table-striped table-no-bordered table-hover table-condensed dataTable " cellspacing="0"
                                width="100%" style="width:100%">
                             <thead>
                             <tr>
                                 <th>RADICADO</th>
                                 <th>CLIENTE</th>
-                                <th>TIPO</th>
                                 <th>ESTADO</th>
                                 <th>SOLICITANTE</th>
                                 <th>DEPENDENCIA</th>
@@ -106,7 +105,6 @@
                             <tr>
                                 <th>RADICADO</th>
                                 <th>CLIENTE</th>
-                                <th>TIPO</th>
                                 <th>ESTADO</th>
                                 <th>SOLICITANTE</th>
                                 <th>DEPENDENCIA</th>
@@ -123,7 +121,6 @@
 @section('script')
     <script>
         $(document).ready(function () {
-            $('#datatables').DataTable();
             // initialise Datetimepicker and Sliders
             md.initFormExtendedDatetimepickers();
             if ($('.slider').length != 0) {
@@ -161,7 +158,6 @@
                     $.each(m, function (index, item) {
                         html = html + "<tr><td>" + item.radicado + "</td>";
                         html = html + "<td>" + item.cliente + "</td>";
-                        html = html + "<td>" + item.tipo + "</td>";
                         html = html + "<td>" + item.estado + "</td>";
                         html = html + "<td>" + item.solicitante + "</td>";
                         html = html + "<td>" + item.dependencia + "</td>";
@@ -169,6 +165,15 @@
                         +"</tr>";
                     });
                     $("#tb2").html(html);
+                    $('#datatables').DataTable( {
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'copyHtml5',
+                            'excelHtml5',
+                            'csvHtml5',
+                            'pdfHtml5'
+                        ]
+                    } );
                 } else {
                     $.notify({
                         icon: "add_alert",
