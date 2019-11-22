@@ -144,124 +144,125 @@
                                         <div class="tab-pane active" id="about">
                                             <h5 class="info-text"> Datos de contacto</h5>
                                             <div class="row justify-content-center">
-                                                   <div class="col-md-6">
-                                                       <select class="selectpicker  col-md-12"
-                                                                                  data-style="btn btn-primary btn-round btn-block"
-                                                                                  title="Single Select" data-size="20" name="tipopersona"
-                                                                                  id="tipopersona"
-                                                                                  onchange="verificar(this.value)"
-                                                                                  required="required">
-                                                           <option disabled selected>Tipo de persona</option>
-                                                           <option value="NATURAL">Natural</option>
-                                                           <option value="JURIDICA">Jurídica</option>
-                                                       </select>
-                                                   </div>
-                                                   <div class="col-md-6">
-                                                       <div class="input-group form-control-lg">
-                                                           <div class="input-group-prepend">
+                                                <div class="col-md-6">
+                                                    <select class="selectpicker  col-md-12"
+                                                            data-style="btn btn-primary btn-round btn-block"
+                                                            title="Single Select" data-size="20" name="tipopersona"
+                                                            id="tipopersona"
+                                                            onchange="verificar(this.value)"
+                                                            required="required">
+                                                        <option disabled selected>Tipo de persona</option>
+                                                        <option value="NATURAL">Natural</option>
+                                                        <option value="JURIDICA">Jurídica</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group form-control-lg">
+                                                        <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="material-icons">payment</i>
                                                             </span>
-                                                           </div>
-                                                           <div class="form-group">
-                                                               <label for="exampleInput1"
-                                                                      class="bmd-label-floating">Identificación
-                                                                   (requerido)</label>
-                                                               <input type="number" class="form-control"
-                                                                      id="identificacionid"
-                                                                      name="identificacion" required="required"
-                                                                      onblur="consultar()">
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-md-6">
-                                                       <div class="input-group form-control-lg">
-                                                           <div class="input-group-prepend">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInput1"
+                                                                   class="bmd-label-floating">Identificación
+                                                                (requerido)</label>
+                                                            <input type="number" class="form-control"
+                                                                   id="identificacionid"
+                                                                   name="identificacion" required="required"
+                                                                   onblur="consultar()">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group form-control-lg">
+                                                        <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="material-icons">face</i>
                                                             </span>
-                                                           </div>
-                                                           <div class="form-group">
-                                                               <label for="exampleInput11" class="bmd-label-floating">Nombre
-                                                                   (requerido)</label>
-                                                               <input type="text" class="form-control" id="nombreid"
-                                                                      name="nombre" required>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-md-6">
-                                                       <div class="input-group form-control-lg">
-                                                           <div class="input-group-prepend">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInput11" class="bmd-label-floating">Nombre
+                                                                (requerido)</label>
+                                                            <input type="text" class="form-control" id="nombreid"
+                                                                   name="nombre" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group form-control-lg">
+                                                        <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="material-icons">record_voice_over</i>
                                                             </span>
-                                                           </div>
-                                                           <div class="form-group">
-                                                               <label for="exampleInput11" class="bmd-label-floating">Apellido
-                                                                   (requerido)</label>
-                                                               <input type="text" class="form-control" id="apellidoid"
-                                                                      name="apellido" required="required">
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-md-6">
-                                                       <div class="input-group form-control-lg">
-                                                           <div class="input-group-prepend">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInput11" class="bmd-label-floating">Apellido
+                                                                (requerido)</label>
+                                                            <input type="text" class="form-control" id="apellidoid"
+                                                                   name="apellido" required="required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group form-control-lg">
+                                                        <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="material-icons">email</i>
                                                             </span>
-                                                           </div>
-                                                           <div class="form-group">
-                                                               <label for="exampleInput1" class="bmd-label-floating">Email
-                                                                   (requerido)</label>
-                                                               <input type="email" class="form-control" id="exampleemalil"
-                                                                      name="email" required>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-md-6">
-                                                       <div class="input-group form-control-lg">
-                                                           <div class="input-group-prepend">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInput1" class="bmd-label-floating">Email
+                                                                (requerido)</label>
+                                                            <input type="email" class="form-control" id="exampleemalil"
+                                                                   name="email" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="input-group form-control-lg">
+                                                        <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="material-icons">call</i>
                                                             </span>
-                                                           </div>
-                                                           <div class="form-group">
-                                                               <label for="exampleInput1"
-                                                                      class="bmd-label-floating">Telefono
-                                                                   (requerido)</label>
-                                                               <input type="number" class="form-control" id="telefonoid"
-                                                                      name="telefono" required="required">
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-md-12">
-                                                       <div class="input-group form-control-lg">
-                                                           <div class="input-group-prepend">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInput1"
+                                                                   class="bmd-label-floating">Telefono
+                                                                (requerido)</label>
+                                                            <input type="number" class="form-control" id="telefonoid"
+                                                                   name="telefono" required="required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="input-group form-control-lg">
+                                                        <div class="input-group-prepend">
                                                             <span class="input-group-text">
                                                                 <i class="material-icons">map</i>
                                                             </span>
-                                                           </div>
-                                                           <div class="form-group">
-                                                               <label for="exampleInput1"
-                                                                      class="bmd-label-floating">Dirección
-                                                                   (requerido)</label>
-                                                               <input type="text" class="form-control" id="direccionid"
-                                                                      name="direccion" required="required">
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-md-8 offset-2">
-                                                       <div class="input-group form-control-lg">
-                                                           <div class="form-group">
-                                                               <label for="exampleInput1"
-                                                                      class="bmd-label-floating">Descripción
-                                                                   (requerido)</label>
-                                                               <textarea cols="30" rows="10" class="form-control" id="descripcion"
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInput1"
+                                                                   class="bmd-label-floating">Dirección
+                                                                (requerido)</label>
+                                                            <input type="text" class="form-control" id="direccionid"
+                                                                   name="direccion" required="required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 offset-2">
+                                                    <div class="input-group form-control-lg">
+                                                        <div class="form-group">
+                                                            <label for="exampleInput1"
+                                                                   class="bmd-label-floating">Descripción
+                                                                (requerido)</label>
+                                                            <textarea cols="30" rows="10" class="form-control"
+                                                                      id="descripcion"
                                                                       name="descripcion" required="required"></textarea>
-                                                           </div>
-                                                       </div>
-                                                   </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="account">

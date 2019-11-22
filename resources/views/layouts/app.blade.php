@@ -57,7 +57,12 @@
     <link href="{{asset('assets/css/material-dashboard.min.css?v=2.1.0')}}" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet"/>
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('select2/dist/css/select2.min.css')}}">
+
     <!-- JQuery DataTable Css -->
+    <link rel="stylesheet" href="{{ asset('css/export/jquery.dataTables.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/export/buttons.dataTables.min.css')}}">
 
     <!-- Google Tag Manager -->
     <script>
@@ -157,7 +162,7 @@
                     </a>
                 </li>
                         <li class="nav-item ">
-                            <a class="nav-link" data-toggle="collapse" href="#formsExamples">
+                            <a class="nav-link" href="{{route('admin.reporte')}}">
                                 <i class="material-icons">trending_up</i>
                                 <p> Reportes</p>
                             </a>
@@ -253,6 +258,15 @@
 <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+
+
+<script src="{{asset('js/export/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/export/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('js/export/jszip.min.js')}}"></script>
+<script src="{{asset('js/export/pdfmake.min.js')}}"></script>
+<script src="{{asset('js/export/vfs_fonts.js')}}"></script>
+<script src="{{asset('js/export/buttons.html5.min.js')}}"></script>
+
 <!-- Plugin for the momentJs  -->
 <script src="{{asset('assets/js/plugins/moment.min.js')}}"></script>
 <!--  Plugin for Sweet Alert -->
@@ -285,6 +299,9 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2Yno10-YTnLjjn_Vtk0V8cdcY5lC4plU"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Select2 -->
+<script src="{{asset('select2/dist/js/select2.full.min.js')}}"></script>
+<script src="{{asset('js/chosen/chosen.jquery.js')}}"></script>
 <!-- Chartist JS -->
 <script src="{{asset('')}}assets/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
@@ -293,6 +310,7 @@
 <script src="{{asset('assets/js/material-dashboard.min.js?v=2.1.0')}}" type="text/javascript"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{asset('assets/demo/demo.js')}}"></script>
+
 <script>
     $(document).ready(function () {
         $().ready(function () {
