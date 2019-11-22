@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.general')}}">General</a><span class="fa-angle-right fa"></span>
+                        href="{{route('admin.general')}}">  General </a><span class="fa-angle-right fa"></span>
                     Tickest
                 </p>
             </div>
@@ -45,8 +45,8 @@
                                 <th>TELEFONO</th>
                                 <th>ESTADO</th>
                                 <th>SOLICITANTE</th>
+                                <th>DEPENDENCIA</th>
                                 <th>CREADO</th>
-                                <th>ACTUALIZADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </thead>
@@ -62,28 +62,35 @@
                                         <td>{{$t->cliente_natural->telefono}}</td>
                                     @endif
                                     <td>{{$t->estado}}</td>
-                                    <td>{{"PERSONA ". $t->solicitante}}</td>
+                                    <td>{{$t->cliente_natural->nombre." ".$t->cliente_natural->apellido}}</td>
+                                    @if($t->dependencia == null)
+                                        <td>NO APLICA</td>
+                                    @else
+                                        <td>{{$t->dependencia}}</td>
+                                    @endif
+
                                     <td>{{$t->created_at}}</td>
-                                    <td>{{$t->updated_at}}</td>
                                     <td>
-                                        @if(session('ROL') == 'ADMINISTRADOR')
-                                            <a data-toggle="modal"
-                                               data-target="#addEjeTematico" onclick="selectEmpleado('{{$t->id}}')"
-                                               class="btn btn-link btn-warning btn-just-icon remove"
-                                               data-toggle="tooltip"
-                                               data-placement="top" title="Asignar ticket"><i class="material-icons">perm_data_setting</i></a>
-                                        @endif
-                                        <a data-toggle="modal"
-                                           data-target="#estados" onclick="selectEmpleado('{{$t->id}}')"
-                                           class="btn btn-link btn-warning btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Cambiar Estado Ticket"><i class="material-icons">sync_alt</i></a>
-                                        <a href="{{ route('tickets.edit',$t->id)}}"
-                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Editar Módulo"><i class="material-icons">mode_edit</i></a>
                                         <a href="{{ route('tickets.show',$t->id)}}"
                                            class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Ver Tickets"><i
                                                 class="material-icons">visibility</i></a>
+
+                                        <a data-toggle="modal"
+                                           data-target="#estados" onclick="selectEmpleado('{{$t->id}}')"
+                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Cambiar Estado Ticket"><i class="material-icons">
+                                                crop_rotate
+                                            </i></a>
+                                        @if(session('ROL') == 'ADMINISTRADOR')
+                                            <a data-toggle="modal"
+                                               data-target="#addEjeTematico" onclick="selectEmpleado('{{$t->id}}')"
+                                               class="btn btn-link btn-dark btn-just-icon remove"
+                                               data-toggle="tooltip"
+                                               data-placement="top" title="Asignar ticket"><i class="material-icons">
+                                                    transfer_within_a_station
+                                                </i></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -95,8 +102,8 @@
                                 <th>TELEFONO</th>
                                 <th>ESTADO</th>
                                 <th>SOLICITANTE</th>
+                                <th>DEPENDENCIA</th>
                                 <th>CREADO</th>
-                                <th>ACTUALIZADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </tfoot>

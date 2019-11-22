@@ -67,17 +67,17 @@
                                     <td>{{$equipo->memoria_ram}}</td>
                                     <td>{{$equipo->disco_duro}}</td>
                                     <td style="text-align: center;">
-                                        <a href="{{route('equipos.edit',$equipo->id)}}"
-                                           class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Editar Equipo"><i class="material-icons">mode_edit</i></a>
-                                        <a href="{{route('equipos.delete',$equipo->id)}}"
-                                           class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Eliminar Equipo"><i class="material-icons">delete</i></a>
                                         <a href="{{route('equipos.show',$equipo->id)}}"
-                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
+                                           class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Ver Equipo"><i class="material-icons">
                                                 remove_red_eye
                                             </i></a>
+                                        <a href="{{route('equipos.edit',$equipo->id)}}"
+                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Editar Equipo"><i class="fa fa-edit"></i></a>
+                                        <a href="{{route('equipos.delete',$equipo->id)}}"
+                                           class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Eliminar Equipo"><i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                             @endforeach

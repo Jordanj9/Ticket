@@ -60,7 +60,7 @@
                                     <div class="form-line">
                                         <label class="control-label">Descripción</label>
                                         <textarea name="" class="form-control" id="detalle" cols="30" rows="10"
-                                                  placeholder="Detalle de la licencia"></textarea>
+                                                  placeholder="Detalle del Mantenimiento"></textarea>
                                     </div>
                                 </div>
                             </div>

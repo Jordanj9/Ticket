@@ -14,4 +14,9 @@ class Cliente_Juridico extends Model
         return $this->hasMany(Equipo::class,'juridica_id','id');
     }
 
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class,'juridica_id');
+    }
+
 }

@@ -48,8 +48,6 @@
                                 <th>TELEFONO</th>
                                 <th>EMAIL</th>
                                 <th>DIRECCIÓN</th>
-                                <th>CREADO</th>
-                                <th>MODIFICADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </thead>
@@ -61,12 +59,10 @@
                                     <td>{{$emp->telefono}}</td>
                                     <td>{{$emp->email}}</td>
                                     <td>{{$emp->direccion}}</td>
-                                    <td>{{$emp->created_at}}</td>
-                                    <td>{{$emp->updated_at}}</td>
                                     <td style="text-align: center;">
                                         <a href="{{ route('empleado.edit',$emp->id)}}"
                                            class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Editar Empleado"><i class="material-icons">mode_edit</i></a>
+                                           data-placement="top" title="Editar Empleado"><i class="fa fa-edit"></i></a>
                                         <a href="{{ route('empleado.delete',$emp->id)}}"
                                            class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Eliminar Empleado"><i class="material-icons">delete</i></a>
@@ -81,8 +77,6 @@
                                 <th>TELEFONO</th>
                                 <th>EMAIL</th>
                                 <th>DIRECCIÓN</th>
-                                <th>CREADO</th>
-                                <th>MODIFICADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </tfoot>

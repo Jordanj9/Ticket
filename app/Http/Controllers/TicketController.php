@@ -149,9 +149,12 @@ class TicketController extends Controller
      * @param \App\Ticket $ticket
      * @return \Illuminate\Http\Response
      */
-    public function show(Ticket $ticket)
+    public function show($id)
     {
-        //
+          $ticket  = Ticket::find($id);
+          return view('general.ticket.show')
+              ->with('location','general')
+              ->with('ticket',$ticket);
     }
 
     /**
@@ -263,6 +266,7 @@ class TicketController extends Controller
     {
         $ticket = Ticket::find($request->ticket_id);
         $ticket->empleado_id = $request->empleado_id;
+        $ticket->estado = 'ASIGNADO';
         $result = $ticket->save();
         if ($result) {
             flash("El Ticket con N° de Radicado: <strong>" . $ticket->radicado . "</strong> le fue asignado al empleado de forma exitosa!")->success();
