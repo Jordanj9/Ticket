@@ -51,7 +51,8 @@
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
     <link href="{{asset('assets/css/material-dashboard.min.css?v=2.1.0')}}" rel="stylesheet"/>
@@ -131,51 +132,68 @@
                     </a>
                 </li>
 
-                @if($location=='usuarios')
-                    <li class="nav-item active">
-                @else
-                    <li class="nav-item">
-                @endif
-                        <a class="nav-link" href="{{route('admin.usuarios')}}">
-                            <i class="material-icons">supervised_user_circle</i>
-                            <p> Usuario </p>
-                        </a>
-                    </li>
-                    @if($location=='general')
+
+                @if(session()->has('MOD_USUARIO'))
+                    @if($location=='usuarios')
                         <li class="nav-item active">
                     @else
                         <li class="nav-item">
+                            @endif
+                            <a class="nav-link" href="{{route('admin.usuarios')}}">
+                                <i class="material-icons">supervised_user_circle</i>
+                                <p> Usuario </p>
+                            </a>
+                        </li>
                     @endif
-                            <a class="nav-link"  href="{{route('admin.general')}}">
-                                <i class="material-icons">account_balance</i>
-                                <p> General</p>
-                            </a>
-                        </li>
-                @if($location=='mantenimiento')
-                    <li class="nav-item active">
-                @else
-                    <li class="nav-item">
-                @endif
-                    <a class="nav-link" href="{{route('admin.mantenimiento')}}">
-                        <i class="material-icons">build</i>
-                        <p>Mantenimiento</p>
-                    </a>
-                </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="{{route('admin.reporte')}}">
-                                <i class="material-icons">trending_up</i>
-                                <p> Reportes</p>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" data-toggle="collapse" href="{{ route('logout') }}" onclick="event.preventDefault();
+
+                    @if(session()->has('MOD_GENERAL'))
+                        @if($location=='general')
+                            <li class="nav-item active">
+                        @else
+                            <li class="nav-item">
+                                @endif
+                                <a class="nav-link" href="{{route('admin.general')}}">
+                                    <i class="material-icons">account_balance</i>
+                                    <p> General</p>
+                                </a>
+                            </li>
+                        @endif
+
+                        @if(session()->has('MOD_MANTENIMIENTO'))
+                            @if($location=='mantenimiento')
+                                <li class="nav-item active">
+                            @else
+                                <li class="nav-item">
+                                    @endif
+                                    <a class="nav-link" href="{{route('admin.mantenimiento')}}">
+                                        <i class="material-icons">build</i>
+                                        <p>Mantenimiento</p>
+                                    </a>
+                                </li>
+                            @endif
+
+                        @if(session()->has('MOD_REPORTE'))
+                            @if($location=='mantenimiento')
+                                <li class="nav-item active">
+                            @else
+                                <li class="nav-item">
+                                    @endif
+                                    <a class="nav-link" href="{{route('admin.reporte')}}">
+                                        <i class="material-icons">trending_up</i>
+                                        <p> Reportes</p>
+                                    </a>
+                                </li>
+                        @endif
+                                <li class="nav-item ">
+                                    <a class="nav-link" data-toggle="collapse" href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form2').submit();">
-                                <i class="fa fa-sign-out"></i> Salir
-                            </a>
-                            <form id="logout-form2" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </li>
+                                        <i class="fa fa-sign-out"></i> Salir
+                                    </a>
+                                    <form id="logout-form2" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
             </ul>
         </div>
     </div>
@@ -259,7 +277,6 @@
 <script src="{{asset('assets/js/core/bootstrap-material-design.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
 
-
 <script src="{{asset('js/export/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/export/dataTables.buttons.min.js')}}"></script>
 <script src="{{asset('js/export/jszip.min.js')}}"></script>
@@ -293,6 +310,7 @@
 <script src="{{asset('assets/js/plugins/nouislider.min.js')}}"></script>
 <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+<script src="{{asset('assets/js/plugins/axios.min.js')}}"></script>
 <!-- Library for adding dinamically elements -->
 <script src="{{asset('assets/js/plugins/arrive.min.js')}}"></script>
 <!--  Google Maps Plugin    -->
@@ -301,9 +319,9 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Select2 -->
 <script src="{{asset('select2/dist/js/select2.full.min.js')}}"></script>
-<script src="{{asset('js/chosen/chosen.jquery.js')}}"></script>
+
 <!-- Chartist JS -->
-<script src="{{asset('')}}assets/js/plugins/chartist.min.js"></script>
+<script src="{{asset('assets/js/plugins/chartist.min.js')}}"></script>
 <!--  Notifications Plugin    -->
 <script src="{{asset('assets/js/plugins/bootstrap-notify.js')}}"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->

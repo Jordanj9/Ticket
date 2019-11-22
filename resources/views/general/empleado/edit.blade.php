@@ -53,7 +53,7 @@
                                             <div class="form-line">
                                                 <input type="number" class="form-control"
                                                        placeholder="Número de identificación"
-                                                       name="identificacion" value="{{$empleado->identificacion}}"/>
+                                                       name="identificacion" value="{{$empleado->identificacion}}" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -62,7 +62,7 @@
                                             <div class="form-line">
                                                 <input type="text" class="form-control"
                                                        placeholder="Nombres del empleado"
-                                                       name="nombre" value="{{$empleado->nombre}}"/>
+                                                       name="nombre" value="{{$empleado->nombre}}" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -71,7 +71,7 @@
                                             <div class="form-line">
                                                 <input type="text" class="form-control"
                                                        placeholder="Apellidos del empleado"
-                                                       name="apellido" value="{{$empleado->apellido}}"/>
+                                                       name="apellido" value="{{$empleado->apellido}}" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -83,7 +83,7 @@
                                             <div class="form-line">
                                                 <input type="number" class="form-control"
                                                        placeholder="Telefono"
-                                                       name="telefono" value="{{$empleado->telefono}}"/>
+                                                       name="telefono" value="{{$empleado->telefono}}" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@
                                             <div class="form-line">
                                                 <input type="email" class="form-control"
                                                        placeholder="Correo electronico"
-                                                       name="email" value="{{$empleado->email}}"/>
+                                                       name="email" value="{{$empleado->email}}" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -101,7 +101,7 @@
                                             <div class="form-line">
                                                 <input type="text" class="form-control"
                                                        placeholder="Dirección"
-                                                       name="direccion" value="{{$empleado->direccion}}"/>
+                                                       name="direccion" value="{{$empleado->direccion}}" required/>
                                             </div>
                                         </div>
                                     </div>

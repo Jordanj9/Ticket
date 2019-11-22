@@ -265,6 +265,10 @@ class TicketController extends Controller
     public function asignar(Request $request)
     {
         $ticket = Ticket::find($request->ticket_id);
+        if($ticket->estado == 'FINALIZADO' || $ticket->estado == 'CANCELADO'){
+            flash("El Ticket con N° de Radicado: <strong>" . $ticket->radicado . "</strong> no puede ser asignado, debido a su estado actual")->warning();
+            return redirect()->route('tickets.index');
+        }
         $ticket->empleado_id = $request->empleado_id;
         $ticket->estado = 'ASIGNADO';
         $result = $ticket->save();
@@ -286,10 +290,10 @@ class TicketController extends Controller
     public function estado($ticket_id,$estado,$obse){
         $ticket = Ticket::find($ticket_id);
         if($estado == 'FINALIZADO'){
-            $ticket->estado == 'FINALIZADO';
-            $ticket->observacion == strtoupper($obse);
+            $ticket->estado = 'FINALIZADO';
+            $ticket->observacion = strtoupper($obse);
         }else{
-            $ticket->estado == $estado;
+            $ticket->estado = $estado;
         }
         $result = $ticket->save();
         if($result){

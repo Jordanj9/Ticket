@@ -35,7 +35,7 @@ class ReporteController extends Controller
 
     public function getTickets($estado, $fi, $ff, $cliente)
     {
-        // dd([$estado,$fi,$ff,$cliente]);
+        //dd([$estado,$fi,$ff,$cliente]);
         $tickets = null;
         $in = explode(",", $fi);
         $fin = explode(",", $ff);
@@ -49,8 +49,8 @@ class ReporteController extends Controller
                 $clien = Cliente_Natural::find($cl[0]);
             }
             $tic = $clien->tickets;
-            //  $b = DB::table('solicituds')->whereBetween('created_at', [$fi, $ff])->where('docente_id', $docente->id)->get();
-        } else {
+            dd($tic);
+             } else {
             $tic = Ticket::whereBetween('updated_at', [$inicio, $final])->get();
         }
         $i = strtotime($inicio);

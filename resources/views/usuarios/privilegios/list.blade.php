@@ -246,7 +246,7 @@
             $("#id").val(id);
             $.ajax({
                 type: 'GET',
-                url: url + "usuarios/grupousuario/" + id + "/privilegios",
+                url: "{{url("usuarios/grupousuario")}}/" + id + "/privilegios",
                 data: {},
             }).done(function (msg) {
                 $('#privilegios option').each(function () {

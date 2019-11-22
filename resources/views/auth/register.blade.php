@@ -400,7 +400,7 @@
                         document.write(new Date().getFullYear())
                     </script>
                     , versión 1.0 Desarollado por
-                    <a href="" target="_blank">Jordan Cuadro, Camilo Colón & Alberto Rojas</a>.
+                    <a href="" target="_blank">Skynet Web Design</a>.
                 </div>
             </div>
         </footer>

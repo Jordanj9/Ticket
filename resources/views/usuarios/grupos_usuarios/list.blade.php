@@ -61,12 +61,14 @@
                                     <td>{{$grupo->created_at}}</td>
                                     <td>{{$grupo->updated_at}}</td>
                                     <td style="text-align: center;">
-                                        <a href="{{ route('grupousuario.edit',$grupo->id)}}"
-                                           class="btn btn-link btn-info btn-just-icon" data-toggle="tooltip"
-                                           data-placement="top" title="Editar Grupo de Usuario"><i class="material-icons">mode_edit</i></a>
                                         <a href="{{ route('grupousuario.show',$grupo->id)}}"
-                                           class="btn btn-link btn-success btn-just-icon" data-toggle="tooltip"
+                                           class="btn btn-link btn-info btn-just-icon" data-toggle="tooltip"
                                            data-placement="top" title="Ver Datos del Grupo de Usuario"><i class="material-icons">remove_red_eye</i></a>
+
+                                        <a href="{{ route('grupousuario.edit',$grupo->id)}}"
+                                           class="btn btn-link btn-success btn-just-icon" data-toggle="tooltip"
+                                           data-placement="top" title="Editar Grupo de Usuario"><i class="fa fa-edit"></i></a>
+
                                         <a href="{{ route('grupousuario.delete',$grupo->id)}}"
                                            class="btn btn-link btn-danger btn-just-icon" data-toggle="tooltip"
                                            data-placement="top" title="Eliminar Grupo de Usuario"><i class="material-icons">delete</i></a>

@@ -77,14 +77,14 @@
                                                 class="material-icons">visibility</i></a>
 
                                         <a data-toggle="modal"
-                                           data-target="#estados" onclick="selectEmpleado('{{$t->id}}')"
+                                           data-target="#estados" onclick="selectTicket('{{$t->id}}','{{$t->estado}}')"
                                            class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Cambiar Estado Ticket"><i class="material-icons">
                                                 crop_rotate
                                             </i></a>
                                         @if(session('ROL') == 'ADMINISTRADOR')
                                             <a data-toggle="modal"
-                                               data-target="#addEjeTematico" onclick="selectEmpleado('{{$t->id}}')"
+                                               data-target="#addEjeTematico" onclick="selectTicket('{{$t->id}}','{{$t->estado}}')"
                                                class="btn btn-link btn-dark btn-just-icon remove"
                                                data-toggle="tooltip"
                                                data-placement="top" title="Asignar ticket"><i class="material-icons">
@@ -151,14 +151,14 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h5><strong>Asignar ticket a empleado</strong></h5>
+                                        <h5><strong>Asignar ticket a Ticket</strong></h5>
                                         <div class="form-group bmd-form-group">
                                             <div class="form-line">
                                                 <select class="form-control selectpicker"
                                                         data-style="select-with-transition"
                                                         style="width: 100%;" required="required"
                                                         title="--Seleccione una opción--"
-                                                        name="empleado_id">
+                                                        name="Ticket_id">
                                                     @foreach($empleados as $key=>$value)
                                                         <option value="{{$key}}">{{$value}}</option>
                                                     @endforeach
@@ -201,6 +201,7 @@
                             <div class="row">
                                 <div class="col-md-12 checkbox-radios" style="margin-left: 150px;">
                                     <div class="form-check form-check-inline">
+                                        <input type="hidden" id="estadoDelTicketActual">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="radio" name="estado"
                                                    value="FINALIZADO" id="finalizar" onclick="estado(this.id)"/>
@@ -268,9 +269,11 @@
                 }
             });
         });
-            function selectEmpleado(id) {
+
+            function selectTicket(id,estado) {
                 document.getElementById('ticket_id').value = id;
                 document.getElementById('ticketid').value = id;
+                document.getElementById('estadoDelTicketActual').value = estado;
             }
 
             function limpiar() {
@@ -286,19 +289,50 @@
                 }
             }
 
+            function validar(){
+                let estadoActual =  document.getElementById('estadoDelTicketActual').value;
+                if(estadoActual == 'FINALIZADO' || estadoActual == 'CANCELADO'){
+                    $.notify({
+                        icon: "add_alert",
+                        message: 'La accion que intenta realizar no es posible debido al estado actual del ticket.'
+                    }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                    return false;
+                }
+
+                return true;
+            }
+
             function guardar() {
+                if(!validar()){
+                    return;
+                }
                 var band = true;
                 var ticket = $("#ticketid").val();
                 var obse = $("#observacion").val();
                 if ($("#finalizar").prop('checked')) {
                     var estado = $("#finalizar").val();
-                    if ($("#observacion").length <= 0) {
-                        band = false;
+                    if ($("#observacion").val().length > 0) {
+                        location.href = "{{url("general/tickets/cambiar/")}}/"+ticket+"/"+estado+"/"+obse+"/estado";
+                    }else{
+                        $.notify({
+                            icon: "add_alert",
+                            message: 'Por favor ingrese la observación. Atención!'
+                        }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                        return;
                     }
                 } else {
+                    obse= "null";
                     if ($("#cancelar").prop('checked')) {
                         var estado = $("#cancelar").val();
                     } else {
+                        let estadoActual =  document.getElementById('estadoDelTicketActual').value;
+                        if(estadoActual == 'APLAZADO'){
+                            $.notify({
+                                icon: "add_alert",
+                                message: 'La accion que intenta realizar no es posible debido al estado actual del ticket.'
+                            }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                            return;
+                        }
                         var estado = $("#aplazar").val();
                     }
                     if (band == false) {
@@ -308,7 +342,7 @@
                         }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
                         return;
                     } else {
-                        //ruta 'tickets/cambiar/{ticket}/{estado}/{obs}/estado'
+                        location.href = "{{url("general/tickets/cambiar/")}}/"+ticket+"/"+estado+"/"+obse+"/estado";
                     }
                 }
             }
