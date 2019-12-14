@@ -62,9 +62,7 @@ class TicketController extends Controller
     {
         $clienteNatural = Cliente_Natural::where('identificacion', $request->identificacion)->first();
         $clienteJuridico = Cliente_Juridico::where('nit', $request->nit)->first();
-
         if ($clienteNatural == null) {
-
             $clienteNatural = new Cliente_Natural();
             $clienteNatural->nombre = $request->nombre;
             $clienteNatural->apellido = $request->apellido;
@@ -72,7 +70,6 @@ class TicketController extends Controller
             $clienteNatural->telefono = $request->telefono;
             $clienteNatural->direccion = $request->direccion;
             $clienteNatural->email = $request->email;
-
             foreach ($clienteNatural->attributesToArray() as $key => $value) {
                 if ($key == 'email') {
                     $clienteNatural->$key = $value;
@@ -82,9 +79,7 @@ class TicketController extends Controller
             }
             $clienteNatural->save();
         }
-
         if($request->tipopersona == 'JURIDICA'){
-
             if ($clienteJuridico == null) {
                 $clienteJuridico = new Cliente_Juridico();
                 $clienteJuridico->nit = $request->nit;
@@ -92,8 +87,6 @@ class TicketController extends Controller
                 $clienteJuridico->direccion = $request->direccionemp;
                 $clienteJuridico->email = $request->emailempresa;
                 $clienteJuridico->telefono = $request->telefonoemp;
-
-
                 foreach ($clienteJuridico->attributesToArray() as $key => $value) {
                     if ($key == 'email') {
                         $clienteJuridico->$key = $value;

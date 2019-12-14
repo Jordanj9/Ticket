@@ -80,40 +80,8 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <button onclick="getTickets()" class="btn btn-success icon-btn "><i class="material-icons">search</i>Consultar
+                        <button onclick="pdf()" class="btn btn-success icon-btn "><i class="material-icons">search</i>Consultar
                         </button>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="material-datatables">
-                        <table id="datatables" class="table table-striped table-no-bordered table-hover table-condensed dataTable " cellspacing="0"
-                               width="100%" style="width:100%">
-                            <thead>
-                            <tr>
-                                <th>RADICADO</th>
-                                <th>CLIENTE</th>
-                                <th>ESTADO</th>
-                                <th>SOLICITANTE</th>
-                                <th>DEPENDENCIA</th>
-                                <th>OBSERVACIÓN</th>
-                                <th>FECHA</th>
-                            </tr>
-                            </thead>
-                            <tbody id="tb2">
-
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>RADICADO</th>
-                                <th>CLIENTE</th>
-                                <th>ESTADO</th>
-                                <th>SOLICITANTE</th>
-                                <th>DEPENDENCIA</th>
-                                <th>OBSERVACIÓN</th>
-                                <th>FECHA</th>
-                            </tr>
-                            </tfoot>
-                        </table>
                     </div>
                 </div>
             </div>
@@ -123,8 +91,6 @@
 @section('script')
     <script>
         $(document).ready(function () {
-
-
             // initialise Datetimepicker and Sliders
             md.initFormExtendedDatetimepickers();
             if ($('.slider').length != 0) {
@@ -133,8 +99,32 @@
             $('.select2').select2();
         });
 
-        function getTickets() {
 
+        function pdf() {
+            var esta = $("#estado").val();
+            var fi = $("#fechai").val();
+            var ff = $("#fechaf").val();
+            var cli = $("#cliente").val();
+            if (esta == null || fi.length <= 0 || ff.length <= 0) {
+                $.notify({
+                    icon: "add_alert",
+                    message: 'Alerta, Debe indicar todos los parámetros para continuar'
+                }, {type: 'warning', timer: 3e3, placement: {from: 'top', align: 'right'}});
+                return;
+            }
+            if (cli == null) {
+                cli = "null";
+            }
+            var i = fi.split("/");
+            var f = ff.split("/");
+                var a = document.createElement("a");
+                a.target = "_blank";
+                a.href = '{{url("reporte/reporte/menu/")}}/'+ esta + "/" + i + "/" + f + "/" + cli + "/tickets";
+                a.click();
+
+        }
+
+        function getTickets() {
             $("#tb2").html("");
             var esta = $("#estado").val();
             var fi = $("#fechai").val();
@@ -191,7 +181,7 @@
                         extend:'pdfHtml5',
                         title: 'Hoja de Trabajo'
                      },
-                    
+
                 ]
             });
                 } else {
