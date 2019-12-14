@@ -39,13 +39,14 @@
                 </div>
                 <div class="card-body">
                     <div class="material-datatables">
-                        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
+                        <table id="datatables" class="table table-bordered table-striped table-hover"
                                width="100%" style="width:100%">
                             <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>CLIENTE</th>
                                 <th>MARCA</th>
+                                <th>MODELO</th>
                                 <th>PROCESADOR</th>
                                 <th>MEMORIA RAM</th>
                                 <th>DISCO DURO</th>
@@ -59,18 +60,24 @@
                                     @if($equipo->propietario == 'NATURAL')
                                         <td>{{$equipo->cliente_natural->nombre.' '.$equipo->cliente_natural->apellido}}</td>
                                     @else
-                                        <td>{{'EMPRESA - '.$equipo->cliente_juridico->empresa}}</td>
+                                        <td>{{$equipo->cliente_juridico->empresa}}</td>
                                     @endif
 
                                     <td>{{$equipo->marca}}</td>
+                                    <td>{{$equipo->modelo}}</td>
                                     <td>{{$equipo->procesador}}</td>
                                     <td>{{$equipo->memoria_ram}}</td>
                                     <td>{{$equipo->disco_duro}}</td>
                                     <td style="text-align: center;">
-                                        <a href="{{ route('equipos.edit',$equipo->id)}}"
+                                        <a href="{{route('equipos.show',$equipo->id)}}"
                                            class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Editar Equipo"><i class="material-icons">mode_edit</i></a>
-                                        <a href="{{ route('equipos.delete',$equipo->id)}}"
+                                           data-placement="top" title="Ver Equipo"><i class="material-icons">
+                                                remove_red_eye
+                                            </i></a>
+                                        <a href="{{route('equipos.edit',$equipo->id)}}"
+                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Editar Equipo"><i class="fa fa-edit"></i></a>
+                                        <a href="{{route('equipos.delete',$equipo->id)}}"
                                            class="btn btn-link btn-danger btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Eliminar Equipo"><i class="material-icons">delete</i></a>
                                     </td>
@@ -82,6 +89,7 @@
                                 <th>ID</th>
                                 <th>CLIENTE</th>
                                 <th>MARCA</th>
+                                <th>MODELO</th>
                                 <th>PROCESADOR</th>
                                 <th>MEMORIA RAM</th>
                                 <th>DISCO DURO</th>

@@ -35,12 +35,15 @@ class ReporteController extends Controller
 
     public function getTickets($estado, $fi, $ff, $cliente)
     {
-        // dd([$estado,$fi,$ff,$cliente]);
+        //dd([$estado,$fi,$ff,$cliente]);
         $tickets = null;
         $in = explode(",", $fi);
         $fin = explode(",", $ff);
         $inicio = $in[2] . "-" . $in[0] . "-" . $in[1];
         $final = $fin[2] . "-" . $fin[0] . "-" . $fin[1];
+        $final = strtotime($final);
+        $final = strtotime("+1 day", $final);
+        $final = date('Y-m-d',$final);
         if ($cliente != "null") {
             $cl = explode("-", $cliente);
             if ($cl[1] == "J") {
@@ -49,9 +52,10 @@ class ReporteController extends Controller
                 $clien = Cliente_Natural::find($cl[0]);
             }
             $tic = $clien->tickets;
-            //  $b = DB::table('solicituds')->whereBetween('created_at', [$fi, $ff])->where('docente_id', $docente->id)->get();
-        } else {
+             } else {
+
             $tic = Ticket::whereBetween('updated_at', [$inicio, $final])->get();
+
         }
         $i = strtotime($inicio);
         $f = strtotime($final);
@@ -87,8 +91,15 @@ class ReporteController extends Controller
                 }
                 $obj['tipo'] = $value->solicitante;
                 $obj['solicitante'] = $value->cliente_natural->nombre . " " . $value->cliente_natural->apellido;
-                $obj['fecha'] = $value->updated_at;
+                 $obj['solicitante'] = $value->cliente_natural->nombre . " " . $value->cliente_natural->apellido;
+                $fecha = explode(" ",$value->updated_at);
+                $obj['fecha'] = $fecha[0];
                 $obj['estado'] = $value->estado;
+                if($value->observacion == null){
+                $obj['descripcion'] = "--";
+                } else{
+                $obj['descripcion'] = $value->observacion;
+                }
                 $response[] = $obj;
             }
             return json_encode($response);

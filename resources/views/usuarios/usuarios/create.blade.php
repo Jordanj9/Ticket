@@ -127,7 +127,7 @@
                             class="material-icons">clear</i></button>
                 </div>
                 <div class="modal-body">
-                    <strong>Agregue un usuario al sistema y registre su/sus roles de acceso</strong>. Puede crear un usuario llenando todos los campos, ó partir de las personas generales ó feligreses de la iglesia.
+                    <strong>Agregue un usuario al sistema y registre su/sus roles de acceso</strong>. Puede crear un usuario llenando todos los campos, ó partir de los empleados.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>

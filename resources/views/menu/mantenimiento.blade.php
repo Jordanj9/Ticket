@@ -20,18 +20,22 @@
                     </div>
                 </div>
                 <div class="card-body">
+                @if(session()->has('PAG_NUEVOMANTENIMIENTO'))
                     <a href="{{route('mantenimiento.create')}}">
                         <button class="btn btn-outline-info btn-round">
                             <i class="material-icons">build</i> NUEVO MANTENIMIENTO
                             <div class="ripple-container"></div>
                         </button>
                     </a>
+                @endif
+                @if(session()->has('PAG_INFORME'))
                     <a href="{{route("tickets.index")}}">
                         <button class="btn btn-outline-info btn-round">
                             <i class="material-icons">assignment</i>  INFORME
                             <div class="ripple-container"></div>
                         </button>
                     </a>
+                @endif
                 </div>
             </div>
         </div>

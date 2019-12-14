@@ -60,7 +60,7 @@
                                     <div class="form-line">
                                         <label class="control-label">Descripción</label>
                                         <textarea name="" class="form-control" id="detalle" cols="30" rows="10"
-                                                  placeholder="Detalle de la licencia"></textarea>
+                                                  placeholder="Detalle del Mantenimiento"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -115,8 +115,6 @@
                                     <th>PROCESADOR</th>
                                     <th>MEMORIA RAM</th>
                                     <th>DISCO DURO</th>
-                                    <th>CREADO</th>
-                                    <th>ACTUALIZADO</th>
                                     <th>ACCIONES</th>
                                 </tr>
                                 </thead>
@@ -130,13 +128,17 @@
                                     <td>${item.procesador}</td>
                                     <td>${item.memoria_ram}</td>
                                     <td>${item.disco_duro}</td>
-                                    <td>${item.created_at}</td>
-                                    <td>${item.updated_at}</td>
                                     <td style="text-align: center;">
                                         <a onclick="showModal(event,${item.id})"
                                            class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Nuevo Mantenimiento"><i class="material-icons">add_circle</i></a>
+                                           <a href="{{url('general/equipos')}}/${item.id}"
+                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Ver Equipo"><i class="material-icons">
+                                                remove_red_eye
+                                            </i></a>
                                     </td>
+
                                 </tr>`;
                          });
 
@@ -148,8 +150,6 @@
                                 <th>PROCESADOR</th>
                                 <th>MEMORIA RAM</th>
                                 <th>DISCO DURO</th>
-                                <th>CREADO</th>
-                                <th>ACTUALIZADO</th>
                                 <th class="text-right">ACCIONES</th>
                             </tr>
                             </tfoot>

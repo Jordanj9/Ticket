@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
+            @if(session()->has('MOD_USUARIOS'))
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <a href="{{route('admin.usuarios')}}">
                     <div class="card card-stats">
@@ -18,6 +19,8 @@
                     </div>
                 </a>
             </div>
+            @endif
+            @if(session()->has('MOD_GENERAL'))
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <a href="{{route('admin.general')}}">
                     <div class="card card-stats">
@@ -33,54 +36,62 @@
                     </div>
                 </a>
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <a href="{{route('admin.usuarios')}}">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-success card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">build</i>
+            @endif
+           @if(session()->has('MOD_MANTENIMIENTO'))
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <a href="{{route('admin.usuarios')}}">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-success card-header-icon">
+                                <div class="card-icon">
+                                    <i class="material-icons">build</i>
+                                </div>
+                                <p class="card-category">Modulo</p>
+                                <h3 class="card-title">Mantenimiento</h3>
                             </div>
-                            <p class="card-category">Modulo</p>
-                            <h3 class="card-title">Mantenimiento</h3>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+           @endif
+
+            @if(session()->has('MOD_REPORTE'))
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <a href="{{route('admin.reporte')}}">
+                        <div class="card card-stats">
+                            <div class="card-header card-header-success card-header-icon" >
+                                <div class="card-icon">
+                                    <i class="material-icons">trending_up</i>
+                                </div>
+                                <p class="card-category">Modulo</p>
+                                <h3 class="card-title">Reportes</h3>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endif
+
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-danger card-header-icon">
+                            <div class="card-icon">
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                   style="color: white"><i class="material-icons">toggle_off</i></a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </div>
+                            <p class="card-category">Cerrar</p>
+                            <h3 class="card-title">Sesión</h3>
                         </div>
                         <div class="card-footer">
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <a href="{{route('admin.reporte')}}">
-                    <div class="card card-stats">
-                        <div class="card-header card-header-success card-header-icon" >
-                            <div class="card-icon">
-                                <i class="material-icons">trending_up</i>
-                            </div>
-                            <p class="card-category">Modulo</p>
-                            <h3 class="card-title">Reportes</h3>
-                        </div>
-                        <div class="card-footer">
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-danger card-header-icon">
-                        <div class="card-icon">
-                            <a href="{{ route('logout') }}"
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                               style="color: white"><i class="material-icons">toggle_off</i></a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </div>
-                        <p class="card-category">Cerrar</p>
-                        <h3 class="card-title">Sesión</h3>
-                    </div>
-                    <div class="card-footer">
                     </div>
                 </div>
-            </div>
+
         </div>
     </div>
 @endsection

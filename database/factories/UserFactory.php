@@ -18,11 +18,11 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'identificacion' => '1118536667',
-        'nombres' => 'ALBERTO ENRIQUE',
-        'apellidos' => 'ROJAS GUERRA',
-        'email' => 'ing.beto.rojas@gmail.com',
-        'password' => \Illuminate\Support\Facades\Hash::make("1118536667"), // password
+        'identificacion' => '1065848333',
+        'nombres' => 'CAMILO ANDRES',
+        'apellidos' => 'COLON CAÑIZARES',
+        'email' => 'colonca1999@gmail.com',
+        'password' => \Illuminate\Support\Facades\Hash::make("1065848333"), // password
         'estado' => 'ACTIVO'
     ];
 });

@@ -78,9 +78,9 @@
                                 </div>
                             </div>
                             <br>
-                            <h4>Descripción del Producto</h4>
+                            <h4>Descripción del Equipo</h4>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group bmd-form-group">
                                         <div class="form-line">
                                             <label class="control-label">Año de Aquisiciòn</label>
@@ -90,12 +90,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group bmd-form-group">
                                         <div class="form-line">
                                             <label class="control-label">Pantalla</label>
                                             <input type="text" class="form-control" name="pantalla"
                                                    required="required" placeholder="Detalle de la pantalla"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group bmd-form-group">
+                                        <div class="form-line">
+                                            <label class="control-label">Modelo</label>
+                                            <input type="text" class="form-control" name="modelo"
+                                                   required="required" placeholder="Modelo del equipo"
                                             />
                                         </div>
                                     </div>
@@ -146,7 +156,7 @@
                                     <div class="form-group bmd-form-group">
                                         <div class="form-line">
                                             <label class="control-label">Licencias</label>
-                                            <textarea id="licencias" disabled
+                                            <textarea id="licencias"
                                                       class="form-control" id="" cols="30" rows="10" name ="licencias"
                                                       placeholder="licencias con las que cuenta el equipo"></textarea>
                                         </div>
@@ -305,6 +315,7 @@
         $(document).ready(function () {
             var table = $('#datatables').DataTable();
         });
+
         function selecionarCliente(event, identificacion, nombres,id,tipo) {
             event.preventDefault();
             $('#clientes').modal('hide');
@@ -325,10 +336,12 @@
             $("#detalle").val("");
         }
 
-        function guardar(){
+        function guardar(event){
+
             const clientehasValue = $('#cliente_id').val().length > 0;
             $('#licencias').removeAttr('disabled');
             if(!clientehasValue){
+              event.preventDefault();
                 $.notify({
                     icon: "add_alert",
                     message: 'Debe selecionar el cliente al cual pertenece el equipo a registrar.'

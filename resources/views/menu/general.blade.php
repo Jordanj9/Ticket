@@ -20,24 +20,46 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <a href="{{route('equipos.index')}}">
-                        <button class="btn btn-outline-info btn-round">
-                            <i class="material-icons">desktop_mac</i> EQUIPOS
-                            <div class="ripple-container"></div>
-                        </button>
-                    </a>
-                    <a href="{{route("tickets.index")}}">
-                        <button class="btn btn-outline-info btn-round">
-                            <i class="material-icons">style</i>  TICKETS
-                            <div class="ripple-container"></div>
-                        </button>
-                    </a>
-                    <a href="{{route("empleado.index")}}">
-                        <button class="btn btn-outline-info btn-round">
-                            <i class="material-icons">people_alt</i>  EMPLEADOS
-                            <div class="ripple-container"></div>
-                        </button>
-                    </a>
+                    @if(session()->has('PAG_EQUIPOS'))
+                        <a href="{{route('equipos.index')}}">
+                            <button class="btn btn-outline-info btn-round">
+                                <i class="material-icons">desktop_mac</i> EQUIPOS
+                                <div class="ripple-container"></div>
+                            </button>
+                        </a>
+                    @endif
+                    @if(session()->has('PAG_TICKETS'))
+                        <a href="{{route("tickets.index")}}">
+                            <button class="btn btn-outline-info btn-round">
+                                <i class="material-icons">style</i> TICKETS
+                                <div class="ripple-container"></div>
+                            </button>
+                        </a>
+                    @endif
+                    @if(session()->has('PAG_EMPLEADOS'))
+                        <a href="{{route("empleado.index")}}">
+                            <button class="btn btn-outline-info btn-round">
+                                <i class="material-icons">people_alt</i> EMPLEADOS
+                                <div class="ripple-container"></div>
+                            </button>
+                        </a>
+                    @endif
+                    @if(session()->has('PAG_EMPLEADOS'))
+                        <a href="{{route("natural.index")}}">
+                            <button class="btn btn-outline-info btn-round">
+                                <i class="material-icons">people_alt</i> PERSONA NATURAL
+                                <div class="ripple-container"></div>
+                            </button>
+                        </a>
+                    @endif
+                    @if(session()->has('PAG_EMPLEADOS'))
+                        <a href="{{route("juridica.index")}}">
+                            <button class="btn btn-outline-info btn-round">
+                                <i class="material-icons">people_alt</i> PERSONA JURIDICA
+                                <div class="ripple-container"></div>
+                            </button>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

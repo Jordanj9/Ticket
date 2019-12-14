@@ -17,7 +17,7 @@ class CreateTicketsTable extends Migration
             $table->bigIncrements('id');
             $table->string('radicado', 20);
             $table->string('descripcion');
-            $table->string('estado', 20)->default('PENDIENTE');
+            $table->enum('estado', ['PENDIENTE','ASIGNADO','APLAZADO','FINALIZADO'])->default('PENDIENTE');
             $table->string('observacion')->nullable();
             $table->string('dependencia')->nullable();
             $table->bigInteger('empleado_id')->unsigned()->nullable();

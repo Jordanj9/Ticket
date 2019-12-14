@@ -31,10 +31,11 @@ class TicketController extends Controller
         $u = Auth::user();
         $empleado = Empleado::where('identificacion',$u->identificacion)->first();
         if($empleado != null){
-            $tickets = $empleado->tickets();
+            $tickets = $empleado->tickets;
         }else{
             $tickets = Ticket::all();
         }
+
         return view('general.ticket.list')
             ->with('location', 'general')
             ->with('tickets', $tickets)
@@ -122,13 +123,14 @@ class TicketController extends Controller
         if ($result) {
             $response = "<h5>Señor(a) " . $clienteNatural->nombre . " " . $clienteNatural->apellido . " su ticket ha sido exitoso!</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p>";
             if($request->tipopersona == 'JURIDICA'){
-                $responseJurico = "<h5>Nueva solicitud de tickets!</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p><p><b>Dependencia: ".$request->dependencia."</b></p><p><b>Observaciòn: ".$request->observacion."</b></p><br><h5>Detalles del Solicitante</h5><br><p><b>Nombre: ".$clienteNatural->nombre." ".$clienteNatural->apellido."</b></p><p><b>Telefono: ".$clienteNatural->telefono."</b></p>";
+                $responseJurico = "<h5>Nueva solicitud de tickets!</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p><p><b>Dependencia: ".$request->dependencia."</b></p><p><b>Observaciòn: ".$ticket->descripcion."</b></p><br><h5>Detalles del Solicitante</h5><br><p><b>Nombre: ".$clienteNatural->nombre." ".$clienteNatural->apellido."</b></p><p><b>Telefono: ".$clienteNatural->telefono."</b></p>";
                 Mail::to($clienteJuridico->email)->send(new NotificationTicket($responseJurico));
             }
             Mail::to($clienteNatural->email)->send(new NotificationTicket($response));
 
             $responseAdmin = "<h5>Señor(a) admin se ha recibido una nueva solicitud de ticket </h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p><br><h5>Detalles del Solicitante</h5><br><p><b>Nombre: ".$clienteNatural->nombre." ".$clienteNatural->apellido."</b></p><p><b>Telefono: ".$clienteNatural->telefono."</b></p>";
-            Mail::to('colonca1999@gmail.com')->send(new NotificationTicket($responseAdmin));
+            Mail::to('soporte@pctoolsbarrancabermeja.com')->send(new NotificationTicket($responseAdmin));
+
             return response()->json([
                 'response' => $response,
                 'status' => 'ok'
@@ -147,9 +149,12 @@ class TicketController extends Controller
      * @param \App\Ticket $ticket
      * @return \Illuminate\Http\Response
      */
-    public function show(Ticket $ticket)
+    public function show($id)
     {
-        //
+          $ticket  = Ticket::find($id);
+          return view('general.ticket.show')
+              ->with('location','general')
+              ->with('ticket',$ticket);
     }
 
     /**
@@ -238,6 +243,7 @@ class TicketController extends Controller
                 $obj["emailempresa"] = $cliente->email;
                 $obj["telefonoemp"] = $cliente->telefono;
                 $obj['direccionemp'] = $cliente->direccion;
+                $obj["equipos"] = $cliente->equipos;
 
             return response()->json([
                 'response' => $obj,
@@ -259,7 +265,12 @@ class TicketController extends Controller
     public function asignar(Request $request)
     {
         $ticket = Ticket::find($request->ticket_id);
+        if($ticket->estado == 'FINALIZADO' || $ticket->estado == 'CANCELADO'){
+            flash("El Ticket con N° de Radicado: <strong>" . $ticket->radicado . "</strong> no puede ser asignado, debido a su estado actual")->warning();
+            return redirect()->route('tickets.index');
+        }
         $ticket->empleado_id = $request->empleado_id;
+        $ticket->estado = 'ASIGNADO';
         $result = $ticket->save();
         if ($result) {
             flash("El Ticket con N° de Radicado: <strong>" . $ticket->radicado . "</strong> le fue asignado al empleado de forma exitosa!")->success();
@@ -279,10 +290,10 @@ class TicketController extends Controller
     public function estado($ticket_id,$estado,$obse){
         $ticket = Ticket::find($ticket_id);
         if($estado == 'FINALIZADO'){
-            $ticket->estado == 'FINALIZADO';
-            $ticket->observacion == strtoupper($obse);
+            $ticket->estado = 'FINALIZADO';
+            $ticket->observacion = strtoupper($obse);
         }else{
-            $ticket->estado == $estado;
+            $ticket->estado = $estado;
         }
         $result = $ticket->save();
         if($result){

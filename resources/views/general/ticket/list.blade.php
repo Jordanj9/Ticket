@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <p class="animated fadeInDown">
                     <a href="{{route('inicio')}}">Inicio </a><span class="fa-angle-right fa"></span><a
-                        href="{{route('admin.general')}}">General</a><span class="fa-angle-right fa"></span>
+                        href="{{route('admin.general')}}">  General </a><span class="fa-angle-right fa"></span>
                     Tickest
                 </p>
             </div>
@@ -28,8 +28,6 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a href="{{ route('modulo.create') }}" class="dropdown-item" href="#">Agregar nuevo
-                                        equipo</a>
                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                        data-target="#mdModal">Ayuda</a>
                                 </div>
@@ -38,16 +36,17 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="datatables" class="table table-bordered table-striped table-hover table-responsive table-condensed dataTable js-exportable" width="100%" cellspacing="0"
-                               width="100%" style="width:100%">
+                    <div class="material-datatables">
+                        <table id="datatables" class="table table-bordered table-striped table-hover" width="100%" cellspacing="0">
                             <thead>
                             <tr>
                                 <th>RADICADO</th>
                                 <th>CLIENTE</th>
                                 <th>TELEFONO</th>
-                                <th>DESCRIPCIÓN</th>
                                 <th>ESTADO</th>
+                                <th>SOLICITANTE</th>
+                                <th>DEPENDENCIA</th>
+                                <th>CREADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </thead>
@@ -57,32 +56,41 @@
                                     <td>{{$t->radicado}}</td>
                                     @if($t->solicitante == 'JURIDICA')
                                         <td>{{$t->cliente_juridico->empresa}}</td>
+                                        <td>{{$t->cliente_juridico->telefono}}</td>
+                                    @else
+                                        <td>{{$t->cliente_natural->nombre." ".$t->cliente_natural->apellido}}</td>
+                                        <td>{{$t->cliente_natural->telefono}}</td>
                                     @endif
-                                    <td>{{$t->cliente_natura}}</td>
-                                    <td>{{$t->cliente->telefono}}</td>
-                                    <td>{{$t->cliente->email}}</td>
-                                    <td>{{$t->direccion}}</td>
+                                    <td>{{$t->estado}}</td>
+                                    <td>{{$t->cliente_natural->nombre." ".$t->cliente_natural->apellido}}</td>
+                                    @if($t->dependencia == null)
+                                        <td>NO APLICA</td>
+                                    @else
+                                        <td>{{$t->dependencia}}</td>
+                                    @endif
+
                                     <td>{{$t->created_at}}</td>
-                                    <td>{{$t->updated_at}}</td>
                                     <td>
-                                        @if(session('ROL') == 'ADMINISTRADOR')
-                                            <a data-toggle="modal"
-                                               data-target="#addEjeTematico" onclick="selectEmpleado('{{$t->id}}')"
-                                               class="btn btn-link btn-warning btn-just-icon remove"
-                                               data-toggle="tooltip"
-                                               data-placement="top" title="Asignar ticket"><i class="material-icons">perm_data_setting</i></a>
-                                        @endif
-                                        <a data-toggle="modal"
-                                           data-target="#estados" onclick="selectEmpleado('{{$t->id}}')"
-                                           class="btn btn-link btn-warning btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Cambiar Estado Ticket"><i class="material-icons">sync_alt</i></a>
-                                        <a href="{{ route('tickets.edit',$t->id)}}"
-                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
-                                           data-placement="top" title="Editar Módulo"><i class="material-icons">mode_edit</i></a>
                                         <a href="{{ route('tickets.show',$t->id)}}"
                                            class="btn btn-link btn-info btn-just-icon remove" data-toggle="tooltip"
                                            data-placement="top" title="Ver Tickets"><i
                                                 class="material-icons">visibility</i></a>
+
+                                        <a data-toggle="modal"
+                                           data-target="#estados" onclick="selectTicket('{{$t->id}}','{{$t->estado}}')"
+                                           class="btn btn-link btn-success btn-just-icon remove" data-toggle="tooltip"
+                                           data-placement="top" title="Cambiar Estado Ticket"><i class="material-icons">
+                                                crop_rotate
+                                            </i></a>
+                                        @if(session('ROL') == 'ADMINISTRADOR')
+                                            <a data-toggle="modal"
+                                               data-target="#addEjeTematico" onclick="selectTicket('{{$t->id}}','{{$t->estado}}')"
+                                               class="btn btn-link btn-dark btn-just-icon remove"
+                                               data-toggle="tooltip"
+                                               data-placement="top" title="Asignar ticket"><i class="material-icons">
+                                                    transfer_within_a_station
+                                                </i></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -92,8 +100,10 @@
                                 <th>RADICADO</th>
                                 <th>CLIENTE</th>
                                 <th>TELEFONO</th>
-                                <th>DESCRIPCIÓN</th>
                                 <th>ESTADO</th>
+                                <th>SOLICITANTE</th>
+                                <th>DEPENDENCIA</th>
+                                <th>CREADO</th>
                                 <th>ACCIONES</th>
                             </tr>
                             </tfoot>
@@ -115,7 +125,7 @@
                 </div>
                 <div class="modal-body">
                     <strong>Detalles: </strong>los tickets son solicitudes de servicios realizadas por los clientes
-                    <br/><strong>Nota: </strong> los iconos del ticket permiten aplazar, .
+                    <br/><strong>Nota: </strong> los iconos del ticket permiten ver detalles, aplazar, cancelar, finalizar y asignar los tickes.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
@@ -141,7 +151,7 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h5><strong>Asignar ticket a empleado</strong></h5>
+                                        <h5><strong>Asignar ticket a Ticket</strong></h5>
                                         <div class="form-group bmd-form-group">
                                             <div class="form-line">
                                                 <select class="form-control selectpicker"
@@ -149,7 +159,6 @@
                                                         style="width: 100%;" required="required"
                                                         title="--Seleccione una opción--"
                                                         name="empleado_id">
-                                                    <option value="">--Seleccione una opción--</option>
                                                     @foreach($empleados as $key=>$value)
                                                         <option value="{{$key}}">{{$value}}</option>
                                                     @endforeach
@@ -161,9 +170,6 @@
                             </div>
                             <br>
                             <div class="modal-footer">
-                                <button class="btn btn-info btn-round" style="margin-right: 50px;" type="reset">Limpiar
-                                    Formulario
-                                </button>
                                 <button class="btn btn-success btn-round" type="submit">Guardar</button>
                             </div>
                         </form>
@@ -184,14 +190,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="col-md-12">
-                        {{--                        <form class="form-horizontal" method="POST" action="{{route('tickets.estado')}}">--}}
-                        {{--                                @csrf--}}
+                        {{--<form class="form-horizontal" method="POST" action="{{route('tickets.estado')}}">--}}
+                        {{--@csrf--}}
                         <input type="hidden" id="ticketid" name="ticket_id">
                         <div class="col-md-12">
                             <h5><strong>Cambiar estado de ticket</strong></h5>
                             <div class="row">
                                 <div class="col-md-12 checkbox-radios" style="margin-left: 150px;">
                                     <div class="form-check form-check-inline">
+                                        <input type="hidden" id="estadoDelTicketActual">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="radio" name="estado"
                                                    value="FINALIZADO" id="finalizar" onclick="estado(this.id)"/>
@@ -229,7 +236,7 @@
                         </div>
                         <br>
                         <div class="modal-footer">
-                            <button class="btn btn-info btn-round" style="margin-right: 50px;" type="reset">Limpiar
+                            <button class="btn btn-info btn-round" style="margin-right: 50px;" type="button" onclick="limpiar()">Limpiar
                                 Formulario
                             </button>
                             <button class="btn btn-success btn-round" type="button" onclick="guardar()">Guardar</button>
@@ -258,72 +265,84 @@
                     searchPlaceholder: "Search records",
                 }
             });
-
-            var table = $('#datatable').DataTable();
-
-            // Edit record
-            table.on('click', '.edit', function () {
-                $tr = $(this).closest('tr');
-                var data = table.row($tr).data();
-                alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-            });
-
-            // Delete a record
-            table.on('click', '.remove', function (e) {
-                $tr = $(this).closest('tr');
-                table.row($tr).remove().draw();
-                e.preventDefault();
-            });
-
-            //Like record
-            table.on('click', '.like', function () {
-                alert('You clicked on Like button');
-            });
         });
 
-        function selectEmpleado(id) {
-            document.getElementById('ticket_id').value = id;
-            document.getElementById('ticketid').value = id;
-        }
-
-        function limpiar() {
-            $("#observacion").val("");
-        }
-
-        function estado(estado) {
-            if (estado == 'finalizar') {
-                $("#rowobservacion").removeAttr('style');
-            } else {
-                $("#observacion").val("");
-                $("#rowobservacion").attr('style', 'display:none');
+            function selectTicket(id,estado) {
+                document.getElementById('ticket_id').value = id;
+                document.getElementById('ticketid').value = id;
+                document.getElementById('estadoDelTicketActual').value = estado;
             }
-        }
 
-        function guardar() {
-            var band = true;
-            var ticket = $("#ticketid").val();
-            var obse = $("#observacion").val();
-            if ($("#finalizar").prop('checked')) {
-                var estado = $("#finalizar").val();
-                if ($("#observacion").length <= 0) {
-                    band = false;
+            function limpiar() {
+                $("#observacion").val("");
+            }
+
+            function estado(estado) {
+                if (estado == 'finalizar') {
+                    $("#rowobservacion").removeAttr('style');
+                } else {
+                    $("#observacion").val("");
+                    $("#rowobservacion").attr('style', 'display:none');
                 }
-            } else {
-                if($("#cancelar").prop('checked')){
-                    var estado = $("#cancelar").val();
-                }else{
-                    var estado = $("#aplazar").val();
-                }
-                if (band == false) {
+            }
+
+            function validar(){
+                let estadoActual =  document.getElementById('estadoDelTicketActual').value;
+                if(estadoActual == 'FINALIZADO' || estadoActual == 'CANCELADO'){
                     $.notify({
                         icon: "add_alert",
-                        message: 'Por favor ingrese la observación. Atención!'
+                        message: 'La accion que intenta realizar no es posible debido al estado actual del ticket.'
                     }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                    return false;
+                }
+
+                return true;
+            }
+
+            function guardar() {
+                if(!validar()){
                     return;
+                }
+                var band = true;
+                var ticket = $("#ticketid").val();
+                var obse = $("#observacion").val();
+                if ($("#finalizar").prop('checked')) {
+                    var estado = $("#finalizar").val();
+                    if ($("#observacion").val().length > 0) {
+                        location.href = "{{url("general/tickets/cambiar/")}}/"+ticket+"/"+estado+"/"+obse+"/estado";
+                    }else{
+                        $.notify({
+                            icon: "add_alert",
+                            message: 'Por favor ingrese la observación. Atención!'
+                        }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                        return;
+                    }
                 } else {
-                        //ruta 'tickets/cambiar/{ticket}/{estado}/{obs}/estado'
+                    obse= "null";
+                    if ($("#cancelar").prop('checked')) {
+                        var estado = $("#cancelar").val();
+                    } else {
+                        let estadoActual =  document.getElementById('estadoDelTicketActual').value;
+                        if(estadoActual == 'APLAZADO'){
+                            $.notify({
+                                icon: "add_alert",
+                                message: 'La accion que intenta realizar no es posible debido al estado actual del ticket.'
+                            }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                            return;
+                        }
+                        var estado = $("#aplazar").val();
+                    }
+                    if (band == false) {
+                        $.notify({
+                            icon: "add_alert",
+                            message: 'Por favor ingrese la observación. Atención!'
+                        }, {type: 'warning', timer: 3e3, placement: {from: 'bottom', align: 'right'}});
+                        return;
+                    } else {
+                        location.href = "{{url("general/tickets/cambiar/")}}/"+ticket+"/"+estado+"/"+obse+"/estado";
+                    }
                 }
             }
-        }
+
     </script>
 @endsection

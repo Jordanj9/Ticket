@@ -81,11 +81,16 @@ class EquipoController extends Controller
         }
 
         foreach ($equipo->attributesToArray() as $key => $value) {
-            if ($key == 'licencias') {
-                $equipo->$key = $value;
-            } else {
-                $equipo->$key = strtoupper($value);
+           
+           if(isset($request->$key)){ 
+	            if ($key == 'licencias') {
+	                $equipo->$key = $value;
+	            } else {
+	            
+	                $equipo->$key = strtoupper($value);
+	            }
             }
+            
         }
         $result = $equipo->save();
 
@@ -105,9 +110,12 @@ class EquipoController extends Controller
      * @param \App\Equipo $equipo
      * @return \Illuminate\Http\Response
      */
-    public function show(Equipo $equipo)
+    public function show($id)
     {
-        //
+        $equipo = Equipo::find($id);
+        return view('general.equipos.show')
+               ->with('location','general')
+               ->with('equipo',$equipo);
     }
 
     /**
@@ -189,11 +197,15 @@ class EquipoController extends Controller
         }
 
         foreach ($equipo->attributesToArray() as $key => $value) {
+         if(isset($request->$key)){ 
             if ($key == 'licencias') {
-                $equipo->$key = $value;
+                $equipo->$key = $request->$key;
             } else {
-                $equipo->$key = strtoupper($value);
+                if($key != 'juridica_id' && $key != 'natural_id'){
+                    $equipo->$key = strtoupper($request->$key);
+                }
             }
+          }
         }
         $result = $equipo->save();
 
@@ -204,6 +216,7 @@ class EquipoController extends Controller
             flash("El Equipo <strong>" . $equipo->id . ' ' . $equipo->marca . "-" . $equipo->procesador . "</strong>no pudo ser modificado de forma exitosa!")->success();
             return redirect()->route('equipos.index');
         }
+
     }
 
     /**

@@ -51,7 +51,7 @@
                                             <div class="form-line">
                                                 <input type="number" class="form-control"
                                                        placeholder="Número de identificación"
-                                                       name="identificacion"/>
+                                                       name="identificacion" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -60,7 +60,7 @@
                                             <div class="form-line">
                                                 <input type="text" class="form-control"
                                                        placeholder="Nombres del empleado"
-                                                       name="nombre"/>
+                                                       name="nombre" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
                                         <div class="form-group bmd-form-group">
                                             <div class="form-line">
                                                 <input type="text" class="form-control"
-                                                       placeholder="Apellidos del empleado"
+                                                       placeholder="Apellidos del empleado" required
                                                        name="apellido"/>
                                             </div>
                                         </div>
@@ -80,7 +80,7 @@
                                         <div class="form-group bmd-form-group">
                                             <div class="form-line">
                                                 <input type="number" class="form-control"
-                                                       placeholder="Telefono"
+                                                       placeholder="Telefono" required
                                                        name="telefono"/>
                                             </div>
                                         </div>
@@ -89,7 +89,7 @@
                                         <div class="form-group bmd-form-group">
                                             <div class="form-line">
                                                 <input type="email" class="form-control"
-                                                       placeholder="Correo electronico"
+                                                       placeholder="Correo electronico" required
                                                        name="email"/>
                                             </div>
                                         </div>
@@ -98,7 +98,7 @@
                                         <div class="form-group bmd-form-group">
                                             <div class="form-line">
                                                 <input type="text" class="form-control"
-                                                       placeholder="Dirección"
+                                                       placeholder="Dirección" required
                                                        name="direccion"/>
                                             </div>
                                         </div>

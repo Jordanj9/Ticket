@@ -95,6 +95,7 @@
                                 <th>ESTADO</th>
                                 <th>SOLICITANTE</th>
                                 <th>DEPENDENCIA</th>
+                                <th>OBSERVACIÓN</th>
                                 <th>FECHA</th>
                             </tr>
                             </thead>
@@ -108,6 +109,7 @@
                                 <th>ESTADO</th>
                                 <th>SOLICITANTE</th>
                                 <th>DEPENDENCIA</th>
+                                <th>OBSERVACIÓN</th>
                                 <th>FECHA</th>
                             </tr>
                             </tfoot>
@@ -121,6 +123,8 @@
 @section('script')
     <script>
         $(document).ready(function () {
+
+
             // initialise Datetimepicker and Sliders
             md.initFormExtendedDatetimepickers();
             if ($('.slider').length != 0) {
@@ -130,6 +134,7 @@
         });
 
         function getTickets() {
+
             $("#tb2").html("");
             var esta = $("#estado").val();
             var fi = $("#fechai").val();
@@ -152,7 +157,8 @@
                 url: '{{url("reporte/reporte/menu/")}}/' + esta + "/" + i + "/" + f + "/" + cli + "/tickets",
                 data: {},
             }).done(function (msg) {
-                if (msg !== "null") {
+
+                if (msg != "null") {
                     var m = JSON.parse(msg);
                     var html = "";
                     $.each(m, function (index, item) {
@@ -161,19 +167,33 @@
                         html = html + "<td>" + item.estado + "</td>";
                         html = html + "<td>" + item.solicitante + "</td>";
                         html = html + "<td>" + item.dependencia + "</td>";
+                        html = html + "<td>" + item.descripcion + "</td>";
                         html = html + "<td>" + item.fecha + "</td>";
                         +"</tr>";
                     });
+
                     $("#tb2").html(html);
-                    $('#datatables').DataTable( {
-                        dom: 'Bfrtip',
-                        buttons: [
-                            'copyHtml5',
-                            'excelHtml5',
-                            'csvHtml5',
-                            'pdfHtml5'
-                        ]
-                    } );
+                     var table = $('#datatables').DataTable({
+                     retrieve: true,
+                     responsive: true,
+                     dom: 'Bfrtip',
+                     buttons: [
+                     {
+                        extend:'copyHtml5',
+                        title: 'Hoja de Trabajo'
+                    },{
+                        extend:'excelHtml5',
+                        title: 'Hoja de Trabajo'
+                    },{
+                        extend:'csvHtml5',
+                        title: 'Hoja de Trabajo'
+                    },{
+                        extend:'pdfHtml5',
+                        title: 'Hoja de Trabajo'
+                     },
+                    
+                ]
+            });
                 } else {
                     $.notify({
                         icon: "add_alert",

@@ -20,39 +20,46 @@
                     </div>
                 </div>
                 <div class="card-body">
+                @if(session()->has('PAG_MODULOS'))
                     <a href="{{route('modulo.index')}}">
                         <button class="btn btn-outline-info btn-round">
                             <i class="fa fa-cubes"></i>  MODULOS DEL SISTEMA
                             <div class="ripple-container"></div>
                         </button>
                     </a>
+                @endif
+                @if(session()->has('PAG_PAGINAS'))
                     <a href="{{route("pagina.index")}}">
                         <button class="btn btn-outline-info btn-round">
                             <i class="fa fa-file-powerpoint-o"></i>  PÁGINAS DEL SISTEMA
                             <div class="ripple-container"></div>
                         </button>
                     </a>
+                @endif
+                @if(session()->has('PAG_GRUPOS-ROLES'))
                     <a href="{{route("grupousuario.index")}}">
                         <button class="btn btn-outline-info btn-round">
                             <i class="fa fa-user"></i>  GRUPOS O ROLES DE USUARIOS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-
+                @endif
+                @if(session()->has('PAG_PRIVILEGIOS'))
                     <a href="{{route('grupousuario.privilegios')}}">
                         <button class="btn btn-outline-info btn-round">
                             <i class="fa fa-key"></i>  PRIVILÉGIOS A PÁGINAS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-
+               @endif
+               @if(session()->has('PAG_USUARIOS'))
                     <a href="{{route('usuario.index')}}">
                         <button class="btn btn-outline-info btn-round">
                             <i class="fa fa-users"></i>  LISTAR TODOS LOS USUARIOS
                             <div class="ripple-container"></div>
                         </button>
                     </a>
-
+               @endif
                 </div>
             </div>
         </div>
