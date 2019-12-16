@@ -41,6 +41,9 @@ class ReporteController extends Controller
         $fin = explode(",", $ff);
         $inicio = $in[2] . "-" . $in[0] . "-" . $in[1];
         $final = $fin[2] . "-" . $fin[0] . "-" . $fin[1];
+        $final = strtotime($final);
+        $final = strtotime("+1 day", $final);
+        $final = date('Y-m-d',$final);
         if ($cliente != "null") {
             $cl = explode("-", $cliente);
             if ($cl[1] == "J") {
@@ -49,9 +52,10 @@ class ReporteController extends Controller
                 $clien = Cliente_Natural::find($cl[0]);
             }
             $tic = $clien->tickets;
-            dd($tic);
              } else {
+
             $tic = Ticket::whereBetween('updated_at', [$inicio, $final])->get();
+
         }
         $i = strtotime($inicio);
         $f = strtotime($final);
@@ -89,6 +93,7 @@ class ReporteController extends Controller
                 $obj['solicitante'] = $value->cliente_natural->nombre . " " . $value->cliente_natural->apellido;
                 $obj['fecha'] = $value->updated_at;
                 $obj['estado'] = $value->estado;
+                $obj['descripcion'] = $value->observacion;
                 $response[] = $obj;
             }
             return json_encode($response);

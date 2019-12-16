@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @if(session()->has('MOD_USUARIO'))
+            @if(session()->has('MOD_USUARIOS'))
             <div class="col-lg-4 col-md-6 col-sm-6">
                 <a href="{{route('admin.usuarios')}}">
                     <div class="card card-stats">

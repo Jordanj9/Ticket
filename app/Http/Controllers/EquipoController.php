@@ -195,7 +195,9 @@ class EquipoController extends Controller
             if ($key == 'licencias') {
                 $equipo->$key = $value;
             } else {
-                $equipo->$key = strtoupper($value);
+                if($key != 'juridica_id' || $key != 'natural_id'){
+                    $equipo->$key = strtoupper($value);
+                }
             }
         }
         $result = $equipo->save();

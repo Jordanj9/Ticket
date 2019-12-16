@@ -835,6 +835,7 @@
                 loader.style.background = "url('{{asset("assets/img/images/mailenviado.gif")}}') 50% 50% no-repeat rgb(249,249,249)";
                 setTimeout(function () {
                     loader.style.display = 'none';
+                    loader.style.background = "url('{{asset("assets/img/images/loader.gif")}}') 50% 50% no-repeat rgb(249,249,249)";
                     $.notify({
                         icon: "add_alert",
                         message: msg.response

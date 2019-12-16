@@ -121,6 +121,16 @@
 @section('script')
     <script>
         $(document).ready(function () {
+
+            var table = $('#datatables').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ]
+            });
             // initialise Datetimepicker and Sliders
             md.initFormExtendedDatetimepickers();
             if ($('.slider').length != 0) {
@@ -130,6 +140,7 @@
         });
 
         function getTickets() {
+
             $("#tb2").html("");
             var esta = $("#estado").val();
             var fi = $("#fechai").val();
@@ -152,7 +163,8 @@
                 url: '{{url("reporte/reporte/menu/")}}/' + esta + "/" + i + "/" + f + "/" + cli + "/tickets",
                 data: {},
             }).done(function (msg) {
-                if (msg !== "null") {
+                console.log(msg);
+                if (msg != "null") {
                     var m = JSON.parse(msg);
                     var html = "";
                     $.each(m, function (index, item) {
@@ -165,15 +177,7 @@
                         +"</tr>";
                     });
                     $("#tb2").html(html);
-                    $('#datatables').DataTable( {
-                        dom: 'Bfrtip',
-                        buttons: [
-                            'copyHtml5',
-                            'excelHtml5',
-                            'csvHtml5',
-                            'pdfHtml5'
-                        ]
-                    } );
+                    table.ajax.reload();
                 } else {
                     $.notify({
                         icon: "add_alert",
