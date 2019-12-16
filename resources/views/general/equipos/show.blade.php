@@ -58,6 +58,10 @@
                                 <td class="subject">{{$equipo->marca}}</td>
                             </tr>
                             <tr class="read">
+                                <td class="contact"><b>Modelo</b></td>
+                                <td class="subject">{{$equipo->modelo}}</td>
+                            </tr>
+                            <tr class="read">
                                 <td class="contact"><b>Procesador</b></td>
                                 <td class="subject">{{$equipo->procesador}}</td>
                             </tr>

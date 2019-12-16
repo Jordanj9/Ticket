@@ -70,6 +70,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'general'], function () {
     //EMPLEADO
     Route::resource('empleado', 'EmpleadoController');
     Route::get('empleado/{id}/delete', 'EmpleadoController@destroy')->name('empleado.delete');
+    //PERSONA NATURAL
+    Route::resource('natural', 'ClienteController');
+    Route::get('natural/{id}/delete', 'ClienteController@destroy')->name('natural.delete');
+    //PERSONA JURIDICA
+    Route::resource('juridica', 'JuridicaController');
+    Route::get('juridica/{id}/delete', 'JuridicaController@destroy')->name('juridica.delete');
 
 });
 

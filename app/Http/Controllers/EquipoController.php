@@ -81,11 +81,16 @@ class EquipoController extends Controller
         }
 
         foreach ($equipo->attributesToArray() as $key => $value) {
-            if ($key == 'licencias') {
-                $equipo->$key = $value;
-            } else {
-                $equipo->$key = strtoupper($value);
+
+           if(isset($request->$key)){
+	            if ($key == 'licencias') {
+	                $equipo->$key = $value;
+	            } else {
+
+	                $equipo->$key = strtoupper($value);
+	            }
             }
+
         }
         $result = $equipo->save();
 
@@ -192,13 +197,15 @@ class EquipoController extends Controller
         }
 
         foreach ($equipo->attributesToArray() as $key => $value) {
+         if(isset($request->$key)){
             if ($key == 'licencias') {
-                $equipo->$key = $value;
+                $equipo->$key = $request->$key;
             } else {
-                if($key != 'juridica_id' || $key != 'natural_id'){
-                    $equipo->$key = strtoupper($value);
+                if($key != 'juridica_id' && $key != 'natural_id'){
+                    $equipo->$key = strtoupper($request->$key);
                 }
             }
+          }
         }
         $result = $equipo->save();
 

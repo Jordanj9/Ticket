@@ -46,6 +46,7 @@
                                 <th>ID</th>
                                 <th>CLIENTE</th>
                                 <th>MARCA</th>
+                                <th>MODELO</th>
                                 <th>PROCESADOR</th>
                                 <th>MEMORIA RAM</th>
                                 <th>DISCO DURO</th>
@@ -63,6 +64,7 @@
                                     @endif
 
                                     <td>{{$equipo->marca}}</td>
+                                    <td>{{$equipo->modelo}}</td>
                                     <td>{{$equipo->procesador}}</td>
                                     <td>{{$equipo->memoria_ram}}</td>
                                     <td>{{$equipo->disco_duro}}</td>
@@ -87,6 +89,7 @@
                                 <th>ID</th>
                                 <th>CLIENTE</th>
                                 <th>MARCA</th>
+                                <th>MODELO</th>
                                 <th>PROCESADOR</th>
                                 <th>MEMORIA RAM</th>
                                 <th>DISCO DURO</th>

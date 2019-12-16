@@ -95,6 +95,7 @@
                                 <th>ESTADO</th>
                                 <th>SOLICITANTE</th>
                                 <th>DEPENDENCIA</th>
+                                <th>OBSERVACIÓN</th>
                                 <th>FECHA</th>
                             </tr>
                             </thead>
@@ -108,6 +109,7 @@
                                 <th>ESTADO</th>
                                 <th>SOLICITANTE</th>
                                 <th>DEPENDENCIA</th>
+                                <th>OBSERVACIÓN</th>
                                 <th>FECHA</th>
                             </tr>
                             </tfoot>
@@ -122,15 +124,7 @@
     <script>
         $(document).ready(function () {
 
-            var table = $('#datatables').DataTable({
-                dom: 'Bfrtip',
-                buttons: [
-                    'copyHtml5',
-                    'excelHtml5',
-                    'csvHtml5',
-                    'pdfHtml5'
-                ]
-            });
+
             // initialise Datetimepicker and Sliders
             md.initFormExtendedDatetimepickers();
             if ($('.slider').length != 0) {
@@ -163,7 +157,7 @@
                 url: '{{url("reporte/reporte/menu/")}}/' + esta + "/" + i + "/" + f + "/" + cli + "/tickets",
                 data: {},
             }).done(function (msg) {
-                console.log(msg);
+
                 if (msg != "null") {
                     var m = JSON.parse(msg);
                     var html = "";
@@ -177,7 +171,27 @@
                         +"</tr>";
                     });
                     $("#tb2").html(html);
-                    table.ajax.reload();
+                     var table = $('#datatables').DataTable({
+                     retrieve: true,
+                     responsive: true,
+                     dom: 'Bfrtip',
+                     buttons: [
+                     {
+                        extend:'copyHtml5',
+                        title: 'Hoja de Trabajo'
+                    },{
+                        extend:'excelHtml5',
+                        title: 'Hoja de Trabajo'
+                    },{
+                        extend:'csvHtml5',
+                        title: 'Hoja de Trabajo'
+                    },{
+                        extend:'pdfHtml5',
+                        title: 'Hoja de Trabajo'
+                     },
+
+                ]
+            });
                 } else {
                     $.notify({
                         icon: "add_alert",

@@ -16,6 +16,7 @@ class CreateEquiposTable extends Migration
         Schema::create('equipos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('marca',50);
+            $table->string('modelo',200)->nullable();
             $table->string('procesador');
             $table->string('memoria_ram');
             $table->string('disco_duro');

@@ -31,7 +31,7 @@ class TicketController extends Controller
         $u = Auth::user();
         $empleado = Empleado::where('identificacion',$u->identificacion)->first();
         if($empleado != null){
-            $tickets = $empleado->tickets();
+            $tickets = $empleado->tickets;
         }else{
             $tickets = Ticket::all();
         }
@@ -123,13 +123,13 @@ class TicketController extends Controller
         if ($result) {
             $response = "<h5>Señor(a) " . $clienteNatural->nombre . " " . $clienteNatural->apellido . " su ticket ha sido exitoso!</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p>";
             if($request->tipopersona == 'JURIDICA'){
-                $responseJurico = "<h5>Nueva solicitud de tickets!</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p><p><b>Dependencia: ".$request->dependencia."</b></p><p><b>Observaciòn: ".$request->observacion."</b></p><br><h5>Detalles del Solicitante</h5><br><p><b>Nombre: ".$clienteNatural->nombre." ".$clienteNatural->apellido."</b></p><p><b>Telefono: ".$clienteNatural->telefono."</b></p>";
+                $responseJurico = "<h5>Nueva solicitud de tickets!</h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p><p><b>Dependencia: ".$request->dependencia."</b></p><p><b>Observaciòn: ".$ticket->descripcion."</b></p><br><h5>Detalles del Solicitante</h5><br><p><b>Nombre: ".$clienteNatural->nombre." ".$clienteNatural->apellido."</b></p><p><b>Telefono: ".$clienteNatural->telefono."</b></p>";
                 Mail::to($clienteJuridico->email)->send(new NotificationTicket($responseJurico));
             }
             Mail::to($clienteNatural->email)->send(new NotificationTicket($response));
 
             $responseAdmin = "<h5>Señor(a) admin se ha recibido una nueva solicitud de ticket </h5><br><h5>Detalles del ticket </h5><p>Fecha de Solicitud: " . $hoy["year"] . "-" . $hoy["mon"] . "-" . $hoy["mday"] . "</p><p>N° de Radicado: <b>" . $ticket->radicado . "</b></p><br><h5>Detalles del Solicitante</h5><br><p><b>Nombre: ".$clienteNatural->nombre." ".$clienteNatural->apellido."</b></p><p><b>Telefono: ".$clienteNatural->telefono."</b></p>";
-            Mail::to('colonca1999@gmail.com')->send(new NotificationTicket($responseAdmin));
+            Mail::to('soporte@pctoolsbarrancabermeja.com')->send(new NotificationTicket($responseAdmin));
 
             return response()->json([
                 'response' => $response,

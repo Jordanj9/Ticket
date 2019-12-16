@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'colonca1999@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'no-replay-message'),
+        'address' => env('MAIL_FROM_ADDRESS', 'soporte@pctoolsbarrancabermeja.com'),
+        'name' => env('MAIL_FROM_NAME', 'no-reply-message'),
     ],
 
     /*

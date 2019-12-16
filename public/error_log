@@ -1,0 +1,1 @@
+[29-Nov-2019 15:55:38 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home3/nikorrie/pctools/app/Http/Controllers/EquipoController.php on line 85

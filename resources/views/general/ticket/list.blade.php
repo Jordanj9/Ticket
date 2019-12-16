@@ -125,7 +125,7 @@
                 </div>
                 <div class="modal-body">
                     <strong>Detalles: </strong>los tickets son solicitudes de servicios realizadas por los clientes
-                    <br/><strong>Nota: </strong> los iconos del ticket permiten aplazar, .
+                    <br/><strong>Nota: </strong> los iconos del ticket permiten ver detalles, aplazar, cancelar, finalizar y asignar los tickes.
                 </div>
                 <div class="modal-footer justify-content-center">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">ACEPTAR</button>
@@ -158,7 +158,7 @@
                                                         data-style="select-with-transition"
                                                         style="width: 100%;" required="required"
                                                         title="--Seleccione una opción--"
-                                                        name="Ticket_id">
+                                                        name="empleado_id">
                                                     @foreach($empleados as $key=>$value)
                                                         <option value="{{$key}}">{{$value}}</option>
                                                     @endforeach
@@ -170,9 +170,6 @@
                             </div>
                             <br>
                             <div class="modal-footer">
-                                <button class="btn btn-info btn-round" style="margin-right: 50px;" type="reset">Limpiar
-                                    Formulario
-                                </button>
                                 <button class="btn btn-success btn-round" type="submit">Guardar</button>
                             </div>
                         </form>
@@ -239,7 +236,7 @@
                         </div>
                         <br>
                         <div class="modal-footer">
-                            <button class="btn btn-info btn-round" style="margin-right: 50px;" type="reset">Limpiar
+                            <button class="btn btn-info btn-round" style="margin-right: 50px;" type="button" onclick="limpiar()">Limpiar
                                 Formulario
                             </button>
                             <button class="btn btn-success btn-round" type="button" onclick="guardar()">Guardar</button>

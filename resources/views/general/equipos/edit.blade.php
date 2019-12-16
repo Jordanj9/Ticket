@@ -79,9 +79,9 @@
                                 </div>
                             </div>
                             <br>
-                            <h4>Descripción del Producto</h4>
+                            <h4>Descripción del Equipo</h4>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group bmd-form-group">
                                         <div class="form-line">
                                             <label class="control-label">Año de Aquisiciòn</label>
@@ -91,12 +91,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group bmd-form-group">
                                         <div class="form-line">
                                             <label class="control-label">Pantalla</label>
                                             <input type="text" class="form-control" name="pantalla" value="{{$equipo->pantalla}}"
                                                    required="required" placeholder="Detalle de la pantalla"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group bmd-form-group">
+                                        <div class="form-line">
+                                            <label class="control-label">Modelo</label>
+                                            <input type="text" class="form-control" name="modelo" value="{{$equipo->modelo}}"
+                                                   required="required" placeholder="Modelo del equipo"
                                             />
                                         </div>
                                     </div>

@@ -20,12 +20,14 @@
                     </div>
                 </div>
                 <div class="card-body">
+                 @if(session()->has('PAG_REPORTEGENERAL'))
                     <a href="{{route('reporte.index')}}">
                         <button class="btn btn-outline-info btn-round">
                             <i class="fa fa-cubes"></i> REPORTE GENERAL
                             <div class="ripple-container"></div>
                         </button>
                     </a>
+                 @endif
                 </div>
             </div>
         </div>

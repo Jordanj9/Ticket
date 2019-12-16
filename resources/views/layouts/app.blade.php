@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -8,12 +8,12 @@
 
     <!-- Scripts -->
     <link rel="apple-touch-icon" sizes="76x76" href="{{asset("assets/img/apple-icon.png")}}">
-    <link rel="icon" type="image/png" href="{{asset("assets/img/favicon.png")}}">
+    <link rel="icon" type="image/png" href="{{asset("assets/img/upclogo.png")}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
-    <!-- Extra details for Live View on GitHub Pages -->
+
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
@@ -141,7 +141,7 @@
                             @endif
 
                         @if(session()->has('MOD_REPORTE'))
-                            @if($location=='mantenimiento')
+                            @if($location=='reporte')
                                 <li class="nav-item active">
                             @else
                                 <li class="nav-item">
@@ -295,7 +295,7 @@
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="{{asset('assets/js/material-dashboard.min.js?v=2.1.0')}}" type="text/javascript"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="{{asset('assets/demo/demo.js')}}"></script>
+<!--<script src="{{asset('assets/demo/demo.js')}}"></script>-->
 
 <script>
     $(document).ready(function () {
