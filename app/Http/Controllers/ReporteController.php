@@ -6,6 +6,7 @@ use App\Ticket;
 use Illuminate\Http\Request;
 use App\Cliente_Juridico;
 use App\Cliente_Natural;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use function Sodium\add;
 
@@ -43,20 +44,20 @@ class ReporteController extends Controller
         $final = $fin[2] . "-" . $fin[0] . "-" . $fin[1];
         $final = strtotime($final);
         $final = strtotime("+1 day", $final);
-        $final = date('Y-m-d',$final);
+        $final = date('Y-m-d', $final);
         if ($cliente != "null") {
             $cl = explode("-", $cliente);
             if ($cl[1] == "J") {
                 $clien = Cliente_Juridico::find($cl[0]);
+                $nombrecli = $clien->empresa;
             } else {
                 $clien = Cliente_Natural::find($cl[0]);
+                $nombrecli = $clien->nombre . " " . $clien->apellido;
             }
             $tic = $clien->tickets;
-            dd($tic);
-             } else {
-
+        } else {
             $tic = Ticket::whereBetween('updated_at', [$inicio, $final])->get();
-
+            $nombrecli = 'TODOS';
         }
         $i = strtotime($inicio);
         $f = strtotime($final);
@@ -92,20 +93,68 @@ class ReporteController extends Controller
                 }
                 $obj['tipo'] = $value->solicitante;
                 $obj['solicitante'] = $value->cliente_natural->nombre . " " . $value->cliente_natural->apellido;
-                 $obj['solicitante'] = $value->cliente_natural->nombre . " " . $value->cliente_natural->apellido;
-                $fecha = explode(" ",$value->updated_at);
+                $fecha = explode(" ", $value->updated_at);
                 $obj['fecha'] = $fecha[0];
                 $obj['estado'] = $value->estado;
-                if($value->observacion == null){
-                $obj['descripcion'] = "--";
-                } else{
-                $obj['descripcion'] = $value->observacion;
+                if ($value->observacion == null) {
+                    $obj['descripcion'] = "--";
+                } else {
+                    $obj['descripcion'] = $value->observacion;
                 }
                 $response[] = $obj;
             }
-            return json_encode($response);
+            if ($response != null) {
+                if (count($response) > 0) {
+                    $arror = $this->orderMultiDimensionalArray($response, 'cliente', false);
+                    $encabezado = null;
+                    $cabeceras = ['Radicado', 'Cliente', 'Documento', 'Dependencia', 'Tipo','solicitante', 'Fecha', 'Estado', 'Observación'];
+                    $filtros = [
+                        'ESTADO' => $estado,
+                        'DESDE' => $inicio,
+                        'HASTA' => $final,
+                        'CLIENTE' => $nombrecli
+                    ];
+                    $hoy = getdate();
+                    $fechar = $hoy["year"] . "/" . $hoy["mon"] . "/" . $hoy["mday"] . "  Hora: " . $hoy["hours"] . ":" . $hoy["minutes"] . ":" . $hoy["seconds"];
+                    $date['fecha'] = $fechar;
+                    $date['encabezado'] = $encabezado;
+                    $date['cabeceras'] = $cabeceras;
+                    $date['data'] = $arror;
+                    $date['nivel'] = 1;
+                    $date['titulo'] = "REPORTES DE TICKETS - LISTADO DE CLIENTES GENERAL";
+                    $date['filtros'] = $filtros;
+                    //$pdf = Pdf::loadView('reportes.print_1_2_niveles', $date);
+                   //composer require barryvdh/laravel-dompdf
+                    $pdf = PDF::loadView('reportes.print_1_2_niveles', $date);
+                    return $pdf->stream('reporte.pdf');
+                } else {
+                    return "<p style='position: absolute; top:50%; left:50%; width:400px; margin-left:-200px; height:150px; margin-top:-150px; border:3px solid #2c3e50; background-color:#f0f3f4; padding:40px; font-size:30px; color:red;'>Su consulta no produjo resultados.<br/><br/></p>";
+                }
+            } else {
+                return "<p style='position: absolute; top:50%; left:50%; width:400px; margin-left:-200px; height:150px; margin-top:-150px; border:3px solid #2c3e50; background-color:#f0f3f4; padding:40px; font-size:30px; color:red;'>Su consulta no produjo resultados.<br/><br/></p>";
+            }
         } else {
-            return "null";
+            return "<p style='position: absolute; top:50%; left:50%; width:400px; margin-left:-200px; height:150px; margin-top:-150px; border:3px solid #2c3e50; background-color:#f0f3f4; padding:40px; font-size:30px; color:red;'>Su consulta no produjo resultados.<br/><br/></p>";
         }
+    }
+
+    function orderMultiDimensionalArray($toOrderArray, $field, $inverse = false)
+    {
+        $position = array();
+        $newRow = array();
+        foreach ($toOrderArray as $key => $row) {
+            $position[$key] = $row[$field];
+            $newRow[$key] = $row;
+        }
+        if ($inverse) {
+            arsort($position);
+        } else {
+            asort($position);
+        }
+        $returnArray = array();
+        foreach ($position as $key => $pos) {
+            $returnArray[] = $newRow[$key];
+        }
+        return $returnArray;
     }
 }
