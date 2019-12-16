@@ -48,7 +48,7 @@
             foreach ($encabezado as $key => $value) {
                 $i = $i + 1;
                 $van = $van + 1;
-                $row1 = $row1 . "<th style='width: 33.3% !important; background-color: #ed4c1b; color:#FFFFFF;'>" . $key . "</th>";
+                $row1 = $row1 . "<th style='width: 33.3% !important; background-color: darkblue; color:#FFFFFF;'>" . $key . "</th>";
                 $row2 = $row2 . "<th style='width: 33.3%; text-align: center; background-color:#2196F3; color:#FFFFFF;'>" . $value . "</th>";
                 if ($i === 3) {
                     $i = 0;
@@ -80,7 +80,7 @@
             foreach ($filtros as $key => $value) {
                 $i = $i + 1;
                 $van = $van + 1;
-                $row1 = $row1 . "<th style='width: 33.3% !important; background-color: #ed4c1b; color:#FFFFFF;'>" . $key . "</th>";
+                $row1 = $row1 . "<th style='width: 33.3% !important; background-color: darkblue; color:#FFFFFF;'>" . $key . "</th>";
                 $row2 = $row2 . "<td style='width: 33.3%; text-align: center; background-color:#2196F3; color:#FFFFFF;'>" . $value . "</td>";
                 if ($i === 3) {
                     $i = 0;
