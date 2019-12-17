@@ -22,4 +22,9 @@ class Cliente_Natural extends Model
         return $this->hasMany(Ticket::class, 'natural_id');
     }
 
+    public function juridicos(){
+        return $this->belongsToMany(Cliente_Juridico::class,'juridicanaturals','juridica_id','natural_id')
+            ->withPivot('dependencia')->withTimestamps();
+    }
+
 }

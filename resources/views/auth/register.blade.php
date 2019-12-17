@@ -42,6 +42,18 @@
         })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
     </script>
     <!-- End Google Tag Manager -->
+
+    <style>
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] { -moz-appearance:textfield; }
+
+    </style>
 </head>
 
 <body class="off-canvas-sidebar">
@@ -56,7 +68,7 @@
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
     <div class="container">
         <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Solicitando Tickets</a>
+            <a class="navbar-brand" href="">Solicitando Tickets</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -698,18 +710,31 @@
                     $("#tipopersona").val(msg.response.tipo).trigger("change");
 
                     if (msg.response.tipo == 'JURIDICA') {
-                        $("#dependenciaid").val(msg.response.dependencia).trigger("change");
-                        $("#dependenciaid").closest('.form-group').removeClass('has-danger').addClass('has-success');
-                        $("#empresaid").val(msg.response.empresa).trigger("change");
-                        $("#empresaid").closest('.form-group').removeClass('has-danger').addClass('has-success');
                         $("#nitid").val(msg.response.nit).trigger("change");
                         $("#nitid").closest('.form-group').removeClass('has-danger').addClass('has-success');
+                        $("#empresaid").val(msg.response.empresa).trigger("change");
+                        $("#empresaid").closest('.form-group').removeClass('has-danger').addClass('has-success');
+                        $("#dependenciaid").val(msg.response.dependencia).trigger("change");
+                        $("#dependenciaid").closest('.form-group').removeClass('has-danger').addClass('has-success');
                         $("#telefonoemp").val(msg.response.telefonoemp).trigger("change");
                         $("#telefonoemp").closest('.form-group').removeClass('has-danger').addClass('has-success');
                         $("#emailemp").val(msg.response.emailempresa).trigger("change");
                         $("#emailemp").closest('.form-group').removeClass('has-danger').addClass('has-success');
                         $("#direccionemp").val(msg.response.direccionemp).trigger("change");
                         $("#direccionemp").closest('.form-group').removeClass('has-danger').addClass('has-success');
+
+                        // $("#dependenciaid").val(msg.response.dependencia).trigger("change");
+                        // $("#dependenciaid").closest('.form-group').removeClass('has-danger').addClass('has-success');
+                        // $("#empresaid").val(msg.response.empresa).trigger("change");
+                        // $("#empresaid").closest('.form-group').removeClass('has-danger').addClass('has-success');
+                        // $("#nitid").val(msg.response.nit).trigger("change");
+                        // $("#nitid").closest('.form-group').removeClass('has-danger').addClass('has-success');
+                        // $("#telefonoemp").val(msg.response.telefonoemp).trigger("change");
+                        // $("#telefonoemp").closest('.form-group').removeClass('has-danger').addClass('has-success');
+                        // $("#emailemp").val(msg.response.emailempresa).trigger("change");
+                        // $("#emailemp").closest('.form-group').removeClass('has-danger').addClass('has-success');
+                        // $("#direccionemp").val(msg.response.direccionemp).trigger("change");
+                        // $("#direccionemp").closest('.form-group').removeClass('has-danger').addClass('has-success');
                     }
                 }
             });

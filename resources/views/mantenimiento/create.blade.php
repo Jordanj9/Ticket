@@ -100,7 +100,7 @@
 
                 $.ajax({
                     type: 'GET',
-                    url: '{{url("tickest/consultar/")}}/' + id + "/cliente",
+                    url: '{{url("tickest/consultar/")}}/' + id + "/juridica",
                     data: {},
                 }).done(function (msg) {
                     if (msg.status == "ok") {
